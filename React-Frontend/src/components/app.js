@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import Header from '../containers/header';
-import Home from './home';
-// Bootstrap buttons
-// import { ButtonToolbar } from 'react-bootstrap';
-// import { Button } from 'react-bootstrap';
 
 var TAG = "MainApp | "
 
