@@ -2,24 +2,23 @@
 var clientJS = require('./helper-functions/client.js');
 var client = clientJS.client;
 
-var TAG = "QUESTIONS | ";
+var TAG = "RESPONSES | ";
 
 module.exports = {
-  '/questions': {
+  '/responses': {
     methods: ['get'],
     fn: function(request, response){  
-      console.log(TAG, "\nCalled /users(GET)");
-      console.log(TAG, "Category Description is : " + JSON.stringify(request.query.categoryDescription));
+      console.log(TAG, "\nCalled /responses(GET)");
   	  
-  	  get_questions( request.query.categoryDescription,
+  	  get_responses(
   	  	function(resp) {
   	  	// This is the callback - we move into this if the function returns data as expected
-  	  	console.log(TAG, 'moving into get_questions callback');
+  	  	console.log(TAG, 'moving into get_responses callback');
   	  	// console.log(TAG, 'resp: ' + JSON.stringify(resp));
   	  	return response.status(200).send(resp);
       }, function(err) {
-  	  	// This is the errback - we move into this if get_questions returns an error
-  	  	console.log(TAG, 'Something went wrong in ' + TAG);
+  	  	// This is the errback - we move into this if get_responses returns an error
+  	  	console.log(TAG, 'Returning from errBack in ' + TAG);
   	  	console.log(TAG, err);
   	  	return response.status(400).send(err);
   	  })
@@ -27,14 +26,12 @@ module.exports = {
   }
 }
 
-function get_questions(categoryDescription, callBack, errBack) {
-  var getQuestionsQuery = "SELECT * FROM questions INNER JOIN categories \
-   ON questions.category_id = categories.category_id WHERE \
-    categories.description = \'{0}\'".format(categoryDescription);
-  console.log(TAG, getQuestionsQuery);
-  client.query(getQuestionsQuery, function(err, result) {
+function get_responses(callBack, errBack) {
+  var getResponsesQuery = "SELECT * FROM responses";
+  console.log(TAG, getResponsesQuery);
+  client.query(getResponsesQuery, function(err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
-        console.log(TAG, getQuestionsQuery);
+        console.log(TAG, getResponsesQuery);
         return errBack(err);
       } else {
         // for (var i = 0; i < result.rows.length; i++) {

@@ -5,20 +5,19 @@ var client = clientJS.client;
 var TAG = "QUESTIONS | ";
 
 module.exports = {
-  '/questions': {
+  '/answers': {
     methods: ['get'],
     fn: function(request, response){  
-      console.log(TAG, "\nCalled /users(GET)");
-      console.log(TAG, "Category Description is : " + JSON.stringify(request.query.categoryDescription));
+      console.log(TAG, "\nCalled /answers(GET)");
   	  
-  	  get_questions( request.query.categoryDescription,
+  	  get_answers(
   	  	function(resp) {
   	  	// This is the callback - we move into this if the function returns data as expected
-  	  	console.log(TAG, 'moving into get_questions callback');
+  	  	console.log(TAG, 'moving into get_answers callback');
   	  	// console.log(TAG, 'resp: ' + JSON.stringify(resp));
   	  	return response.status(200).send(resp);
       }, function(err) {
-  	  	// This is the errback - we move into this if get_questions returns an error
+  	  	// This is the errback - we move into this if get_answers returns an error
   	  	console.log(TAG, 'Something went wrong in ' + TAG);
   	  	console.log(TAG, err);
   	  	return response.status(400).send(err);
@@ -27,14 +26,12 @@ module.exports = {
   }
 }
 
-function get_questions(categoryDescription, callBack, errBack) {
-  var getQuestionsQuery = "SELECT * FROM questions INNER JOIN categories \
-   ON questions.category_id = categories.category_id WHERE \
-    categories.description = \'{0}\'".format(categoryDescription);
-  console.log(TAG, getQuestionsQuery);
-  client.query(getQuestionsQuery, function(err, result) {
+function get_answers(callBack, errBack) {
+  var getAnswersQuery = "SELECT * FROM answers";
+  console.log(TAG, getAnswersQuery);
+  client.query(getAnswersQuery, function(err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
-        console.log(TAG, getQuestionsQuery);
+        console.log(TAG, getAnswersQuery);
         return errBack(err);
       } else {
         // for (var i = 0; i < result.rows.length; i++) {

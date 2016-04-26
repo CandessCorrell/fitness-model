@@ -2,23 +2,22 @@
 var clientJS = require('./helper-functions/client.js');
 var client = clientJS.client;
 
-var TAG = "QUESTIONS | ";
+var TAG = "ASSESSMENTS | ";
 
 module.exports = {
-  '/questions': {
+  '/assessments': {
     methods: ['get'],
     fn: function(request, response){  
-      console.log(TAG, "\nCalled /users(GET)");
-      console.log(TAG, "Category Description is : " + JSON.stringify(request.query.categoryDescription));
+      console.log(TAG, "\nCalled /assessments(GET)");
   	  
-  	  get_questions( request.query.categoryDescription,
+  	  get_assessments(
   	  	function(resp) {
   	  	// This is the callback - we move into this if the function returns data as expected
-  	  	console.log(TAG, 'moving into get_questions callback');
+  	  	console.log(TAG, 'moving into get_assessments callback');
   	  	// console.log(TAG, 'resp: ' + JSON.stringify(resp));
   	  	return response.status(200).send(resp);
       }, function(err) {
-  	  	// This is the errback - we move into this if get_questions returns an error
+  	  	// This is the errback - we move into this if get_assessments returns an error
   	  	console.log(TAG, 'Something went wrong in ' + TAG);
   	  	console.log(TAG, err);
   	  	return response.status(400).send(err);
@@ -27,14 +26,12 @@ module.exports = {
   }
 }
 
-function get_questions(categoryDescription, callBack, errBack) {
-  var getQuestionsQuery = "SELECT * FROM questions INNER JOIN categories \
-   ON questions.category_id = categories.category_id WHERE \
-    categories.description = \'{0}\'".format(categoryDescription);
-  console.log(TAG, getQuestionsQuery);
-  client.query(getQuestionsQuery, function(err, result) {
+function get_assessments(callBack, errBack) {
+  var getAssessmentsQuery = "SELECT * FROM assessments";
+  console.log(TAG, getAssessmentsQuery);
+  client.query(getAssessmentsQuery, function(err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
-        console.log(TAG, getQuestionsQuery);
+        console.log(TAG, getAssessmentsQuery);
         return errBack(err);
       } else {
         // for (var i = 0; i < result.rows.length; i++) {
