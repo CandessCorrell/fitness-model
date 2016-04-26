@@ -9,9 +9,9 @@ module.exports = {
     methods: ['get'],
     fn: function(request, response){  
       console.log(TAG, "\nCalled /users(GET)");
-      console.log(TAG, "query is : " + JSON.stringify(request.query));
+      console.log(TAG, "Category Description is : " + JSON.stringify(request.query.categoryDescription));
   	  
-  	  get_questions( 
+  	  get_questions( request.query.categoryDescription,
   	  	function(resp) {
   	  	// This is the callback - we move into this if the function returns data as expected
   	  	console.log(TAG, 'moving into get_questions callback');
@@ -27,13 +27,14 @@ module.exports = {
   }
 }
 
-function get_questions(callBack, errBack) {
+function get_questions(categoryDescription, callBack, errBack) {
   var getQuestionsQuery = "SELECT * FROM questions INNER JOIN categories \
    ON questions.category_id = categories.category_id WHERE \
-    categories.description = 'Portfolio Management'";
+    categories.description = \'{0}\'".format(categoryDescription);
   console.log(TAG, getQuestionsQuery);
   client.query(getQuestionsQuery, function(err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
+        console.log(TAG, getQuestionsQuery);
         return errBack(err);
       } else {
         // for (var i = 0; i < result.rows.length; i++) {
