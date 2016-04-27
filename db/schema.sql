@@ -1,22 +1,56 @@
+
+
+CREATE TABLE organizations (
+	organization_id	SERIAL PRIMARY KEY,
+	description	varchar
+);
+
+CREATE TABLE divisions (
+	division_id SERIAL PRIMARY KEY,
+	description varchar,
+	organization_id integer NOT NULL,
+	FOREIGN KEY (organization_id) REFERENCES organizations
+);
+
+CREATE TABLE portfolios (
+	portfolio_id	SERIAL PRIMARY KEY,
+	division_id	integer NOT NULL,
+	FOREIGN KEY (division_id) REFERENCES divisions,
+);
+
+CREATE TABLE branches (
+	branch_id	SERIAL PRIMARY KEY,
+	description varchar,
+	division_id integer NOT NULL,
+	FOREIGN KEY (division_id) REFERENCES divisions
+);
+
+CREATE TABLE teams (
+	team_id SERIAL PRIMARY KEY,
+	description varchar,
+	branch_id integer NOT NULL,
+	FOREIGN KEY (branch_id) REFERENCES branches
+);
+
 CREATE TABLE assessments (
-	assessment_id		integer PRIMARY KEY,
+	assessment_id		SERIAL PRIMARY KEY,
 	description		varchar,
 	version			varchar
 );
 
 CREATE TABLE categories (
-	category_id		integer PRIMARY KEY,
+	category_id		SERIAL PRIMARY KEY,
 	description		varchar
 );
 
 CREATE TABLE subcategories (
-	subcategory_id		integer PRIMARY KEY,
+	subcategory_id		SERIAL PRIMARY KEY,
 	category_id		integer NOT NULL,
 	description		varchar
 );
 
 CREATE TABLE questions (
-	question_id		integer PRIMARY KEY,
+	question_id		SERIAL PRIMARY KEY,
 	assessment_id		integer NOT NULL,
 	category_id		integer NOT NULL,
 	subcategory_id		integer,
@@ -28,7 +62,7 @@ CREATE TABLE questions (
 );
 
 CREATE TABLE answers (
-	answer_id		integer PRIMARY KEY,
+	answer_id		SERIAL PRIMARY KEY,
 	question_id		integer NOT NULL,
 	description		varchar,
 	value			integer,
@@ -37,27 +71,31 @@ CREATE TABLE answers (
 );
 
 CREATE TABLE users (
-	user_id			integer PRIMARY KEY,
+	user_id			SERIAL PRIMARY KEY,
 	username		varchar,
 	email			varchar,
 	first_name		varchar,
 	last_name		varchar,
 	company			varchar,
-	position		varchar
+	position		varchar,
+	team_id	integer NOT NULL,
+	FOREIGN KEY (team_id) REFERENCES teams
 );
 
 CREATE TABLE results (
-	result_id		integer PRIMARY KEY,
+	result_id		SERIAL PRIMARY KEY,
 	user_id			integer NOT NULL,
+-- portfolio_id	integer NOT NULL,
 	assessment_id		integer NOT NULL,
-	start_time		date,
-	end_time		date,
+	start_time		timestamp,
+	end_time		timestamp,
 	FOREIGN KEY (user_id) REFERENCES users,
+-- FOREIGN KEY (portfolio_id) REFERENCES portfolios,
 	FOREIGN KEY (assessment_id) REFERENCES assessments
 );
 
 CREATE TABLE responses (
-	response_id		integer PRIMARY KEY,
+	response_id		SERIAL PRIMARY KEY,
 	result_id		integer NOT NULL,
 	question_id		integer NOT NULL,
 	answer_id		integer NOT NULL,
@@ -67,7 +105,7 @@ CREATE TABLE responses (
 );
 
 CREATE TABLE weights (
-	weight_id		integer PRIMARY KEY,
+	weight_id		SERIAL PRIMARY KEY,
 	result_id		integer NOT NULL,
 	category_id		integer NOT NULL,
 	value			integer NOT NULL,
