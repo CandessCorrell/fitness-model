@@ -1,5 +1,3 @@
-
-
 CREATE TABLE organizations (
 	organization_id	SERIAL PRIMARY KEY,
 	description	varchar
@@ -15,7 +13,7 @@ CREATE TABLE divisions (
 CREATE TABLE portfolios (
 	portfolio_id	SERIAL PRIMARY KEY,
 	division_id	integer NOT NULL,
-	FOREIGN KEY (division_id) REFERENCES divisions,
+	FOREIGN KEY (division_id) REFERENCES divisions
 );
 
 CREATE TABLE branches (
@@ -77,20 +75,20 @@ CREATE TABLE users (
 	first_name		varchar,
 	last_name		varchar,
 	company			varchar,
-	position		varchar,
-	team_id	integer NOT NULL,
-	FOREIGN KEY (team_id) REFERENCES teams
+	position		varchar
+--	team_id	integer NOT NULL,
+--	FOREIGN KEY (team_id) REFERENCES teams
 );
 
 CREATE TABLE results (
 	result_id		SERIAL PRIMARY KEY,
 	user_id			integer NOT NULL,
--- portfolio_id	integer NOT NULL,
+--	portfolio_id	integer NOT NULL,
 	assessment_id		integer NOT NULL,
 	start_time		timestamp,
 	end_time		timestamp,
 	FOREIGN KEY (user_id) REFERENCES users,
--- FOREIGN KEY (portfolio_id) REFERENCES portfolios,
+--	FOREIGN KEY (portfolio_id) REFERENCES portfolios,
 	FOREIGN KEY (assessment_id) REFERENCES assessments
 );
 
