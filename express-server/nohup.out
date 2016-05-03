@@ -1,0 +1,84 @@
+Initialized routes:
+ # GET /answers
+ # GET /assessments
+ # GET /categories
+ # GET /questions
+ # GET /responses
+ # GET /results
+ # GET /user_results
+ # GET /users
+ # GET /weights
+Done.
+ASSESSMENTS |  
+Called /assessments(GET)
+ASSESSMENTS |  SELECT * FROM assessments
+ASSESSMENTS |  moving into get_assessments callback
+ASSESSMENTS |  
+Called /assessments(GET)
+ASSESSMENTS |  SELECT * FROM assessments
+ASSESSMENTS |  moving into get_assessments callback
+USERS |  
+Called /users(GET)
+USERS |  query is : {}
+USERS |  SELECT * FROM users
+USERS |  moving into get_users callback
+WEIGHTS |  
+Called /weights(GET)
+WEIGHTS |  query is : {}
+WEIGHTS |  SELECT * FROM weights
+WEIGHTS |  moving into get_weights callback
+USERS |  
+Called /users(GET)
+USERS |  query is : {}
+USERS |  SELECT * FROM users
+USERS |  moving into get_users callback
+[0mGET /favicon.ico [33m404 [0m418.755 ms - 1132[0m
+[0mGET /assignments [33m404 [0m28.901 ms - 1132[0m
+[0mGET /stylesheets/style.css [32m200 [0m3.525 ms - 111[0m
+ASSESSMENTS |  
+Called /assessments(GET)
+ASSESSMENTS |  SELECT * FROM assessments
+ASSESSMENTS |  moving into get_assessments callback
+Hello World called!
+[0mGET / [32m200 [0m29.309 ms - 45[0m
+[0mGET /favicon.ico [33m404 [0m65.343 ms - 1132[0m
+Hello World called!
+[0mGET / [32m200 [0m2.605 ms - 45[0m
+[0mGET /favicon.ico [33m404 [0m28.706 ms - 1132[0m
+Hello World called!
+[0mGET / [36m304 [0m0.858 ms - -[0m
+USERS |  
+Called /users(GET)
+USERS |  query is : {}
+USERS |  SELECT * FROM users
+USERS |  moving into get_users callback
+Hello World called!
+[0mGET / [36m304 [0m0.843 ms - -[0m
+USERS |  
+Called /users(GET)
+USERS |  query is : {}
+USERS |  SELECT * FROM users
+USERS |  moving into get_users callback
+[0mGET /favicon.ico [33m404 [0m33.251 ms - 1132[0m
+QUESTIONS |  
+Called /users(GET)
+QUESTIONS |  Category Description is : undefined
+QUESTIONS |  SELECT * FROM questions INNER JOIN categories    ON questions.category_id = categories.category_id WHERE     categories.description = '{0}'
+QUESTIONS |  SELECT * FROM questions INNER JOIN categories    ON questions.category_id = categories.category_id WHERE     categories.description = '{0}'
+QUESTIONS |  Something went wrong in QUESTIONS | 
+QUESTIONS |  null
+ASSESSMENTS |  
+Called /assessments(GET)
+ASSESSMENTS |  SELECT * FROM assessments
+ASSESSMENTS |  moving into get_assessments callback
+QUESTIONS |  
+Called /answers(GET)
+QUESTIONS |  SELECT * FROM answers
+QUESTIONS |  moving into get_answers callback
+QUESTIONS |  
+Called /users(GET)
+QUESTIONS |  Category Description is : undefined
+QUESTIONS |  SELECT * FROM questions INNER JOIN categories    ON questions.category_id = categories.category_id WHERE     categories.description = '{0}'
+QUESTIONS |  SELECT * FROM questions INNER JOIN categories    ON questions.category_id = categories.category_id WHERE     categories.description = '{0}'
+QUESTIONS |  Something went wrong in QUESTIONS | 
+QUESTIONS |  null
