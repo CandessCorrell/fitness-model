@@ -1,3 +1,3 @@
-pm2 stop 0 
-pm2 start 0
-pm2 logs 0 
+pm2 stop www
+pm2 start bin/www
+pm2 logs www
