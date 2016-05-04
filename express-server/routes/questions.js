@@ -5,6 +5,7 @@ var client = clientJS.client;
 var TAG = "QUESTIONS | ";
 
 module.exports = {
+// Get questions for a particular category
   '/questions': {
     methods: ['get'],
     fn: function(request, response){  
