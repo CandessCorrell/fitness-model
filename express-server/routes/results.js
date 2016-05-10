@@ -1,28 +1,36 @@
 'use strict';
 var clientJS = require('./helper-functions/client.js');
 var client = clientJS.client;
+// bodyParser enables post request body parsing
+var bodyParser = require('body-parser');
 
 var TAG = "RESULTS | ";
 
 module.exports = {
   '/results': {
-    methods: ['get'],
-    fn: function(request, response){  
-      console.log(TAG, "\nCalled /results(GET)");
-  	  
-  	  get_results(
-  	  	function(resp) {
-  	  	// This is the callback - we move into this if the function returns data as expected
-  	  	console.log(TAG, 'moving into get_results callback');
-  	  	// console.log(TAG, 'resp: ' + JSON.stringify(resp));
-  	  	return response.status(200).send(resp);
-        
-        }, function(err) {
-  	  	// This is the errback - we move into this if get_results returns an error
-  	  	console.log(TAG, 'Something went wrong in ' + TAG);
-  	  	console.log(TAG, err);
-  	  	return response.status(400).send(err);
-  	  })
+    methods: ['get', 'post'],
+    middleware: [bodyParser.urlencoded({extended: true}), bodyParser.json()],
+
+    fn: function(request, response){
+      if (request.method === 'GET') {
+        console.log(TAG, "\nCalled /results(GET)");
+    	  
+    	  get_results(
+    	  	function(resp) {
+    	  	// This is the callback - we move into this if the function returns data as expected
+    	  	console.log(TAG, 'moving into get_results callback');
+    	  	// console.log(TAG, 'resp: ' + JSON.stringify(resp));
+    	  	return response.status(200).send(resp);
+          
+          }, function(err) {
+    	  	// This is the errback - we move into this if get_results returns an error
+    	  	console.log(TAG, 'Something went wrong in ' + TAG);
+    	  	console.log(TAG, err);
+    	  	return response.status(400).send(err);
+  	    })
+      } else if (request.method === 'POST') {
+        response.status(200).send("Good job buddy!");
+      } else response.status(400).send("HTTP method not supported for route \"\/results\"");
   	}
   },
 
