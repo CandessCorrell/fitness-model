@@ -4,7 +4,7 @@ var client = clientJS.client;
 // bodyParser enables post request body parsing
 var bodyParser = require('body-parser');
 
-var TAG = "RESPONSES | ";
+var TAG = "\nRESPONSES | ";
 
 module.exports = {
   '/responses': {
