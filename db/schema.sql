@@ -64,7 +64,7 @@ CREATE TABLE answers (
 	answer_id		SERIAL PRIMARY KEY,
 	question_id		integer NOT NULL,
 	description		varchar,
-	value			integer,
+	score			integer,
 	recommendation		varchar,
 	FOREIGN KEY (question_id) REFERENCES questions
 );
