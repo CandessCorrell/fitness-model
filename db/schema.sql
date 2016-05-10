@@ -44,7 +44,8 @@ CREATE TABLE categories (
 CREATE TABLE subcategories (
 	subcategory_id		SERIAL PRIMARY KEY,
 	category_id		integer NOT NULL,
-	description		varchar
+	description		varchar,
+	FOREIGN KEY (category_id) REFERENCES categories
 );
 
 CREATE TABLE questions (
