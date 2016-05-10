@@ -10,7 +10,7 @@ module.exports = {
   '/answers': {
     methods: ['get', 'post'],
     middleware: [bodyParser.urlencoded({extended: true}), bodyParser.json()],
-    fn: function(request, response) {  
+    fn: function(request, response) {
       if (request.method === 'GET') {
         console.log(TAG, "Called /answers(GET)");
     	  get_answers(
@@ -29,10 +29,10 @@ module.exports = {
         console.log(TAG, "Called /answers(POST)");
         console.log(TAG, "JSON.stringify(request): ", JSON.stringify(request.body));
         if (request.body.description == null) response.status(400).send("Whoops! Check your request.body.description")
-        else if (request.body.value == null) response.status(400).send("Whoops! Check your request.body.value")
+        else if (request.body.score == null) response.status(400).send("Whoops! Check your request.body.score")
         else if (request.body.question_id == null) response.status(400).send("Whoops! Check your request.body.question_id")
         else if (request.body.recommendation == null) response.status(400).send("Whoops! Check your request.body.recommendation")
-        else post_answer(request.body.question_id, request.body.description, request.body.value, request.body.recommendation,
+        else post_answer(request.body.question_id, request.body.description, request.body.score, request.body.recommendation,
           function (resp) {
             console.log(TAG, 'moving into post_answer callback');
             return response.status(200).send(resp);
@@ -61,9 +61,9 @@ function get_answers(callBack, errBack) {
   })
 }
 
-function post_answer(question_id, description, value, recommendation, callBack, errBack) {
-  var postAnswerQuery = "INSERT INTO answers (question_id, description, value, recommendation) \
-  VALUES ($${0}$$, $${1}$$, $${2}$$, $${3}$$)".format(question_id, description, value, recommendation)
+function post_answer(question_id, description, score, recommendation, callBack, errBack) {
+  var postAnswerQuery = "INSERT INTO answers (question_id, description, score, recommendation) \
+  VALUES ($${0}$$, $${1}$$, $${2}$$, $${3}$$)".format(question_id, description, score, recommendation)
   console.log(TAG, "postAnswerQuery: ", postAnswerQuery);
   client.query(postAnswerQuery, function(err, result) {
     if (err) {
