@@ -24,12 +24,16 @@ pm2 logs www
 
 /answers
   - GET
+  - POST
+    - Must provide a "question_id", "description", "score" and "recommendation" to issue a POST to this route.   
 
 /assessments
   - GET
 
 /categories
   - GET
+  - POST
+    - Must provide a "description" to issue a POST request to this route.
 
 /questions
   - GET
@@ -37,12 +41,19 @@ pm2 logs www
 
 /responses
   - GET
+  - POST
+    - Must provide a "question_id", "answer_id" and "result_id" to issue a POST request to this route.
 
 /results
   - GET
 
 /users
   - GET
+
+/user-results
+  - GET
+    - Must provide a user_id to issue a GET request to this route.
+    - *NOTE* I am working on a more RESTful version of this route so that it will be /user/:id
 
 /weights
   - GET
