@@ -42,6 +42,14 @@ module.exports = {
           })
       }
   	}
+  },
+  '/answer/:answer_id': {
+    methods: ['put'],
+    middleware: [bodyParser.urlencoded({extended: true}), bodyParser.json()],
+    fn: function(request, response) {
+      console.log(TAG, request);
+      console.log(TAG, "You hit the route: /answer", request.answer_id);
+    }
   }
 }
 
