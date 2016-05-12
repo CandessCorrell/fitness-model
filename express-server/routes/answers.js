@@ -47,16 +47,53 @@ module.exports = {
     methods: ['put'],
     middleware: [bodyParser.urlencoded({extended: true}), bodyParser.json()],
     fn: function(request, response) {
-      console.log(TAG, request);
-      console.log(TAG, "You hit the route: /answer", request.answer_id);
+      var answer_id = request.url.split("/");
+      answer_id = answer_id[2];
+      console.log(TAG, "You hit the route: /answer/", answer_id);
+      if (request.body.question_id == null) {
+        console.log(TAG, "Check your question_id");
+        response.status(400).send("Check your question_id");
+      } else if (request.body.description == null || (
+        request.body.description != "Yes" && 
+        request.body.description != "No" &&
+        request.body.description != "Planning to")) {
+        console.log(TAG, "Invalid description");
+        response.status(400).send("Invalid description");
+      } else if (request.body.score == null) {
+        console.log(TAG, "Invalid score");
+        response.status(400).send("Invalid score");
+      } else if (request.body.recommendation == null) {
+        console.log(TAG, "Invalid recommendation");
+        response.status(400).send("Invalid recommendation");
+      } else {
+        put_answer(answer_id, request.body.description, request.body.score, 
+          request.body.recommendation, function (resp) {
+          console.log(TAG, "Successfully returned from /answer/:answer_id PUT - moving into callBack");
+          response.status(200).send(resp);
+        }, function (err) {
+          console.log(TAG, "Failed to update route /answer/" + answer_id);
+          response.status(400).send(err);
+        })
+      }
     }
   }
+}
+
+function put_answer(answer_id, description, score, recommendation, callBack, errBack) {
+  var putAnswerQuery = "UPDATE answers SET description=$${1}$$, score=$${2}$$, recommendation=$${3}$$ \
+  WHERE answer_id={0}".format(answer_id, description, score, recommendation);
+  client.query(putAnswerQuery, function (err, result) {
+    if (err) {
+      console.log(TAG, "Error updating /answer/" + answer_id)
+      return errBack(err)
+    } else return callBack("Successfully updated /answer/" + answer_id);
+  })
 }
 
 function get_answers(callBack, errBack) {
   var getAnswersQuery = "SELECT * FROM answers";
   console.log(TAG, getAnswersQuery);
-  client.query(getAnswersQuery, function(err, result) {
+  client.query(getAnswersQuery, function (err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
         console.log(TAG, "getAnswersQuery: ", getAnswersQuery);
         return errBack(err);
