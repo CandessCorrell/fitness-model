@@ -24,8 +24,10 @@ pm2 logs www
 
 /answers
   - GET
-  - POST
-    - Must provide a "question_id", "description", "score" and "recommendation" to issue a POST to this route.   
+  - POST (Triggers an INSERT into DB)
+    - Must provide a "question_id", "description", "score" and "recommendation" to issue a POST to this route.
+  - PUT (Triggers an UPDATE on existing answer)
+    - Must provide a "question_id", "description", "score" and "recommendation" to issue a PUT to this route.
 
 /assessments
   - GET
