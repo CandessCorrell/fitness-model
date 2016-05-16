@@ -1,0 +1,84 @@
+nav.navbar {
+	background-color: #000066;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 0px;
+	margin-left: -15px;
+}
+
+a.navbar-brand {
+	font-weight: bold;
+	font-size: 250%;
+}
+
+a.category-link {
+	margin: 1px;
+}
+
+div.categories-list {
+	text-align: center;
+}
+
+button.category-button {
+	margin-top: 5px;
+	font-weight: bold;
+}
+
+button.next-button {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	font-weight: bold;
+}
+
+button.prev-button {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	font-weight: bold;
+}
+
+h1.category-title {
+	text-align: center;
+	font-weight: bolder;
+	color: #000066;
+}
+
+div.category-container {
+	background-color: #F8F8F8;
+	border: 1px solid black;
+	margin-top: 10px;
+	position: relative;
+}
+
+ul.category-questions {
+	padding-right: 40px;
+	padding-left: 40px;
+	padding-bottom: 40px;
+}
+
+h3.fitness-title {
+	background-color: #000066;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+div.fitness-container {
+	margin-bottom: 60px;
+}
+
+table.fitness-table {
+	width: 100%;
+}
+
+th.fitness-table-header {
+	text-align: center;
+	font-size: 150%;
+	font-weight: bold;
+}
+
+td.inputBox {
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+}
