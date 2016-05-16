@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var pg = require("pg")
+var pg = require("pg");
+var cors = require("cors")
 
 //connects all the other js files
 var routescan = require('express-routescan');
@@ -13,6 +14,16 @@ var routescan = require('express-routescan');
 var app = express();
 routescan(app);
 
+app.use(cors());
+app.options('*', cors())
+
+// Add headers
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

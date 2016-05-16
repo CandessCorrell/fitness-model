@@ -1,12 +1,14 @@
 'use strict';
 var clientJS = require('./helper-functions/client.js');
 var client = clientJS.client;
+var cors = require('cors');
 
 var TAG = "ASSESSMENTS | ";
 
 module.exports = {
   '/assessments': {
     methods: ['get'],
+    middleware: [cors()],
     fn: function(request, response){  
       console.log(TAG, "\nCalled /assessments(GET)");
   	  
