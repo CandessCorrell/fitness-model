@@ -28,14 +28,33 @@ class Category extends Component {
 		});
 
 		if (hasLevel == true) {
-			return(
+			return (
 				<QuestionsList id={ level } questions={ this.props.questions } />
 			);
 		}
 
 		else {
-			return "";
+			return ;
 		}
+	}
+
+	renderPrevious(prevCat) {
+		if (prevCat == 0) {
+			return ;
+		}
+		return (
+			<Link to={"/category/" + prevCat} className="category-link">
+				<button type="button" className="btn btn-primary prev-button">PREV</button>
+			</Link>
+		);
+	}
+
+	renderNext(nextCat) {
+		return (
+			<Link to={"/category/" + nextCat} className="category-link">
+				<button type="button" className="btn btn-primary next-button">NEXT</button>
+			</Link>
+		);
 	}
 
 	render() {
@@ -48,13 +67,9 @@ class Category extends Component {
 
 		this.renderCategory();
 
-		this.props.params.prevCategory = parseInt(this.props.params.id) - 1;
+		var prevCategory = parseInt(this.props.params.id) - 1;
 
-		this.props.params.nextCategory = parseInt(this.props.params.id) + 1;
-
-		console.log(this.props.params.prevCategory)
-
-		console.log(this.props.params.nextCategory)
+		var nextCategory = parseInt(this.props.params.id) + 1;
 
 		return (
 			<div className="category-container">
@@ -67,13 +82,8 @@ class Category extends Component {
 				{ this.renderFitnessLevel("3") }
 
 				<div>
-					<Link to={"/category/" + this.props.params.prevCategory} className="category-link">
-						<button type="button" className="btn btn-primary prev-button">PREV</button>
-					</Link>
-
-					<Link to={"/category/" + this.props.params.nextCategory} className="category-link">
-						<button type="button" className="btn btn-primary next-button">NEXT</button>
-					</Link>
+					{this.renderPrevious(prevCategory)}
+					{this.renderNext(nextCategory)}
 				</div>
 			</div>
 		);
