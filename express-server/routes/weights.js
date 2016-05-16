@@ -1,12 +1,14 @@
 'use strict';
 var clientJS = require('./helper-functions/client.js');
 var client = clientJS.client;
+var cors = require('cors');
 
 var TAG = "WEIGHTS | ";
 
 module.exports = {
   '/weights': {
     methods: ['get'],
+    middleware: [cors()],
     fn: function(request, response){  
       console.log(TAG, "\nCalled /weights(GET)");
       console.log(TAG, "query is : " + JSON.stringify(request.query));

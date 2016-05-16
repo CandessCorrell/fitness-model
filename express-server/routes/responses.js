@@ -3,13 +3,14 @@ var clientJS = require('./helper-functions/client.js');
 var client = clientJS.client;
 // bodyParser enables post request body parsing
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var TAG = "\nRESPONSES | ";
 
 module.exports = {
   '/responses': {
     methods: ['get', 'post'],
-    middleware: [bodyParser.urlencoded({extended: true}), bodyParser.json()],
+    middleware: [bodyParser.urlencoded({extended: true}), bodyParser.json(), cors()],
 
     fn: function(request, response){  
       if (request.method === 'GET') {

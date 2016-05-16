@@ -1,6 +1,7 @@
 'use strict';
 var clientJS = require('./helper-functions/client.js');
 var client = clientJS.client;
+var cors = require('cors');
 
 var TAG = "QUESTIONS | ";
 
@@ -8,6 +9,7 @@ module.exports = {
 // Get questions for a particular category
   '/questions': {
     methods: ['get'],
+    middleware: [cors()],
     fn: function(request, response){  
       console.log(TAG, "\nCalled /users(GET)");
       console.log(TAG, "Category Description is : " + JSON.stringify(request.query.categoryDescription));
