@@ -10,16 +10,16 @@ export default class CategoriesList extends Component {
   render() {
     return (
     <div className="categories-list">
-      <Link to="/category/Portfolio Management" className="category-link">
+      <Link to="/category/1" className="category-link">
         <button type="button" className="btn btn-primary category-button">Portfolio Mgmt</button>
       </Link>
-      <Link to="/category/Requirements Management" className="category-link">
+      <Link to="/category/2" className="category-link">
         <button type="button" className="btn btn-primary category-button">Requirements Mgmt</button>
       </Link>
-      <Link to="/category/Development" className="category-link">
+      <Link to="/category/3" className="category-link">
         <button type="button" className="btn btn-primary category-button">Development</button>
       </Link>
-      <Link to="/category/Build" className="category-link">
+      <Link to="/category/4" className="category-link">
         <button type="button" className="btn btn-primary category-button">Build</button>
       </Link>
       <Link to="/category/Environments and Deployment" className="category-link">

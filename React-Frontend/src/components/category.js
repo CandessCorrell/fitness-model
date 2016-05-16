@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { fetchCategory } from '../actions/index';
 import QuestionsList from './questions_list';
 
+// React router
+import { Router, Route, Link } from 'react-router';
+
 class Category extends Component {
 	componentWillMount() {
 		this.props.fetchCategory(this.props.params.id);
@@ -43,12 +46,20 @@ class Category extends Component {
 			return <div>Loading...</div>;
 		}
 
-		this.renderCategory()
+		this.renderCategory();
+
+		this.props.params.prevCategory = parseInt(this.props.params.id) - 1;
+
+		this.props.params.nextCategory = parseInt(this.props.params.id) + 1;
+
+		console.log(this.props.params.prevCategory)
+
+		console.log(this.props.params.nextCategory)
 
 		return (
 			<div className="category-container">
 				<h1 className="category-title">
-					{ this.props.params.id }
+					{ this.props.questions[0].category_description }
 				</h1>
 					
 				{ this.renderFitnessLevel("1") }
@@ -56,8 +67,13 @@ class Category extends Component {
 				{ this.renderFitnessLevel("3") }
 
 				<div>
-					<button type="button" className="btn btn-primary prev-button">PREV</button>
-					<button type="button" className="btn btn-primary next-button">NEXT</button>
+					<Link to={"/category/" + this.props.params.prevCategory} className="category-link">
+						<button type="button" className="btn btn-primary prev-button">PREV</button>
+					</Link>
+
+					<Link to={"/category/" + this.props.params.nextCategory} className="category-link">
+						<button type="button" className="btn btn-primary next-button">NEXT</button>
+					</Link>
 				</div>
 			</div>
 		);

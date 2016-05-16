@@ -14,8 +14,8 @@ export function fetchCategories() {
 	};
 }
 
-export function fetchCategory(description) {
-	const request = axios.get(`${ROOT_URL}fitness_card?categoryDescription=${description}`);
+export function fetchCategory(id) {
+	const request = axios.get(`${ROOT_URL}fitness_card/${id}`);
 
 	return {
 		type: FETCH_CATEGORY,
