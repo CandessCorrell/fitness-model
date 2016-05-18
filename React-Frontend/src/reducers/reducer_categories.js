@@ -1,6 +1,6 @@
 import { FETCH_CATEGORY, FETCH_CATEGORIES } from '../actions/index';
 
-const INITIAL_STATE = { titles: [], questions: null};
+const INITIAL_STATE = { titles: null, questions: null};
 
 export default function(state = INITIAL_STATE, action) {
 	switch(action.type) {
