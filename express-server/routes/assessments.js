@@ -25,20 +25,6 @@ module.exports = {
   	  	return response.status(400).send(err);
   	  })
   	}
-  },
-  '/assessments/:user_id': {
-    methods: ['get'],
-    middleware: [cors()],
-    fn: function(request, response) {
-      var user_id = request.url.split("/");
-      user_id = user_id[2];
-      console.log(TAG, "Called /assessments(GET) with user_id: ", user_id);
-      get_user_assessments(user_id, function (resp) {
-        return response.status(200).send(resp);
-      }, function (err) {
-        return response.status(400).sent(err);
-      })
-    }
   }
 }
 
@@ -54,18 +40,6 @@ function get_assessments(callBack, errBack) {
         //  console.log(TAG, funcTAG, "row[" + i + "]: " + JSON.stringify(result.rows[i]));
         // }
         return callBack(result);
-    }
-  })
-}
-
-function get_user_assessments(user_id, callBack, errBack) {
-  var getUserAssessmentsQuery = "SELECT * FROM results as r WHERE user_id = {0}".format(user_id)
-  console.log(TAG, "getUserAssessmentsQuery:", getUserAssessmentsQuery)
-  client.query(getUserAssessmentsQuery, function (err, result) {
-    if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
-      return errBack(err)
-    } else {
-      return callBack(result);
     }
   })
 }

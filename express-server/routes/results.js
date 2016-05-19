@@ -50,12 +50,12 @@ module.exports = {
   	}
   },
 
-  '/user_results': {
+  '/results/:user_id': {
     methods: ['get'],
     fn: function(request, response) {
-      console.log(TAG, "\nCalled /results/" + request.query.user_id);
-
-      get_results_by_user_id(request.query.user_id,
+      var user_id = request.url.split("/");
+      user_id = user_id[2];
+      get_results_by_user_id(user_id,
         function(resp) {
         console.log(TAG, 'moving into get_results_by_user_id callback');
         return response.status(200).send(resp);
@@ -69,11 +69,11 @@ module.exports = {
 }
 
 function get_results(callBack, errBack) {
-  var getResultsQuery = "SELECT * FROM results";
-  console.log(TAG, getResultsQuery);
-  client.query(getResultsQuery, function(err, result) {
+  var getAllResultsQuery = "SELECT * FROM results";
+  console.log(TAG, getAllResultsQuery);
+  client.query(getAllResultsQuery, function(err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
-        console.log(TAG, getResultsQuery);
+        console.log(TAG, getAllResultsQuery);
         return errBack(err);
       } else {
         return callBack(result);
@@ -81,12 +81,12 @@ function get_results(callBack, errBack) {
   })
 }
 
-function get_results_by_user_id(userId, callBack, errBack) {
-  var getResultsQuery = "SELECT * FROM results WHERE user_id={0}".format(userId);
-  console.log(TAG, getResultsQuery);
-  client.query(getResultsQuery, function(err, result) {
+function get_results_by_user_id(user_id, callBack, errBack) {
+  var getUserResultsQuery = "SELECT * FROM results WHERE user_id={0}".format(user_id);
+  console.log(TAG, getUserResultsQuery);
+  client.query(getUserResultsQuery, function(err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
-      console.log(TAG, getResultsQuery);
+      console.log(TAG, getUserResultsQuery);
       return errBack(err);
     } else {
       return callBack(result);
