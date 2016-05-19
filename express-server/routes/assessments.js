@@ -3,14 +3,14 @@ var clientJS = require('./helper-functions/client.js');
 var client = clientJS.client;
 var cors = require('cors');
 
-var TAG = "ASSESSMENTS | ";
+var TAG = "\nASSESSMENTS | ";
 
 module.exports = {
   '/assessments': {
     methods: ['get'],
     middleware: [cors()],
     fn: function(request, response){  
-      console.log(TAG, "\nCalled /assessments(GET)");
+      console.log(TAG, "Called /assessments(GET)");
   	  
   	  get_assessments(
   	  	function(resp) {
@@ -25,6 +25,16 @@ module.exports = {
   	  	return response.status(400).send(err);
   	  })
   	}
+  },
+  '/assessments/:user_id': {
+    methods: ['get'],
+    middleware: [cors()],
+    fn: function(request, response) {
+      var user_id = request.url.split("/");
+      user_id = user_id[2];
+      console.log(TAG, "Called /assessments(GET)");
+      return response.status(200).send("Route established!");
+    }
   }
 }
 
