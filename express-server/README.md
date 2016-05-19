@@ -68,11 +68,6 @@ pm2 logs www
     - Returns all users
     - **NOTE** When we are ready, I will flesh this out to be able to return all users associated with a team, portfolio, etc.
 
-/user-results
-  - GET
-    - Must provide a user_id to issue a GET request to this route.
-    - *NOTE* I am working on a more RESTful version of this route so that it will be /user/:id
-
 /weights/:result_id
   - GET
     - Returns all data from the weights table associated with the supplied result_id.
