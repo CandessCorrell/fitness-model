@@ -6,14 +6,16 @@ var cors = require('cors');
 var TAG = "WEIGHTS | ";
 
 module.exports = {
-  '/weights': {
+  '/weights/:weight_id': {
     methods: ['get'],
     middleware: [cors()],
-    fn: function(request, response){  
+    fn: function(request, response){
+      var result_id = request.url.split("/");
+      result_id = result_id[2];
       console.log(TAG, "\nCalled /weights(GET)");
       console.log(TAG, "query is : " + JSON.stringify(request.query));
   	  
-  	  get_weights( 
+  	  get_weights(result_id,
   	  	function(resp) {
   	  	// This is the callback - we move into this if the function returns data as expected
   	  	console.log(TAG, 'moving into get_weights callback');
@@ -29,8 +31,8 @@ module.exports = {
   }
 }
 
-function get_weights(callBack, errBack) {
-  var getWeightsQuery = "SELECT * FROM weights";
+function get_weights(result_id, callBack, errBack) {
+  var getWeightsQuery = "SELECT * FROM weights WHERE result_id={0}".format(result_id);
   console.log(TAG, getWeightsQuery);
   client.query(getWeightsQuery, function(err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
