@@ -35,7 +35,11 @@ pm2 logs www
 /categories
   - GET
   - POST
-    - Must provide a "description" to issue a POST request to this route.
+    - Must provide a "description" in the request body to issue a POST request to this route.
+
+/fitness_card/:category_id
+  - GET
+    - Returns question_description, answer_description, category_description, recommendation, fitness_level based on category_id
 
 /questions
   - GET
@@ -44,18 +48,26 @@ pm2 logs www
 /responses
   - GET
   - POST
-    - Must provide a "question_id", "answer_id" and "result_id" to issue a POST request to this route.
+    - Must provide a "question_id", "answer_id" and "result_id" in the request body to issue a POST request to this route.
 
 /results
   - GET
+  - POST
+    - Must provide a "user_id" and "assessment_id" in the request body to issue a POST request to this route.
+
+/results/user_id
+  - GET
+    - Returns all completed or in-progress "results" for a specific user.
+    - Potential to be a user's home screen - displaying all of their previously completed assessments.
+
+/scores/:assessment_id
+  - Returns as many rows as there are categories for that result with two pieces of information: category_id and aggregated score
 
 /users
   - GET
+    - Returns all users
+    - **NOTE** When we are ready, I will flesh this out to be able to return all users associated with a team, portfolio, etc.
 
-/user-results
+/weights/:result_id
   - GET
-    - Must provide a user_id to issue a GET request to this route.
-    - *NOTE* I am working on a more RESTful version of this route so that it will be /user/:id
-
-/weights
-  - GET
+    - Returns all data from the weights table associated with the supplied result_id.
