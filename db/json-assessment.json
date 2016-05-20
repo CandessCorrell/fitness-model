@@ -1,0 +1,221 @@
+{
+  "assessment" : "Test data pulled from the assessment draft.",
+  "version" : 0,
+  "categories" : [
+    {
+      "category" : "Portfolio Management",
+      "questions" : [
+        {
+          "question" : "Is the Portfolio aligned to the Business Architecture?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 1
+        },
+        {
+          "question" : "Is the Portfolio aligned to the Data Architecture?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 1
+        },
+        {
+          "question" : "Is the Portfolio aligned to the Security Architecture?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 1
+        },
+        {
+          "question" : "Is the Portfolio aligned to the Application Architecture?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 1
+        },
+        {
+          "question" : "Is the Portfolio aligned to the Technology Architecture?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 1
+        },
+        {
+          "question" : "Does the project's portfolio management process inform the Requirements Management process and the establishment of the Release Trains?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 2
+        },
+        {
+          "question" : "Does the project's portfolio management processes expose gaps, overlaps and redundancies in the solution architecture and help the organization establish its technology Roadmap?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 3
+        }
+      ],
+    },
+    {
+      "category" : "Release Management",
+      "questions" : [
+        {
+          "question" : "Does the project allocate and track requirements throughout the Scrum / Sprint process?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 1
+        },
+        {
+          "question" : "Are Release Trains created and matained throughout the development process to capture build / deployment dependencies / sequencing?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 1
+        },
+        {
+          "question" : "Does the project factor in Security and Operations requirements into the workpackages of a Scrum/Sprint sequence?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 2
+        },
+        {
+          "question" : "Is requirement traceability maintained throughout the development lifecycle?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 3
+        }
+      ]
+    },
+    {
+      "category" : "Development",
+      "questions" : [
+        {
+          "question" : "Does the project include static code analysis, unit test and security scans with its nightly CM processes?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 1
+        },
+        {
+          "question" : "Does defect velocity inform the maturity of the baseline and used to inform the burndown process completion objectives?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 1
+        },
+        {
+          "question" : "Does the project provide Peer Review for code baselines?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 1
+        },
+        {
+          "question" : "Do the results of the nightly CM maturity process (static code, scans and unit tests results) inform the burndown process in terms of workload?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 2
+        },
+        {
+          "question" : "Does the project perform UI testing as a part of the CM nighty process?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 2
+        },
+        {
+          "question" : "Does the project validate test coverage on the build / release process?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 3
+        },
+        {
+          "question" : "Does the project perform tests with each Release?",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "No", "score" : 0 },
+            { "answer" : "Planning To", "score" : 2 },
+            { "answer" : "Yes", "score" : 4 }
+          ],
+          "fitness_level" : 3
+        }
+      ]
+    },
+  ]
+}
+
+{
+  "assessment" : "Assessment template",
+  "version" : ,
+  "categories" : [
+    {
+      "category" : "",
+      "questions" : [
+        {
+          "question" : "",
+          "subcategories" : [],
+          "answers"	: [
+            { "answer" : "", "score" :  }
+          ],
+          "fitness_level" :
+        }
+      ]
+    }
+  ]
+}

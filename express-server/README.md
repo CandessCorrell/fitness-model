@@ -25,37 +25,56 @@ pm2 logs www
 /answers
   - GET
   - POST (Triggers an INSERT into DB)
-    - Must provide a "question_id", "description", "score" and "recommendation" to issue a POST to this route.
+    - Must provide a "question_id"(int), "description"(string), "score"(int) and "recommendation"(string) to issue a POST to this route.
   - PUT (Triggers an UPDATE on existing answer)
-    - Must provide a "question_id", "description", "score" and "recommendation" to issue a PUT to this route.
+    - Must provide a "question_id"(int), "description"(string), "score"(int) and "recommendation"(string) to issue a PUT to this route.
 
 /assessments
   - GET
+    - Returns all rows and columns from "assessments" table.
 
 /categories
   - GET
   - POST
-    - Must provide a "description" to issue a POST request to this route.
+    - Must provide a "description"(string) in the request body to issue a POST request to this route.
+
+/fitness_card/:category_id
+  - GET
+    - Returns question_description(string), answer_description(string), category_description(string), recommendation(string), fitness_level(int) based on category_id(int)
 
 /questions
   - GET
-    - Must provide a "category" when issuing a GET request to this route.
+    - Must provide a "category"(string) when issuing a GET request to this route.
 
 /responses
   - GET
   - POST
-    - Must provide a "question_id", "answer_id" and "result_id" to issue a POST request to this route.
+    - Must provide a "question_id"(int), "answer_id"(int) and "result_id"(int) in the request body to issue a POST request to this route.
 
 /results
   - GET
+  - POST
+    - Must provide a "user_id"(int) and "assessment_id"(int) in the request body to issue a POST request to this route.
+
+/results/user_id
+  - GET
+    - Returns all completed or in-progress "results" for a specific user.
+    - Potential to be a user's home screen - displaying all of their previously completed assessments.
+
+/scores/:assessment_id
+  - Returns as many rows as there are categories for that result with two pieces of information: category_id and aggregated score
 
 /users
   - GET
-
-/user-results
-  - GET
-    - Must provide a user_id to issue a GET request to this route.
-    - *NOTE* I am working on a more RESTful version of this route so that it will be /user/:id
+    - Returns all users
+    - **NOTE** When we are ready, I will flesh this out to be able to return all users associated with a team, portfolio, etc.
 
 /weights
+  - POST
+    - Must provide a "result_id" (int), "category_id"(int) and "value"(int) in the request body to issue a POST request to this route.
+
+/weights/:id
   - GET
+    - Returns all data from the weights table associated with the supplied result_id(int).
+  - PUT
+    - Must provide a "result_id" (int), "category_id"(int) and "value"(int) in the request body to issue a PUT request to this route.

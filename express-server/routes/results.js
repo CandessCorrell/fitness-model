@@ -50,30 +50,67 @@ module.exports = {
   	}
   },
 
-  '/user_results': {
-    methods: ['get'],
+  '/results/:id': {
+    methods: ['get', 'put'],
+    middleware: [cors(), bodyParser.urlencoded({extended: true}), bodyParser.json()],
     fn: function(request, response) {
-      console.log(TAG, "\nCalled /results/" + request.query.user_id);
-
-      get_results_by_user_id(request.query.user_id,
-        function(resp) {
-        console.log(TAG, 'moving into get_results_by_user_id callback');
-        return response.status(200).send(resp);
-        }, function(err) {
-        console.log(TAG, 'errBack of get_results_by_user_id');
-        console.log(TAG, err);
-        return response.status(400).send(err);
-      })
+      if (request.method == 'GET') {
+        var user_id = request.url.split("/");
+        user_id = user_id[2];
+        get_results_by_user_id(user_id,
+          function(resp) {
+          console.log(TAG, 'moving into get_results_by_user_id callback');
+          return response.status(200).send(resp);
+          }, function(err) {
+          console.log(TAG, 'errBack of get_results_by_user_id');
+          console.log(TAG, err);
+          return response.status(400).send(err);
+        })
+      } else if (request.method === 'PUT') {
+          var result_id = request.url.split("/");
+          result_id = result_id[2]
+          console.log(TAG, "result_id:", result_id);
+          put_result(result_id, request.body.resultJson, function (resp) {
+            response.status(200).send(resp);
+          }, function (err) {
+            response.status(400).send(err);
+          })
+      } else {
+        var verbErr = "HTTP VERB " + request.method + " not supported for route results/:id"
+        response.status(400).send(verbErr);
+      }
     }
   }
 }
 
+function put_result(result_id, resultJson, callBack, errBack) {
+  var updateTable = "UPDATE results ";
+  var setInfo = "SET ";
+  var chooser = " WHERE result_id={0}".format(result_id);
+  for (var key in resultJson) {
+    setInfo = setInfo + key + "=" + resultJson[key] + ", ";
+  }
+  setInfo = setInfo.slice(0, -2);
+  console.log(TAG, setInfo)
+  var putResultQuery = updateTable + setInfo + chooser;
+  console.log(TAG, "putResultQuery:", putResultQuery);
+  client.query(putResultQuery, function (err, result) {
+    if (err) {
+      console.log(TAG, "Error in SQL UPDATE in put_result");
+      return errBack(err);
+    } else {
+      var putString = "Successfully updated results/" + result_id
+      return callBack(putString);
+    }
+  })
+}
+
 function get_results(callBack, errBack) {
-  var getResultsQuery = "SELECT * FROM results";
-  console.log(TAG, getResultsQuery);
-  client.query(getResultsQuery, function(err, result) {
+  var getAllResultsQuery = "SELECT * FROM results";
+  console.log(TAG, getAllResultsQuery);
+  client.query(getAllResultsQuery, function(err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
-        console.log(TAG, getResultsQuery);
+        console.log(TAG, getAllResultsQuery);
         return errBack(err);
       } else {
         return callBack(result);
@@ -81,12 +118,12 @@ function get_results(callBack, errBack) {
   })
 }
 
-function get_results_by_user_id(userId, callBack, errBack) {
-  var getResultsQuery = "SELECT * FROM results WHERE user_id={0}".format(userId);
-  console.log(TAG, getResultsQuery);
-  client.query(getResultsQuery, function(err, result) {
+function get_results_by_user_id(user_id, callBack, errBack) {
+  var getUserResultsQuery = "SELECT * FROM results WHERE user_id={0}".format(user_id);
+  console.log(TAG, getUserResultsQuery);
+  client.query(getUserResultsQuery, function(err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
-      console.log(TAG, getResultsQuery);
+      console.log(TAG, getUserResultsQuery);
       return errBack(err);
     } else {
       return callBack(result);
