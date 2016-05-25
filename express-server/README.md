@@ -63,7 +63,8 @@ pm2 logs www
     - Returns all completed or in-progress "results" for a specific user.
     - Potential to be a user's home screen - displaying all of their previously completed assessments.
   - PUT
-    - Must provide a resultJson(JSON) which can include any of the columns of the "results" table - I will apply this strategy across all PUT routes to allow dynamic updating that does not require submission of all columns in a row.
+    - Must provide a resultJson(JSON) which can include any of the columns of the "results" table
+    - **NOTE** I will apply this strategy across all PUT routes to allow dynamic updating that does not require submission of all columns in a row.
 
 /scores/:assessment_id
   - Returns as many rows as there are categories for that result with two pieces of information: category_id and aggregated score
