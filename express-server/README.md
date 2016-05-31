@@ -42,7 +42,7 @@ pm2 logs www
 
 /fitness_card/:category_id
   - GET
-    - Returns question_description(string), answer_description(string), category_description(string), recommendation(string), fitness_level(int) based on category_id(int)
+    - Returns question_description(string), answer_description(string), category_description(string), recommendation(string), fitness_level(int) and category_id(int) based on category_id(int)
 
 /questions
   - GET
