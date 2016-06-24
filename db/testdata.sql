@@ -7,7 +7,7 @@ INSERT INTO categories (category_id, description) VALUES
 	(3, 'Development'),
 	(4, 'Build'),
 	(5, 'Environments and Deployment'),
-	(6, 'Release Management'),
+	(6, 'Requirements Management'),
 	(7, 'Operations'),
 	(8, 'Configuration Management'),
 	(9, 'Data Management'),
