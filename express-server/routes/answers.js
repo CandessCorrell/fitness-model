@@ -54,12 +54,6 @@ module.exports = {
       if (request.body.question_id == null) {
         console.log(TAG, "Check your question_id");
         response.status(400).send("Check your question_id");
-      } else if (request.body.description == null || (
-        request.body.description != "Yes" && 
-        request.body.description != "No" &&
-        request.body.description != "Planning to")) {
-        console.log(TAG, "Invalid description");
-        response.status(400).send("Invalid description");
       } else if (request.body.score == null) {
         console.log(TAG, "Invalid score");
         response.status(400).send("Invalid score");
