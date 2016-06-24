@@ -7,7 +7,7 @@ INSERT INTO categories (category_id, description) VALUES
 	(3, 'Development'),
 	(4, 'Build'),
 	(5, 'Environments and Deployment'),
-	(6, 'Release Management'),
+	(6, 'Requirements Management'),
 	(7, 'Operations'),
 	(8, 'Configuration Management'),
 	(9, 'Data Management'),
@@ -196,7 +196,7 @@ INSERT INTO questions (question_id, assessment_id, category_id, subcategory_id, 
 	(175, 1, 13, NULL, 'Do you actively solicit feedback from employees through surveys and other similar means?', 3);
 
 
-INSERT INTO answers (answer_id, question_id, description, value, recommendation) VALUES 
+INSERT INTO answers (answer_id, question_id, description, score, recommendation) VALUES 
 	(1, 1, 'No', 0, NULL),
 	(2, 1, 'Planning to', 2, NULL),
 	(3, 1, 'Yes', 4, NULL),
@@ -268,7 +268,7 @@ INSERT INTO answers (answer_id, question_id, description, value, recommendation)
 	(69, 23, 'Yes', 4, NULL),
 	(70, 24, 'No', 0, 'Builds should run on every code check-in to repository automatically via build scripts, CI server project configurations.'),
 	(71, 24, 'Planning to', 2, NULL),
-	(72, 24, 'Yes', 4, NULL);
+	(72, 24, 'Yes', 4, NULL),
 	(73, 25, 'No', 0, NULL),
 	(74, 25, 'Planning to', 2, NULL),
 	(75, 25, 'Yes', 4, NULL),
@@ -715,7 +715,7 @@ INSERT INTO answers (answer_id, question_id, description, value, recommendation)
 	(522, 174, 'Yes', 4, NULL),
 	(523, 175, 'No', 0, NULL),
 	(524, 175, 'Planning to', 2, NULL),
-	(525, 175, 'Yes', 4, NULL)
+	(525, 175, 'Yes', 4, NULL);
 
 
 INSERT INTO users (user_id, username, email, first_name, last_name, company, position) VALUES 
@@ -1700,5 +1700,3 @@ INSERT INTO weights (weight_id, result_id, category_id, value) VALUES
 	(323, 25, 11, 0.076923076923076923),
 	(324, 25, 12, 0.076923076923076923),
 	(325, 25, 13, 0.076923076923076923);
-
-
