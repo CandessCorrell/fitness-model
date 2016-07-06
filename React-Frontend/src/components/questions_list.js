@@ -1,25 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import QuestionsListItem from './questions_list_item';
 
 export default class QuestionsList extends Component {
+
 	renderQuestions() {
 		return this.props.questions.map((question) => {
-			if (question.fitness_level == this.props.id && question.answer_description == "Yes") {
+			if (question.fitness_level == this.props.id && (question.answer_description == "Yes" || question.answer_description == "Daily")) {
 				return (
-					<tr>
-						<td className="inputBox">
-							<input type="text" />
-						</td>
-						<td>
-							<span className="pull-xs-right">{ question.question_description }</span>
-						</td>
-						<td className="inputBox">
-							<input type="text" />
-						</td>
-						<td>
-							<span className="pull-xs-right">Sample recommendation</span>
-						</td>
-					</tr>
+					<QuestionsListItem question={ question } questions={ this.props.questions } />
 				);
 			}
 		});
@@ -43,16 +32,10 @@ export default class QuestionsList extends Component {
 					<thead>
 						<tr>
 							<th className="fitness-table-header">
-								Score
-							</th>
-							<th className="fitness-table-header">
 								Question
 							</th>
 							<th className="fitness-table-header">
 								Response
-							</th>
-							<th className="fitness-table-header">
-								Recommendation
 							</th>
 						</tr>
 					</thead>

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../actions/index';
@@ -13,9 +14,13 @@ class CategoriesList extends Component {
   }
 
   renderCategoriesList(){
-    return this.props.titles.map((title) => {
-      console.log(title.category_id)
-      console.log(title.description)
+    const { titles } = this.props;
+
+    if ( titles ) {
+      var sortedTitles = _.sortBy(this.props.titles, 'category_id');
+    }
+    
+    return sortedTitles.map((title) => {
       return (
         <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
           <button type="button" className="btn btn-primary category-button">{ title.description }</button>
@@ -36,10 +41,10 @@ class CategoriesList extends Component {
 
         { this.renderCategoriesList() }
 
-        <Link to="/category/ranking" className="category-link">
+        <Link to="/rankings" className="category-link">
           <button type="button" className="btn btn-primary category-button">Ranking</button>
         </Link>
-        <Link to="/category/results" className="category-link">
+        <Link to="/results" className="category-link">
           <button type="button" className="btn btn-primary category-button">Results</button>
         </Link>
         

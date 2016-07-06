@@ -6,7 +6,6 @@ const TAG = "Home | ";
 
 export default class Home extends Component {
   render(){
-    console.log(TAG, "Rendering homePage")
     return (
       <div>
         <h2>Fitness Model Home Page</h2>

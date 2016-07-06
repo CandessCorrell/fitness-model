@@ -61,6 +61,7 @@ h3.fitness-title {
 	background-color: #000066;
 	color: #FFFFFF;
 	font-weight: bold;
+	padding-left: 10px;
 }
 
 div.fitness-container {
@@ -68,13 +69,31 @@ div.fitness-container {
 }
 
 table.fitness-table {
-	width: 100%;
+	width: 96%;
+	margin-left: 2%;
+	margin-right: 2%;
 }
 
 th.fitness-table-header {
 	text-align: center;
 	font-size: 150%;
 	font-weight: bold;
+}
+
+table.fitness-table > tbody > tr > td {
+	border: 1px solid #000066;
+	padding: 10px;
+}
+
+
+
+table.fitness-table > tbody > tr > td.drop-down-cell {
+	text-align: center;
+	width: 160px;
+}
+
+table.fitness-table > tbody > tr > td.drop-down-cell > form > div > select {
+	width: 150px;
 }
 
 td.inputBox {
