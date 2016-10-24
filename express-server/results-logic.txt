@@ -1,0 +1,21 @@
+Based on an assessment ID
+I want to get the scores of all answers associated with a single assessment and aggregate each of them by category
+
+Aggregate each category by assessment id and return a total score.
+
+Return all of these scores as final response to frontend.
+
+TABLES
+answers, questions, assessments
+
+score is in answer
+category is related by question and assessment_id is also related by question
+
+LOGIC FLOW
+JOIN assessments on questions by assessment_id. Then JOIN on answers by question_id. Given an assessment id, return all questions associated with that assessment_id
+
+Then aggregate "score" based on category_id
+
+SQL Syntax
+SELECT q.category_id, SUM(ans.score) FROM questions as q INNER JOIN answers as ans ON 
+q.question_id=ans.question_id WHERE q.assessment_id={0} GROUP BY q.category_id

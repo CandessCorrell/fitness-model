@@ -3,7 +3,7 @@ import axios from 'axios';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 export const FETCH_CATEGORY = 'FETCH_CATEGORY'
 
-const ROOT_URL = 'http://54.88.169.32:3000/'
+const ROOT_URL = 'http://54.172.25.152:3000/'
 
 export function fetchCategories() {
 	const request = axios.get(`${ROOT_URL}categories`);
