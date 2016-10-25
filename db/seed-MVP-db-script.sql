@@ -272,7 +272,7 @@ INSERT INTO results (result_id, user_id, assessment_id, start_time, end_time) VA
 	(24, 2, 1, null, null),
 	(25, 16, 1, null, null);
 
-INSERT INTO responses (result_id, question_id, answer_id) VALUES 
+INSERT INTO responses (answer_id, question_id, result_id) VALUES 
 	(55, 19, 1),
 	(60, 20, 1),
 	(61, 21, 1),
