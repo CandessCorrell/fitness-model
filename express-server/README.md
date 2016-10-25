@@ -42,7 +42,7 @@ pm2 logs www
 
 /fitness_card/:category_id
   - GET
-    - Returns question_description(string), answer_description(string), category_description(string), recommendation(string), fitness_level(int) and category_id(int) based on category_id(int)
+    - Returns question_description(string), response_id(int), answer_description(string), category_description(string), recommendation(string), fitness_level(int) and category_id(int) based on category_id(int)
 
 /questions
   - GET
@@ -52,6 +52,13 @@ pm2 logs www
   - GET
   - POST
     - Must provide a "question_id"(int), "answer_id"(int) and "result_id"(int) in the request body to issue a POST request to this route.
+
+/responses/:id
+  - PUT
+    - UPDATEs a previously answered question.
+    - Must provide a "resultJson"(JSON) in the body which contains the following keys:
+      - question_id, answer_id, result_id
+      
 
 /results
   - GET
