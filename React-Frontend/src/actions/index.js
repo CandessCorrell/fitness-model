@@ -14,6 +14,36 @@ export function fetchCategories() {
 	};
 }
 
+export function postResponse(result_id, question_id, answer_id) {
+	axios.post(`${ROOT_URL}responses`, {
+    question_id: question_id,
+    answer_id: answer_id,
+		result_id: result_id
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+export function putResponse(response_id, result_id, question_id, answer_id) {
+	axios.put(`${ROOT_URL}responses/${response_id}`, {
+    resultJson: {
+			question_id: question_id,
+    	answer_id: answer_id,
+			result_id: result_id
+		}
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
 export function fetchCategory(id) {
 	const request = axios.get(`${ROOT_URL}fitness_card/${id}`);
 

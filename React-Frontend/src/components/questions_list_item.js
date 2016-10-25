@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { putResponse } from '../actions/index';
 
 export default class QuestionsListItem extends Component {
 
@@ -21,9 +22,13 @@ export default class QuestionsListItem extends Component {
 	}
 
 	renderDropDown() {
-		if (this.props.question.answer_description == "Yes") {
+		if (this.props.question.answer_description == null
+		|| this.props.question.answer_description == "Yes"
+		|| this.props.question.answer_description == "No"
+		|| this.props.question.answer_description == "Planning to") {
 			return (
-				<select className="form-control">
+				<select className="form-control"
+				onInput={putResponse(this.props.question.response_id, 1, this.props.question.question_id, this.props.question.answer_id)}>
 					<option>Select</option>
 					<option>No</option>
 					<option>Planning To</option>
@@ -47,6 +52,6 @@ export default class QuestionsListItem extends Component {
 	render() {
 		return (
 			this.renderQuestion()
-		); 
+		);
 	}
 }

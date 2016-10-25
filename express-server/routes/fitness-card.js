@@ -17,7 +17,7 @@ module.exports = {
       var category_id = request.url.split("/");
       category_id = category_id[2];
       console.log(TAG, "Category_id is : " + category_id);
-  	  
+
   	  get_fitness_card( category_id,
   	  	function(resp) {
   	  	// This is the callback - we move into this if the function returns data as expected
@@ -35,10 +35,11 @@ module.exports = {
 }
 
 function get_fitness_card(category_id, callBack, errBack) {
-  var getFitnessCardQuery = "SELECT  a.description as answer_description, q.description \
+  var getFitnessCardQuery = "SELECT r.response_id as response_id, a.description as answer_description, q.description \
   as question_description, c.category_id as category_id, a.recommendation, q.fitness_level FROM \
   questions as q INNER JOIN categories as c ON q.category_id = c.category_id  \
-  INNER JOIN answers as a ON q.question_id = a.question_id WHERE c.category_id =\'{0}\'".format(category_id);
+  INNER JOIN answers as a ON q.question_id = a.question_id INNER JOIN responses \
+  as r ON r.answer_id = a.answer_id WHERE c.category_id =\'{0}\'".format(category_id);
   console.log(TAG, getFitnessCardQuery);
   client.query(getFitnessCardQuery, function(err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {

@@ -6,9 +6,11 @@ export default class QuestionsList extends Component {
 
 	renderQuestions() {
 		return this.props.questions.map((question) => {
-			if (question.fitness_level == this.props.id && (question.answer_description == "Yes" || question.answer_description == "Daily")) {
+			if (question.fitness_level == this.props.id && (question.answer_description == "Yes" || question.answer_description == "Daily"
+		|| question.answer_description == "No" || question.answer_description == "Weekly" || question.answer_description == "Monthly"
+	|| question.answer_description == "Planning to")) {
 				return (
-					<QuestionsListItem question={ question } questions={ this.props.questions } />
+					<QuestionsListItem question={ question } key={question.question_description} questions={ this.props.questions } />
 				);
 			}
 		});
