@@ -1,5 +1,3 @@
-https://github.com/private-pilot/fitness-model/blob/master/db/schemav3.pdf
-
 DROP TABLE IF EXISTS categories CASCADE;
 CREATE TABLE categories (
 category_id serial PRIMARY KEY NOT NULL,
