@@ -9,11 +9,13 @@ import { Router, Route, Link } from 'react-router';
 class Category extends Component {
 	componentWillMount() {
 		this.props.fetchCategory(this.props.params.id);
+		this.props.fetchCategory(this.props.params.id);
 	}
 
 	renderCategory() {
 		if (this.props.params.oldid != this.props.params.id) {
 			this.props.params.oldid = this.props.params.id;
+			this.props.fetchCategory(this.props.params.id);
 			this.props.fetchCategory(this.props.params.id);
 		}
 	}
@@ -76,7 +78,7 @@ class Category extends Component {
 				<h1 className="category-title">
 					{ this.props.questions[0].category_description }
 				</h1>
-					
+
 				{ this.renderFitnessLevel("1") }
 				{ this.renderFitnessLevel("2") }
 				{ this.renderFitnessLevel("3") }

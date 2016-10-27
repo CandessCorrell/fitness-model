@@ -64,7 +64,7 @@ module.exports = {
         var response_id = request.url.split("/");
         response_id = response_id[2]
         console.log(TAG, "response_id:", response_id);
-        put_response(response_id, request.body.resultJson, function (resp) {
+        getAnswerId(response_id, request.body.resultJson, function (resp) {
           response.status(200).send(resp);
         }, function (err) {
           response.status(400).send(err);
@@ -94,13 +94,36 @@ function get_responses(callBack, errBack) {
   })
 }
 
+function getAnswerId (response_id, resultJson, callBack, errBack) {
+  console.log('resultJson in getAnswerId', JSON.stringify(resultJson))
+
+  var getAnswerQuery = "SELECT answer_id FROM answers as a INNER JOIN questions as q ON q.question_id = a.question_id \
+  WHERE a.description =\'{0}\' AND q.question_id = \'{1}\'".format(resultJson.answer_description, resultJson.question_id);
+  console.log(TAG, 'resultJson from put_response before getAnswerId_query:', JSON.stringify(resultJson))
+  client.query(getAnswerQuery, function (err, result) {
+    if (err) {
+      console.log(TAG, "Unable to find question with acceptable answer of: ", resultJson.answer_description)
+      return errBack(err)
+    } else {
+      console.log(TAG, 'Found new answer in DB to associate with question_id: ' + resultJson.question_id)
+      console.log(TAG, "typeof answer_id =", typeof(result.rows[0].answer_id), "with value:", result.rows[0].answer_id)
+      resultJson.answer_id = result.rows[0].answer_id
+      return put_response(response_id, resultJson, callBack, errBack)
+    }
+  })
+}
+
 function put_response(response_id, resultJson, callBack, errBack) {
+  console.log('resultJson inside put_response:', JSON.stringify(resultJson))
   var updateTable = "UPDATE responses ";
   var setInfo = "SET ";
   var chooser = " WHERE response_id={0}".format(response_id);
 
   for (var key in resultJson) {
+    if (key == 'answer_description') {
+    } else {
     setInfo = setInfo + key + "=" + resultJson[key] + ", ";
+    }
   }
   setInfo = setInfo.slice(0, -2);
   console.log(TAG, setInfo)
@@ -108,7 +131,7 @@ function put_response(response_id, resultJson, callBack, errBack) {
   console.log(TAG, "putResultQuery:", putResultQuery);
   client.query(putResultQuery, function (err, result) {
     if (err) {
-      console.log(TAG, "Error in SQL UPDATE in put_result");
+      console.log(TAG, "Error in SQL UPDATE in put_response");
       return errBack(err);
     } else {
       var putString = "Successfully updated responses/" + response_id

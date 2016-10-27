@@ -35,7 +35,8 @@ module.exports = {
 }
 
 function get_fitness_card(category_id, callBack, errBack) {
-  var getFitnessCardQuery = "SELECT r.response_id as response_id, a.description as answer_description, q.description \
+  var getFitnessCardQuery = "SELECT q.question_id, a.answer_id, r.response_id as response_id, \
+  r.result_id, a.description as answer_description, q.description \
   as question_description, c.category_id as category_id, a.recommendation, q.fitness_level FROM \
   questions as q INNER JOIN categories as c ON q.category_id = c.category_id  \
   INNER JOIN answers as a ON q.question_id = a.question_id INNER JOIN responses \

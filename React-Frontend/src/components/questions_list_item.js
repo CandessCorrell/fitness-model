@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { putResponse } from '../actions/index';
+import axios from 'axios';
+const TAG = 'QUESTION_LIST_ITEM |'
+
+const ROOT_URL = 'http://54.175.219.183:3000/'
+var renderCount = 0
 
 export default class QuestionsListItem extends Component {
+
+	constructor(props) {
+    super(props);
+    this.state = {selectValue: this.props.question.answer_description};
+    this.putResponse = this.putResponse.bind(this);
+  }
 
 	renderQuestion() {
 		return (
@@ -22,16 +32,17 @@ export default class QuestionsListItem extends Component {
 	}
 
 	renderDropDown() {
-		if (this.props.question.answer_description == null
-		|| this.props.question.answer_description == "Yes"
+		if (this.props.question.answer_description == "Yes"
 		|| this.props.question.answer_description == "No"
 		|| this.props.question.answer_description == "Planning to") {
+			console.log(TAG, "selectValue after render", renderCount, ":", this.state.selectValue)
+
 			return (
-				<select className="form-control"
-				onInput={putResponse(this.props.question.response_id, 1, this.props.question.question_id, this.props.question.answer_id)}>
+				<select className="form-control" defaultValue={this.state.selectValue} value={this.state.selectValue}
+				onChange={this.putResponse}>
 					<option>Select</option>
 					<option>No</option>
-					<option>Planning To</option>
+					<option>Planning to</option>
 					<option>Yes</option>
 				</select>
 			);
@@ -39,7 +50,8 @@ export default class QuestionsListItem extends Component {
 
 		else {
 			return (
-				<select className="form-control">
+				<select className="form-control" value={this.state.selectValue}
+				onChange={this.putResponse}>
 					<option>Select</option>
 					<option>Monthly</option>
 					<option>Weekly</option>
@@ -47,6 +59,27 @@ export default class QuestionsListItem extends Component {
 				</select>
 			);
 		}
+	}
+
+	putResponse(event) {
+		console.log(TAG, '\nresponse_id: ', this.props.question.response_id, '\nresult_id: ', this.props.question.result_id, '\nquestion_id: ',
+		 this.props.question.question_id, '\nanswer_id: ', this.props.question.answer_id, '\nUPDATE ANSWER TO:', event.target.value)
+		axios.put(`${ROOT_URL}responses/${this.props.question.response_id}`, {
+	    resultJson: {
+				question_id: this.props.question.question_id,
+	    	answer_id: this.props.question.answer_id,
+				result_id: this.props.question.result_id,
+				answer_description: event.target.value
+			}
+	  })
+	  .then(function (response) {
+	    console.log(response);
+	  })
+	  .catch(function (error) {
+	    console.log(error);
+	  });
+		this.setState({selectValue: event.target.value})
+
 	}
 
 	render() {
