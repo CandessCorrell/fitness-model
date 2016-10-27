@@ -3,6 +3,7 @@ Application which measures a team's DevOps practices and makes suggestions on ho
 
 ### Goal 1: Actionable Information
  - Actionable Information that guides teams / portfolios to fix their weakest points.
+ - Help teams to reach a "Pass" for TMD.
 
 ### Goal 2: Education
- - Mouse point provides information about the different areas and how they can improve.
+ - Provide information about the different categories and how they can improve.
