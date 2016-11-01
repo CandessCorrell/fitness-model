@@ -2,32 +2,32 @@ INSERT INTO assessments (assessment_id, description, version) VALUES
 	(1, 'Test data pulled from the assessment draft.', '0.0');
 
 INSERT INTO categories (category_id, description) VALUES 
-	(4, 'Build'),
-	(10, 'Testing'),
-	(12, 'PM');
+	(1, 'Build'),
+	(2, 'Testing'),
+	(3, 'PM');
 
 INSERT INTO questions (question_id, assessment_id, category_id, subcategory_id, description, fitness_level) VALUES 
-	(1, 1, 4, NULL, 'Do you build from a repository?', 1),
-	(2, 1, 4, NULL, 'Is your source code repository integrated with your Continuous Integration(CI) server?', 1),
-	(3, 1, 4, NULL, 'Does your build produce deployable artifacts?', 1),
-	(4, 1, 4, NULL, 'Do you re-use your build scripts?', 2),
-	(5, 1, 4, NULL, 'Are your build dependencies managed?', 2),
-	(6, 1, 4, NULL, 'Are integration challenges discussed regularly?', 3),
-	(7, 1, 10, NULL, 'Do all test scripts reside in a version control repository?', 1),
-	(8, 1, 10, NULL, 'Automated functional and interface testing?', 1),
-	(9, 1, 10, NULL, 'Automated unit tests for each user story?', 1),
-	(10, 1, 10, NULL, 'Automated acceptance tests for each user story?', 2),
-	(11, 1, 10, NULL, 'Automated regression tests?', 2),
-	(12, 1, 10, NULL, 'Are non-functional requirements defined and measured?', 3),
-	(13, 1, 10, NULL, 'Are production rollbacks rare?', 3),
-	(14, 1, 10, NULL, 'Is A/B testing used?', 3),
-	(15, 1, 10, NULL, 'Is the system validated that it works as intended - customer value?', 3),
-	(16, 1, 10, NULL, 'Is performance testing completed and used to inform operations monitoring?', 3),
-	(17, 1, 12, NULL, 'Is Project Management treated as a unique discipline within your IT organization?', 1),
-	(18, 1, 12, NULL, 'Has your IT organization defined a manager for all IT PMs?', 1),
-	(19, 1, 12, NULL, 'Are projects funded out of a separate IT budget?', 1),
-	(20, 1, 12, NULL, 'Is project cost tracking integrated into your overall IT financial management structure?', 1),
-	(21, 1, 12, NULL, 'Is a skills inventory maintained along with quality assessments at the individual level to inform continuous training objectives and improve code quality?', 1);
+	(1, 1, 1, NULL, 'Do you build from a repository?', 1),
+	(2, 1, 1, NULL, 'Is your source code repository integrated with your Continuous Integration(CI) server?', 1),
+	(3, 1, 1, NULL, 'Does your build produce deployable artifacts?', 1),
+	(4, 1, 1, NULL, 'Do you re-use your build scripts?', 2),
+	(5, 1, 1, NULL, 'Are your build dependencies managed?', 2),
+	(6, 1, 1, NULL, 'Are integration challenges discussed regularly?', 3),
+	(7, 1, 2, NULL, 'Do all test scripts reside in a version control repository?', 1),
+	(8, 1, 2, NULL, 'Automated functional and interface testing?', 1),
+	(9, 1, 2, NULL, 'Automated unit tests for each user story?', 1),
+	(10, 1, 2, NULL, 'Automated acceptance tests for each user story?', 2),
+	(11, 1, 2, NULL, 'Automated regression tests?', 2),
+	(12, 1, 2, NULL, 'Are non-functional requirements defined and measured?', 3),
+	(13, 1, 2, NULL, 'Are production rollbacks rare?', 3),
+	(14, 1, 2, NULL, 'Is A/B testing used?', 3),
+	(15, 1, 2, NULL, 'Is the system validated that it works as intended - customer value?', 3),
+	(16, 1, 2, NULL, 'Is performance testing completed and used to inform operations monitoring?', 3),
+	(17, 1, 3, NULL, 'Is Project Management treated as a unique discipline within your IT organization?', 1),
+	(18, 1, 3, NULL, 'Has your IT organization defined a manager for all IT PMs?', 1),
+	(19, 1, 3, NULL, 'Are projects funded out of a separate IT budget?', 1),
+	(20, 1, 3, NULL, 'Is project cost tracking integrated into your overall IT financial management structure?', 1),
+	(21, 1, 3, NULL, 'Is a skills inventory maintained along with quality assessments at the individual level to inform continuous training objectives and improve code quality?', 1);
 
 INSERT INTO answers (answer_id, question_id, description, score, recommendation) VALUES 
 	(1, 1, 'No', 0, 'Start consolidating your code to an SCM solution (GIT, SVN, Dimension, etc) plan for daily check ins into the repository.'),
