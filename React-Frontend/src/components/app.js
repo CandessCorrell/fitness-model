@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Header from '../containers/header';
+import Header from '../components/header';
 import CategoriesList from '../containers/categories_list';
+import Sidebar from '../components/sidebar.js';
 
 var TAG = "MainApp | "
 
@@ -9,6 +10,7 @@ export default class App extends Component {
     return (
       <div>
         <Header />
+        {/*<Sidebar />*/}
         <CategoriesList />
         <div id="container">
           {this.props.children}

@@ -4,7 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import Home from './components/home';
 import App from './components/app';
 import Test from './components/test';
-import Category from './components/category'
+import Category from './containers/category'
 import Rankings from './components/rankings'
 import Results from './components/results'
 

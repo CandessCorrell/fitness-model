@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategory } from '../actions/index';
-import QuestionsList from './questions_list';
+import QuestionsList from '../components/questions_list';
 
 // React router
 import { Router, Route, Link } from 'react-router';
