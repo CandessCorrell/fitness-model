@@ -19,7 +19,7 @@ class CategoriesList extends Component {
     if ( titles ) {
       var sortedTitles = _.sortBy(this.props.titles, 'category_id');
     }
-    
+
     return sortedTitles.map((title) => {
       return (
         <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
@@ -40,14 +40,10 @@ class CategoriesList extends Component {
       <div className="categories-list">
 
         { this.renderCategoriesList() }
-
-        <Link to="/rankings" className="category-link">
-          <button type="button" className="btn btn-primary category-button">Ranking</button>
-        </Link>
         <Link to="/results" className="category-link">
           <button type="button" className="btn btn-primary category-button">Results</button>
         </Link>
-        
+
       </div>
     );
   }
