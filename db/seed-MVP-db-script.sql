@@ -4,7 +4,7 @@ INSERT INTO assessments (assessment_id, description, version) VALUES
 INSERT INTO categories (category_id, description) VALUES 
 	(1, 'Build'),
 	(2, 'Testing'),
-	(3, 'PM');
+	(3, 'Environments & Deployment');
 
 INSERT INTO questions (question_id, assessment_id, category_id, subcategory_id, description, fitness_level) VALUES 
 	(1, 1, 1, NULL, 'Do you build from a repository?', 1),
@@ -23,17 +23,17 @@ INSERT INTO questions (question_id, assessment_id, category_id, subcategory_id, 
 	(14, 1, 2, NULL, 'Is A/B testing used?', 3),
 	(15, 1, 2, NULL, 'Is the system validated that it works as intended - customer value?', 3),
 	(16, 1, 2, NULL, 'Is performance testing completed and used to inform operations monitoring?', 3),
-	(17, 1, 3, NULL, 'Is Project Management treated as a unique discipline within your IT organization?', 1),
-	(18, 1, 3, NULL, 'Has your IT organization defined a manager for all IT PMs?', 1),
-	(19, 1, 3, NULL, 'Are projects funded out of a separate IT budget?', 1),
-	(20, 1, 3, NULL, 'Is project cost tracking integrated into your overall IT financial management structure?', 1),
-	(21, 1, 3, NULL, 'Is a skills inventory maintained along with quality assessments at the individual level to inform continuous training objectives and improve code quality?', 1);
+	(17, 1, 3, NULL, 'Are all of your environments configurations externalized and versioned?', 1),
+	(18, 1, 3, NULL, 'Is your deployment process singular for all environments?', 1),
+	(19, 1, 3, NULL, 'Are your deployable environments inexpensive and scalable?', 2),
+	(20, 1, 3, NULL, 'Is your infrastructure code-based?', 2),
+	(21, 1, 3, NULL, 'Is environment provisioning fully automated?', 3);
 
 INSERT INTO answers (answer_id, question_id, description, score, recommendation) VALUES 
 	(1, 1, 'No', 0, 'Start consolidating your code to an SCM solution (GIT, SVN, Dimension, etc) plan for daily check ins into the repository.'),
 	(2, 1, 'Planning to', 2, NULL),
 	(3, 1, 'Yes', 4, NULL),
-	(4, 2, 'No', 0, 'Use of web-hooks, API''s, CI server plugins can link your repository and CI server.'),
+	(4, 2, 'No', 0, 'Use of web-hooks, APIs, CI server plugins can link your repository and CI server.'),
 	(5, 2, 'Planning to', 2, NULL),
 	(6, 2, 'Yes', 4, NULL),
 	(7, 3, 'No', 0, 'As part of the automated build process, deployable artifacts should be part of the end state'),
@@ -78,19 +78,19 @@ INSERT INTO answers (answer_id, question_id, description, score, recommendation)
 	(46, 16, 'No', 0, 'Reach out to performance_testing@uscis.dhs.gov for internal performance testing resources.'),
 	(47, 16, 'Planning to', 2, NULL),
 	(48, 16, 'Yes', 4, NULL),
-	(49, 17, 'No', 0, 'Project Management should be treated as a unique discipline. Appoint or hire a Project Manager for your team.'),
+	(49, 17, 'No', 0, 'You can''t manage what you don''t know. Inventory your servers so you know your current state.'),
 	(50, 17, 'Planning to', 2, NULL),
 	(51, 17, 'Yes', 4, NULL),
-	(52, 18, 'No', 0, 'Appoint a manager for all IT PMs.'),
+	(52, 18, 'No', 0, 'Even if your deploy process is manual, you should have a repeatable and well-documented process. Assign a team member to create a step-by-step instruction guide for how to configure your deployment environment.'),
 	(53, 18, 'Planning to', 2, NULL),
 	(54, 18, 'Yes', 4, NULL),
-	(55, 19, 'No', 0, 'Create a separate IT budget.'),
+	(55, 19, 'No', 0, 'If your team is not leveraging Amazon Web Services, join the #aws Slack channel and ask about how your team can begin using AWS to host your application.'),
 	(56, 19, 'Planning to', 2, NULL),
 	(57, 19, 'Yes', 4, NULL),
-	(58, 20, 'No', 0, 'Begin to integrate project cost tracking into your overall IT financial management structure.'),
+	(58, 20, 'No', 0, 'Using Configuration Management tools such as Chef, Puppet, or Ansible enable automation and environment fidelity.'),
 	(59, 20, 'Planning to', 2, NULL),
 	(60, 20, 'Yes', 4, NULL),
-	(61, 21, 'No', 0, 'Mandate that team members update a central profile which associates a list of skills with each employee. Additionally, begin six month pulse checks for performance evaluation.'),
+	(61, 21, 'No', 0, 'Assign a team member to begin learning about a configuration management tool such as Ansible, Puppet, or Chef.'),
 	(62, 21, 'Planning to', 2, NULL),
 	(63, 21, 'Yes', 4, NULL);
 
