@@ -54,7 +54,8 @@ const styles = {
   buttonStyle: {
     marginTop: 5,
     marginBottom: 5,
-    width: 300
+    width: 300,
+    height: 20
   },
   inner: {
     left: {
