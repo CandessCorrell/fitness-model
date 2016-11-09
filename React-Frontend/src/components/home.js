@@ -55,7 +55,7 @@ const styles = {
     marginTop: 5,
     marginBottom: 5,
     width: 300,
-    height: 20
+    height: 60
   },
   inner: {
     left: {
