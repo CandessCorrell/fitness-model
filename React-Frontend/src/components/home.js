@@ -13,7 +13,7 @@ export default class Home extends Component {
         <div style={styles.container} width='800px'>
           <div className="row" style={styles.inner}>
             <div style={styles.inner.right} className="col-md-6">
-              Insert Logo Here
+              <img src='../../assets/final-logo.png' />
             </div>
             <div style={styles.inner.left} className="col-md-3">
               <Button style={styles.buttonStyle}>Create a New Assessment</Button> <br />
