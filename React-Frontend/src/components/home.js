@@ -59,10 +59,11 @@ const styles = {
   },
   inner: {
     left: {
+      textAlign: 'center',
       marginLeft: 20,
       marginTop: 170,
       marginBottom: 100,
-      textAlign: 'left'
+      fontFamily: 'ITC Franklin Gothic STD', color: #707070,
 
     },
     right: {
