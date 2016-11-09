@@ -16,9 +16,10 @@ export default class Home extends Component {
               <img src='../../assets/final-logo.png' />
             </div>
             <div style={styles.inner.left} className="col-md-3">
-              <Button style={styles.buttonStyle}>Create a New Assessment</Button> <br />
-              <Button style={styles.buttonStyle}>Update an Existing Assessment</Button> <br />
-              <Button style={styles.buttonStyle}>View Archived Assessments</Button> <br />
+              <Button style={styles.buttonStyle}>Setup a New Project Profile</Button> <br />
+              <Button style={styles.buttonStyle}>Begin a New Project Assessment</Button> <br />
+              <Button style={styles.buttonStyle}>Update a Current Project Assessment</Button> <br />
+              <Button style={styles.buttonStyle}>Results</Button> <br />
             </div>
           </div>
         </div>
@@ -60,7 +61,6 @@ const styles = {
       marginLeft: 20,
       marginTop: 170,
       marginBottom: 100,
-      fontSize: 12,
       textAlign: 'left'
 
     },
