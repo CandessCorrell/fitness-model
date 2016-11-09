@@ -10,7 +10,7 @@ export default class Home extends Component {
     return (
       <div>
         <h2 style={styles.header}>Fitness Model Home Page</h2>
-        <div style={styles.container} width='800px'>
+        <div style={styles.container} width='1200px'>
           <div className="row" style={styles.inner}>
             <div style={styles.inner.right} className="col-md-6">
               <img src='../../assets/final-logo.png' />
@@ -48,7 +48,7 @@ const styles = {
   header: {
     textAlign: 'center',
     fontSize: '16',
-    borderColor: '#F7941D',
+    borderColor: '#fff',
     borderBottom: 5
   },
   buttonStyle: {
