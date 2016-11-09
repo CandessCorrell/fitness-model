@@ -58,7 +58,7 @@ const styles = {
   inner: {
     left: {
       marginLeft: 20,
-      marginTop: 120,
+      marginTop: 200,
       marginBottom: 100,
       textAlign: 'left'
     },
