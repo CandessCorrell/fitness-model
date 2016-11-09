@@ -62,7 +62,7 @@ const styles = {
       textAlign: 'center',
       marginLeft: 20,
       marginTop: 170,
-      marginBottom: 100,
+      marginBottom: 100
 
     },
     right: {
