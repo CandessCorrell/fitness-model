@@ -31,7 +31,7 @@ export default class Home extends Component {
 const styles = {
   container: {
     textAlign: 'center',
-    borderWidth:4,
+    borderWidth:1,
     borderRadius: 2,
     borderStyle: 'solid',
     borderOpacity: .1,
@@ -54,7 +54,7 @@ const styles = {
   buttonStyle: {
     marginTop: 5,
     marginBottom: 5,
-    width: 250
+    width: 300
   },
   inner: {
     left: {
