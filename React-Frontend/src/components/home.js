@@ -30,7 +30,7 @@ export default class Home extends Component {
 const styles = {
   container: {
     textAlign: 'center',
-    borderWidth: 2,
+    borderWidth: 3,
     borderRadius: 2,
     borderStyle: 'solid',
     borderOpacity: .1,
