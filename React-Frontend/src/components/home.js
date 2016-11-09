@@ -63,7 +63,6 @@ const styles = {
       marginLeft: 20,
       marginTop: 170,
       marginBottom: 100,
-      color: #707070,
 
     },
     right: {
