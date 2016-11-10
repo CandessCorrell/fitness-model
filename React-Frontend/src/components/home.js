@@ -9,7 +9,7 @@ export default class Home extends Component {
   render(){
     return (
       <div>
-        <h2 style={styles.header}>Fitness Model Home Page</h2>
+        <h2 style={styles.header}></h2>
         <div style={styles.container} width='800px'>
           <div className="row" style={styles.inner}>
             <div style={styles.inner.right} className="col-md-6">
@@ -35,8 +35,9 @@ const styles = {
     borderRadius: 2,
     borderStyle: 'solid',
     borderOpacity: .1,
-    borderColor: '#000',
-    shadowColor: '#000',
+    borderColor: '#e0e0e0',
+    borderRadius: '10',
+    shadowColor: '#efefef',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
@@ -55,19 +56,35 @@ const styles = {
     marginTop: 5,
     marginBottom: 5,
     width: 300,
-    height: 60
+    height: 70,
+    fontFamily: 'ITC Franklin Gothic STD',
+    fontSize: 12,
+    fontStyle: 'book',
+    color: '#707070',
+    backgroundColor: '#f2f2f2',
+    borderRadius: '10',
+    transition: '.04'
   },
   inner: {
     left: {
       textAlign: 'center',
       marginLeft: 20,
-      marginTop: 170,
+      marginTop: 130,
       marginBottom: 100
     },
     right: {
       marginTop: 100,
       marginBottom: 100,
       textAlign: 'right'
+    },
+    hometext: {
+      marginTop: 800,
+      marginBottom: 100,
+      fontFamily: 'ITC Franklin Gothic STD',
+      fontSize: 12,
+      color: '#707070',
+      fontStyle: 'book',
+      textAlign: 'center'
     }
   }
 }
