@@ -15,15 +15,6 @@ a.category-link {
 	margin: 1px;
 }
 
-div.categories-list {
-	text-align: left;
-}
-
-button.category-button {
-	margin-top: 5px;
-	font-weight: bold;
-}
-
 button.next-button {
 	position: absolute;
 	bottom: 10px;

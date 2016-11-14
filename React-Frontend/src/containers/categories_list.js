@@ -24,8 +24,8 @@ class CategoriesList extends Component {
       return (
         <div>
           <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
-            <button type="button" className="btn btn-primary category-button">{ title.description }</button>
-          </Link> <br />
+            <button type="button" className="nav-button">{ title.description }</button>
+          </Link>
         </div>
       );
     });
@@ -40,11 +40,12 @@ class CategoriesList extends Component {
 
     return (
       <div className="categories-list">
-
         { this.renderCategoriesList() }
-        <Link to="/results" className="category-link">
-          <button type="button" className="btn btn-primary category-button">Results</button>
-        </Link>
+        <div>
+          <Link to="/results">
+            <button type="button" className="nav-button">Results</button>
+          </Link>
+        </div>
 
       </div>
     );

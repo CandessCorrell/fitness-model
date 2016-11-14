@@ -1,5 +1,18 @@
+/* Largest container */
 div.sidebar {
   background-color: #E29C6D;
+  margin-top: 5px;
   position:fixed;
   top:20px;
+}
+
+/* Container of Category Links */
+div.categories-list {
+}
+
+/* Contains the following:
+  .png (check mark or empty white bubble depending on completion of associated Category)
+  Text containing the title of the Category which should be a clickable link to that Category in the current assessment */
+button.nav-button {
+  margin-bottom: 5px;
 }
