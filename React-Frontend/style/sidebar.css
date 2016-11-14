@@ -1,3 +1,5 @@
 div.sidebar {
   background-color: #E29C6D;
+  position:fixed;
+  top:20px;
 }
