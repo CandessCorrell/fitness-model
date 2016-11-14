@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 import { Button } from 'react-bootstrap';
 
@@ -18,7 +19,9 @@ export default class Home extends Component {
             <div style={styles.inner.left} className="col-md-3">
               <Button style={styles.buttonStyle}>Setup a New Project Profile</Button> <br />
               <Button style={styles.buttonStyle}>Begin a New Project Assessment</Button> <br />
-              <Button style={styles.buttonStyle}>Update a Current Project Assessment</Button> <br />
+              <Button style={styles.buttonStyle}>
+                <Link to={"/category/1"} style={styles.buttonStyle}> Update a Current Project Assessment </Link> <br />
+              </Button>
               <Button style={styles.buttonStyle}>Results</Button> <br />
             </div>
           </div>
