@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategory } from '../actions/index';
 import QuestionsList from '../components/questions_list';
+import Sidebar from '../components/sidebar'
 
 // React router
 import { Router, Route, Link } from 'react-router';
@@ -74,18 +75,27 @@ class Category extends Component {
 		var nextCategory = parseInt(this.props.params.id) + 1;
 
 		return (
-			<div className="category-container">
-				<h1 className="category-title">
-					{ this.props.questions[0].category_description }
-				</h1>
+			<div className="container">
+				<div className="row">
+					<div className="col-md-3">
+						<Sidebar style={{height: 500, width: 200}}/>
+					</div>
+					<div className="col-md-9">
+						<div className="category-container">
+							<h1 className="category-title">
+								{ this.props.questions[0].category_description }
+							</h1>
 
-				{ this.renderFitnessLevel("1") }
-				{ this.renderFitnessLevel("2") }
-				{ this.renderFitnessLevel("3") }
+							{ this.renderFitnessLevel("1") }
+							{ this.renderFitnessLevel("2") }
+							{ this.renderFitnessLevel("3") }
 
-				<div>
-					{this.renderPrevious(prevCategory)}
-					{this.renderNext(nextCategory)}
+							<div>
+								{this.renderPrevious(prevCategory)}
+								{this.renderNext(nextCategory)}
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		);

@@ -6,7 +6,7 @@ import { fetchCategories } from '../actions/index';
 // React router
 import { Router, Route, Link } from 'react-router';
 
-const TAG = "Categories_list | ";
+const TAG = "Categories List | ";
 
 class CategoriesList extends Component {
   componentWillMount() {
@@ -22,9 +22,11 @@ class CategoriesList extends Component {
 
     return sortedTitles.map((title) => {
       return (
-        <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
-          <button type="button" className="btn btn-primary category-button">{ title.description }</button>
-        </Link>
+        <div>
+          <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
+            <button type="button" className="btn btn-primary category-button">{ title.description }</button>
+          </Link> <br />
+        </div>
       );
     });
   }
