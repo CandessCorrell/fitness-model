@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-const TAG = 'QUESTION_LIST_ITEM |'
+const TAG = 'QuestionListItem | '
 
 const ROOT_URL = 'http://54.175.219.183:3000/'
 var renderCount = 0
