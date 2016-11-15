@@ -10,7 +10,6 @@ export default class Home extends Component {
   render(){
     return (
       <div>
-        <h2 style={styles.header}></h2>
         <div style={styles.container} width='800px'>
           <div className="row" style={styles.inner}>
             <div style={styles.inner.right} className="col-md-6">
@@ -40,16 +39,12 @@ const styles = {
     borderOpacity: .1,
     borderColor: '#e0e0e0',
     borderRadius: '10',
-    shadowColor: '#efefef',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
     elevation: 1,
     marginLeft: 5,
     marginRight: 5,
     marginTop: 5
   },
-  header: {
+  subHeader: {
     textAlign: 'center',
     fontSize: '16',
     borderColor: '#fff',

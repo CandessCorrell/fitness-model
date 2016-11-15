@@ -11,9 +11,7 @@ import Results from './components/results'
 export default (
   <Route path="/" component={ App }>
     <IndexRoute component={ Home } />
-    <Route path="/test" component={Test} />
     <Route path="/category/:id" component={Category} />
-    <Route path="/rankings" component={Rankings} />
     <Route path="/results" component={Results} />
   </Route>
 );
