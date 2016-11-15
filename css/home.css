@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+a:link, a:visited {
+
+    position: right;
+    right: 0px;
+    background-color: #efefef;
+    border-radius: 10px;
+    border:0.5px solid #b5b5b5;
+    color: #a09f9f;
+    padding: 28px;
+    margin-top: -.5em;
+    width: 270px;
+    height: 20px;
+    text-align: center; vertical: center;
+    font-size:80%;
+    font-style: normal;
+    font-family: "ITC Franklin Gothic STD"; color: #707070;
+    text-decoration: none;
+    display: inline-block;
+    -webkit-transition-duration: 0.4s; /* Safari */* Chrome */* Interneet Explorer */    
+}
+
+a:hover, a:active {
+    background-color: #e6e4e4;
+}
+
+
+</style>
+</head>
+<body>
+
+<a href="default.asp" target="_blank">Set up a new project profile</a><p>
+<a href="default.asp" target="_blank">Begin a new project assessment</a><p>
+<a href="default.asp" target="_blank">Update a current project assessment</a><p>
+<a href="default.asp" target="_blank">Results</a><p>
+
+
+</body>
+</html>
