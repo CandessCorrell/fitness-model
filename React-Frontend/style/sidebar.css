@@ -1,8 +1,9 @@
 /* Largest container */
 div.sidebar {
-  color: #FFFFFF;
   background-color: #FBB040;
-  font: 14px "ITC Franklin Gothic Std";
+  font-family: Helvetica, Arial, san-serif;
+  size: 14px;
+  color: #FFF;
   padding-top: 50px;
   padding-right: 20px;
   padding-left: 20px;
