@@ -1,5 +1,5 @@
 nav.navbar {
-	background-color: #5B5F5F;
+	background-color: #FFF;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	margin-bottom: 0px;
@@ -9,10 +9,6 @@ nav.navbar {
 a.navbar-brand {
 	font-weight: bold;
 	font-size: 250%;
-}
-
-a.category-link {
-	margin: 1px;
 }
 
 button.next-button {
@@ -38,8 +34,9 @@ h1.category-title {
 div.category-container {
 	background-color: #F8F8F8;
 	border: 1px solid black;
-	margin-top: 10px;
+	margin-top: 50px;
 	position: relative;
+	z-index: -1;
 }
 
 ul.category-questions {
@@ -91,4 +88,15 @@ td.inputBox {
 	text-align: center;
 	padding-left: 10px;
 	padding-right: 10px;
+}
+
+div.footer-buttons {
+	position: relative;
+}
+
+div.container {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
 }
