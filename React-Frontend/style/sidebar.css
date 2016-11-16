@@ -31,20 +31,33 @@ li a {
     font-size: 16px;
 }
 
+li a:link {
+    display: block;
+    color: #fff;
+    padding-left: 50px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-decoration: none;
+    font-family: Helvetica, Arial, san-serif;
+    font-weight: normal;
+    font-size: 16px;
+}
+
 /* Change the link color on hover */
 li a:hover {
-    background-color: #fff;
-    color: #5B5E5E;
-    text-decoration: none;
+  background-color: #fff;
+  color: #5B5E5E;
+  text-decoration: none;
 }
 
 li a:active {
-    background-color: #fff;
-    color: #5B5E5E;
-    text-decoration: none;
+  background-color: #fff;
+  color: #5B5E5E;
+  text-decoration: none;
 }
 
-a:visited {
+li a:visited {
+  color: #5B5E5E;
   text-decoration: none;
 }
 

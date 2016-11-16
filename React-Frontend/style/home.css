@@ -1,42 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-a:link, a:visited {
-
-    position: right;
-    right: 0px;
-    background-color: #efefef;
-    border-radius: 10px;
-    border:0.5px solid #b5b5b5;
-    color: #a09f9f;
-    padding: 28px;
-    margin-top: -.5em;
-    width: 270px;
-    height: 20px;
-    text-align: center; vertical: center;
-    font-size:80%;
-    font-style: normal;
-    font-family: "ITC Franklin Gothic STD"; color: #707070;
-    text-decoration: none;
-    display: inline-block;
-    -webkit-transition-duration: 0.4s; /* Safari */* Chrome */* Interneet Explorer */    
+div.home-container {
+  text-align: center;
+  border-width:1;
+  border-radius: 2;
+  border:0.5px solid #b5b5b5;
+  border-style: solid;
+  border-color: #909090;
+  border-radius: 10px;
+  elevation: 1;
+  margin: 50px;
+  margin-top: 25px;
+  padding: 50px;
+  padding-top: 150px;
+  padding-bottom: 250px;
 }
 
-a:hover, a:active {
-    background-color: #e6e4e4;
+a.home-screen-button, a.home-screen-button:visited {
+  position: right;
+  right: 0px;
+  background-color: #F4F4F4;
+  border-radius: 10px;
+  border:0.5px solid #b5b5b5;
+  color: #a09f9f;
+  padding: 25px;
+  margin: 5px;
+  width: 270px;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-family: "ITC Franklin Gothic STD"; color: #707070;
+  text-decoration: none;
+  display: inline-block;
+  -webkit-transition-duration: 0.4s; /* Safari */* Chrome */* Interneet Explorer */
 }
 
+a.home-screen-button:hover {
+  background-color: #e6e4e4;
+  text-decoration: none;
+}
 
-</style>
-</head>
-<body>
-
-<a href="default.asp" target="_blank">Set up a new project profile</a><p>
-<a href="default.asp" target="_blank">Begin a new project assessment</a><p>
-<a href="default.asp" target="_blank">Update a current project assessment</a><p>
-<a href="default.asp" target="_blank">Results</a><p>
-
-
-</body>
-</html>
+a.home-screen-button:active {
+  background-color: #fff;
+  text-decoration: none;
+}
