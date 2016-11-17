@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
+import { Button } from 'react-bootstrap';
+
 const TAG = "Home | ";
 
 export default class Home extends Component {
@@ -19,12 +21,69 @@ export default class Home extends Component {
               <Link to={"/category/1"} className="home-screen-button">
                 Update a Current Project Assessment
               </Link> <br />
-              <Link to={"/category/1"} className="home-screen-button">Results</Link> <br /> <br />
+              <Link to={"/results/1"} className="home-screen-button">Results</Link> <br /> <br />
               <Link to={"/category/1"} className="home-screen-link">View Past Assessments</Link> <br />
             </div>
           </div>
         </div>
       </div>
     )
+  }
+}
+
+const styles = {
+  container: {
+    textAlign: 'center',
+    borderWidth:1,
+    borderRadius: 2,
+    borderStyle: 'solid',
+    borderOpacity: .1,
+    borderColor: '#e0e0e0',
+    borderRadius: '10',
+    elevation: 1,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 5
+  },
+  subHeader: {
+    textAlign: 'center',
+    fontSize: '16',
+    borderColor: '#fff',
+    borderBottom: 5
+  },
+  buttonStyle: {
+    marginTop: 5,
+    marginBottom: 5,
+    width: 300,
+    height: 70,
+    fontFamily: 'ITC Franklin Gothic STD',
+    fontSize: 12,
+    fontStyle: 'book',
+    color: '#707070',
+    backgroundColor: '#f2f2f2',
+    borderRadius: '10',
+    transition: '.04'
+  },
+  inner: {
+    left: {
+      textAlign: 'center',
+      marginLeft: 20,
+      marginTop: 130,
+      marginBottom: 100
+    },
+    right: {
+      marginTop: 100,
+      marginBottom: 100,
+      textAlign: 'right'
+    },
+    hometext: {
+      marginTop: 800,
+      marginBottom: 100,
+      fontFamily: 'ITC Franklin Gothic STD',
+      fontSize: 12,
+      color: '#707070',
+      fontStyle: 'book',
+      textAlign: 'center'
+    }
   }
 }

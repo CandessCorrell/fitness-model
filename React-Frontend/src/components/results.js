@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-
+import { fetchScores } from '../actions/index';
+import RecommendationsList from '../components/recommendations_list';
 import Header from './header';
 import Sidebar from './sidebar';
 
@@ -13,8 +14,23 @@ class Results extends Component {
 			</Link>
 		);
 	}
+	componentDidMount() {
+		this.props.fetchScores(this.props.params.id);
+	}
+
+	renderScores() {
+		this.props.fetchScores(this.props.params.id);
+	}
 
 	render() {
+		const { scores } = this.props;
+
+		if ( !scores ) {
+			return <div>Loading...</div>;
+		}
+
+		this.renderScores();
+
 		return (
 
 			<div>
@@ -27,19 +43,23 @@ class Results extends Component {
 							<Sidebar />
 						</div>
 						<div className="col-md-8">
-							<div className="category-container">
-								<h1 className="category-title">
-									Results
+							<div className="results-container">
+								<h1 className="results-title">
+									Results - Maturity Level Assessment
 								</h1>
 								<img src="../assets/graph.png" />
-								<div className="footer-buttons">
-									{this.renderPrevious()}
-								</div>
+
+								{ this.renderRecommendations }
+							</div>
+							<div className="footer-buttons">
+								{this.renderPrevious()}
 							</div>
 						</div>
+						<div className="col-md-2">
 							<Link to="/" className="col-md-2 category-logo-container">
 								<img src="../assets/final-logo-01.png" className="category-logo" />
 							</Link>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -47,4 +67,8 @@ class Results extends Component {
 	}
 }
 
-export default Results;
+function mapStateToProps(state) {
+	return { scores: state.result.scores };
+}
+
+export default connect(mapStateToProps, { fetchScores })(Results);

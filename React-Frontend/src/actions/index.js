@@ -2,6 +2,8 @@ import axios from 'axios';
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 export const FETCH_CATEGORY = 'FETCH_CATEGORY'
+export const FETCH_RESULTS = 'FETCH_RESULTS'
+export const FETCH_SCORES = 'FETCH_SCORES'
 
 const ROOT_URL = 'http://54.175.219.183:3000/'
 
@@ -80,4 +82,22 @@ export function fetchCategoryWithErrorHandling(id) {
 				console.log(res.config); // The config that was used to make the request
 			}
 		});
+}
+
+export function fetchResults() {
+	const request = axios.get(`${ROOT_URL}results)`);
+
+	return {
+		type: FETCH_RESULTS,
+		payload: request
+	};
+}
+
+export function fetchScores(id) {
+	const request = axios.get(`${ROOT_URL}scores/${id}`);
+
+	return {
+		type: FETCH_SCORES,
+		payload: request
+	};
 }
