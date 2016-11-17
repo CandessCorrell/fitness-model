@@ -12,6 +12,6 @@ export default (
   <Route path="/" component={ App }>
     <IndexRoute component={ Home } />
     <Route path="/category/:id" component={Category} />
-    <Route path="/results" component={Results} />
+    <Route path="/result/:id" component={Results} />
   </Route>
 );

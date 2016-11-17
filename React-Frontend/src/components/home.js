@@ -21,7 +21,9 @@ export default class Home extends Component {
               <Link to={"/category/1"} style={styles.buttonStyle}>
                 <button type="button" style={styles.buttonStyle}> Update a Current Project Assessment </button> <br />
               </Link>
-              <Button style={styles.buttonStyle}>Results</Button> <br />
+              <Link to={"/results"} style={styles.buttonStyle}>
+                <Button style={styles.buttonStyle}>Results</Button> <br />
+              </Link>
             </div>
           </div>
         </div>
