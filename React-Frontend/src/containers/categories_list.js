@@ -24,16 +24,18 @@ class CategoriesList extends Component {
       return (
         <li className="sidebar-item">
           <table>
-            <tr>
-              <td>
-                <img className="nav-circle" src="../assets/nav-empty-circle.png" />
-              </td>
-              <td>
-                <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
-                  {title.description}
-                </Link>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <img className="nav-circle" src="../assets/nav-empty-circle.png" />
+                </td>
+                <td>
+                  <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
+                    {title.description}
+                  </Link>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </li>
       );
@@ -54,16 +56,18 @@ class CategoriesList extends Component {
         { this.renderCategoriesList() }
         <li className="sidebar-item">
           <table>
-            <tr>
-              <td>
-                <img className="nav-circle" src="../assets/nav-checked-circle.png" />
-              </td>
-              <td>
-                <Link to={"/results/1"} className="category-link" key={"Results"}>
-                  Results
-                </Link>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <img className="nav-circle" src="../assets/nav-checked-circle.png" />
+                </td>
+                <td>
+                  <Link to={"/results/1"} className="category-link" key={"Results"}>
+                    Results
+                  </Link>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </li>
 
