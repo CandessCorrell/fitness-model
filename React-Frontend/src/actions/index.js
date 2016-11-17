@@ -84,8 +84,8 @@ export function fetchCategoryWithErrorHandling(id) {
 		});
 }
 
-export function fetchResults() {
-	const request = axios.get(`${ROOT_URL}results)`);
+export function fetchResults(id) {
+	const request = axios.get(`${ROOT_URL}result/${id}`);
 
 	return {
 		type: FETCH_RESULTS,

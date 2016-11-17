@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { fetchScores } from '../actions/index';
+import { fetchResults } from '../actions/index';
 import RecommendationsList from '../components/recommendations_list';
 import Header from '../components/header';
 import Sidebar from '../components/sidebar';
 
 class Results extends Component {
+
+	componentDidMount() {
+		this.props.fetchResults(this.props.params.id);
+	}
+
 	renderPrevious() {
 		return (
 			<Link to={"/category/3"} className="category-link">
@@ -14,18 +19,50 @@ class Results extends Component {
 			</Link>
 		);
 	}
-	componentDidMount() {
-		this.props.fetchScores(this.props.params.id);
-	}
 
 	renderScores() {
-		this.props.fetchScores(this.props.params.id);
+		if (this.props.params.oldid != this.props.params.id) {
+			this.props.params.oldid = this.props.params.id;
+			this.props.fetchResults(this.props.params.id);
+		}
+	}
+
+	renderRecommendations() {
+		console.log("made it 1");
+		var recommendation_category = "";
+		console.log("recommendation_category: ", recommendation_category);
+		var recommendation_category_array = [];
+		var recommendation_category_iterator = -1;
+		this.props.results.map((result) => {
+			console.log(result);
+			if (result.category == recommendation_category) {
+				if (result.recommendation != null) {
+					recommendation_category_array[recommendation_category_iterator].recommendation = recommendation_category_array[recommendation_category_iterator].recommendation + " " + result.recommendation;
+				}
+			}
+			else {
+				if (result.recommendation != null) {
+					recommendation_category_iterator++;
+					recommendation_category = result.category;
+					recommendation_category_array.push(result);
+				}
+				console.log(recommendation_category_array);
+			}
+		});
+
+		recommendation_category_array.map((recommendation) => {
+			console.log(recommendation);
+			return ;
+		});
 	}
 
 	render() {
-		const { scores } = this.props;
+		const { results } = this.props;
 
-		if ( !scores ) {
+		console.log("started it");
+
+		if ( !results ) {
+			this.props.params.oldid = this.props.params.id;
 			return <div>Loading...</div>;
 		}
 
@@ -49,7 +86,15 @@ class Results extends Component {
 								</h1>
 								<img src="../assets/graph.png" />
 
-								{ this.renderRecommendations }
+								{ console.log("almost made it") }
+								{ console.log(results) }
+								{ console.log(results[0].category) }
+								{ console.log(results[0].recommendation) }
+
+								{ this.renderRecommendations() }
+
+								{ console.log("passed it") }
+
 							</div>
 							<div className="footer-buttons">
 								{this.renderPrevious()}
@@ -68,7 +113,7 @@ class Results extends Component {
 }
 
 function mapStateToProps(state) {
-	return { scores: state.result.scores };
+	return { results: state.result.results };
 }
 
-export default connect(mapStateToProps, { fetchScores })(Results);
+export default connect(mapStateToProps, { fetchResults })(Results);
