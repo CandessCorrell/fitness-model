@@ -64,11 +64,22 @@ class Category extends Component {
 	}
 
 	renderNext(nextCat) {
-		return (
-			<Link to={"/category/" + nextCat} className="prev-next-button">
-				NEXT
-			</Link>
-		);
+		if (this.props.titles == null) {
+			return;
+		}
+		if (nextCat > this.props.titles.length) {
+			return (
+				<Link to={"/results/1"} className="prev-next-button">
+					SUBMIT
+				</Link>
+			);
+		} else {
+			return (
+				<Link to={"/category/" + nextCat} className="prev-next-button">
+					NEXT
+				</Link>
+			);
+		}
 	}
 
 	render() {
@@ -119,7 +130,7 @@ class Category extends Component {
 }
 
 function mapStateToProps(state) {
-	return { questions: state.category.questions };
+	return { questions: state.category.questions, titles: state.category.titles };
 }
 
 export default connect(mapStateToProps, { fetchCategory })(Category);
