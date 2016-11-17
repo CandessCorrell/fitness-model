@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fetchResults } from '../actions/index';
-import RecommendationsList from '../components/recommendations_list';
+import RecommendationsListItem from '../components/recommendations_list_item';
 import Header from '../components/header';
 import Sidebar from '../components/sidebar';
 import GraphLegend from '../components/graph_legend';
@@ -29,13 +29,13 @@ class Results extends Component {
 	}
 
 	renderRecommendations() {
-		console.log("made it 1");
+		// console.log("made it 1");
 		var recommendation_category = "";
-		console.log("recommendation_category: ", recommendation_category);
+		// console.log("recommendation_category: ", recommendation_category);
 		var recommendation_category_array = [];
 		var recommendation_category_iterator = -1;
 		this.props.results.map((result) => {
-			console.log(result);
+			// console.log(result);
 			if (result.category == recommendation_category) {
 				if (result.recommendation != null) {
 					recommendation_category_array[recommendation_category_iterator].recommendation = recommendation_category_array[recommendation_category_iterator].recommendation + " " + result.recommendation;
@@ -47,13 +47,22 @@ class Results extends Component {
 					recommendation_category = result.category;
 					recommendation_category_array.push(result);
 				}
-				console.log(recommendation_category_array);
+				// console.log(recommendation_category_array);
 			}
 		});
-
-		recommendation_category_array.map((recommendation) => {
-			console.log(recommendation);
-			return ;
+		var recommendation_level = 0;
+		return recommendation_category_array.map((recommendation) => {
+			console.log(JSON.stringify(recommendation));
+			// console.log(recommendation);
+			recommendation_level++;
+			return (
+				<RecommendationsListItem
+					fitness_level={recommendation_level}
+					category={recommendation.category}
+					recommendation={recommendation.recommendation}
+				/>
+			)
+			console.log("If this gets called, we are not returning.");
 		});
 	}
 
@@ -88,12 +97,13 @@ class Results extends Component {
 								<img className="graph" src="../assets/graph.png" />
 								<GraphLegend className="graph-legend" />
 
-								{ console.log("almost made it") }
-								{ console.log(results) }
-								{ console.log(results[0].category) }
-								{ console.log(results[0].recommendation) }
-
-								{ this.renderRecommendations() }
+								{/*{ console.log("almost made it") }*/}
+								{/*{ console.log(results) }*/}
+								{/*{ console.log(results[0].category) }*/}
+								{/*{ console.log(results[0].recommendation) }*/}
+								<div className="recommendations-list">
+									{ this.renderRecommendations() }
+								</div>
 
 								{ console.log("passed it") }
 

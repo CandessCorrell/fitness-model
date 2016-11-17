@@ -1,30 +1,29 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
 const TAG = 'RecommendationListItem | '
-
-const ROOT_URL = 'http://54.175.219.183:3000/'
-var renderCount = 0
 
 export default class RecommendationsListItem extends Component {
 
-	constructor(props) {
-    super(props);
-    this.state = {selectValue: this.props.question.answer_description};
-    this.putResponse = this.putResponse.bind(this);
-  }
-
 	renderRecommendation() {
+		console.log(TAG);
 		return (
-			<div>
-				Build
+			<div className="recommendation-list-item">
+				<h3 className="results-subtitle">
+					{this.props.category}
+				</h3>
+				<img className="results-category-fitness-level" src={"../assets/level-"+this.props.fitness_level+".png"} />
+				<p className="results-recommendations-body">
+					{this.props.recommendation}
+				</p>
 			</div>
 		);
 	}
 
 	render() {
+		console.log(TAG, "Hello from render")
 		return (
-			this.renderRecommendation()
+			<div>
+				{this.renderRecommendation()}
+			</div>
 		);
 	}
 }

@@ -21,8 +21,7 @@ h3.results-subtitle {
   font-weight: bold;
   color: #5B5E5E;
   padding-top: 50px;
-  padding-left: 10px;
-  margin-left: 230px;
+	display: inline;
 }
 
 p.results-recommendations-body {
@@ -31,6 +30,12 @@ p.results-recommendations-body {
   font-weight: normal;
   color: #5B5E5E;
   width: 800px;
+}
+
+img.results-category-fitness-level {
+	display: inline;
+	padding-bottom: 10px;
+	padding-left: 5px;
 }
 
 td.legend-level-1 {
