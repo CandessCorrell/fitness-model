@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fetchScores } from '../actions/index';
 import RecommendationsList from '../components/recommendations_list';
-import Header from './header';
-import Sidebar from './sidebar';
+import Header from '../components/header';
+import Sidebar from '../components/sidebar';
 
 class Results extends Component {
 	renderPrevious() {

@@ -6,7 +6,7 @@ import App from './components/app';
 import Test from './components/test';
 import Category from './containers/category'
 import Rankings from './components/rankings'
-import Results from './components/results'
+import Results from './containers/results'
 
 export default (
   <Route path="/" component={ App }>
