@@ -5,6 +5,8 @@ import QuestionsList from '../components/questions_list';
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
 
+const TAG = 'CATEGORY | ';
+
 // React router
 import { Router, Route, Link } from 'react-router';
 
@@ -12,6 +14,7 @@ class Category extends Component {
 	componentWillMount() {
 		this.props.fetchCategory(this.props.params.id);
 		this.props.fetchCategory(this.props.params.id);
+		console.log(TAG, JSON.stringify(this.props.questions));
 	}
 
 	renderCategory() {
@@ -87,7 +90,7 @@ class Category extends Component {
 						<div className="col-md-9">
 							<div className="category-container">
 								<h1 className="category-title">
-									{ this.props.questions[0].category_description }
+									Category Description
 								</h1>
 
 								{ this.renderFitnessLevel("1") }

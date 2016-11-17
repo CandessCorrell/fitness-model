@@ -2,7 +2,8 @@ div.gray-band-container {
 	width: absolute;
   left: 0;
 	margin: 0;
-	z-index: 1;
+	position: fixed;
+	z-index: 5;
 }
 
 h3.gray-band{

@@ -13,17 +13,14 @@ button.prev-button {
 }
 
 h1.category-title {
-	text-align: center;
+	text-align: left;
 	font-weight: bolder;
 	color: #5B5F5F;
 }
 
 div.category-container {
-	background-color: #F8F8F8;
-	border: 1px solid black;
 	margin-top: 50px;
 	position: relative;
-	z-index: -1;
 }
 
 ul.category-questions {
