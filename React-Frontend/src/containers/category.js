@@ -2,12 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategory } from '../actions/index';
 import QuestionsList from '../components/questions_list';
-import Sidebar from '../components/sidebar'
+import Sidebar from '../components/sidebar';
+import Header from '../components/header';
+
+const TAG = 'CATEGORY | ';
 
 // React router
 import { Router, Route, Link } from 'react-router';
 
 class Category extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			isActive: false
+		};
+	}
+
 	componentWillMount() {
 		this.props.fetchCategory(this.props.params.id);
 		this.props.fetchCategory(this.props.params.id);
@@ -67,7 +78,6 @@ class Category extends Component {
 			this.props.params.oldid = this.props.params.id;
 			return <div>Loading...</div>;
 		}
-
 		this.renderCategory();
 
 		var prevCategory = parseInt(this.props.params.id) - 1;
@@ -75,26 +85,34 @@ class Category extends Component {
 		var nextCategory = parseInt(this.props.params.id) + 1;
 
 		return (
-			<div className="container">
-				<div className="row">
-					<div className="col-md-3">
-						<Sidebar style={{height: 500, width: 200}}/>
-					</div>
-					<div className="col-md-9">
-						<div className="category-container">
-							<h1 className="category-title">
-								{ this.props.questions[0].category_description }
-							</h1>
+			<div>
+				<div className= "gray-band-container">
+					<Header className="gray-band" />
+				</div>
+				<div className="container">
+					<div className="row">
+						<div className="col-md-2" style={{height: 500, width: 200}}>
+							<Sidebar />
+						</div>
+						<div className="col-md-6">
+							<div className="category-container">
+								<h1 className="category-title">
+									{this.props.questions[0].category_description}
+								</h1>
 
-							{ this.renderFitnessLevel("1") }
-							{ this.renderFitnessLevel("2") }
-							{ this.renderFitnessLevel("3") }
+								{ this.renderFitnessLevel("1") }
+								{ this.renderFitnessLevel("2") }
+								{ this.renderFitnessLevel("3") }
 
-							<div>
-								{this.renderPrevious(prevCategory)}
-								{this.renderNext(nextCategory)}
+								<div className="footer-buttons">
+									{this.renderPrevious(prevCategory)}
+									{this.renderNext(nextCategory)}
+								</div>
 							</div>
 						</div>
+							<Link to="/" className="col-md-3 category-logo-container">
+								<img src="../assets/final-logo-01.png" className="category-logo" />
+							</Link>
 					</div>
 				</div>
 			</div>

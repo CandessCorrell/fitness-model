@@ -11,17 +11,13 @@ export default class Header extends Component {
   render() {
 
     return (
-      <div className="navbar-header">
-        <Navbar inverse>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="/"> DevOps Fitness Self Assessment </Link>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-        </Navbar>
+      <div className="container gray-band">
+        <div className="row">
+          <Link to="/" className="col-md-2 gray-band-link">
+            <h3 className="gray-band-header"> Home | Team A </h3>
+          </Link>
+        </div>
       </div>
-
     )
   }
 }

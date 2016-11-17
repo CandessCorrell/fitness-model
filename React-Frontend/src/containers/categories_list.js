@@ -22,11 +22,11 @@ class CategoriesList extends Component {
 
     return sortedTitles.map((title) => {
       return (
-        <div>
+        <li>
           <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
-            <button type="button" className="nav-button">{ title.description }</button>
+            {title.description}
           </Link>
-        </div>
+        </li>
       );
     });
   }
@@ -39,15 +39,15 @@ class CategoriesList extends Component {
     }
 
     return (
-      <div className="categories-list">
+      <ul className="categories-list">
         { this.renderCategoriesList() }
-        <div>
-          <Link to="/results">
-            <button type="button" className="nav-button">Results</button>
+        <li>
+          <Link to="/results" className="category-link" key={"Results"}>
+            Results
           </Link>
-        </div>
+        </li>
 
-      </div>
+      </ul>
     );
   }
 }
