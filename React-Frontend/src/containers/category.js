@@ -93,12 +93,11 @@ class Category extends Component {
 					<div className="row">
 						<div className="col-md-2" style={{height: 500, width: 200}}>
 							<Sidebar />
-							{console.log(TAG, "infodump from row[0]:", JSON.stringify(this.props.questions[0]))}
 						</div>
 						<div className="col-md-6">
 							<div className="category-container">
 								<h1 className="category-title">
-									Category Description
+									{this.props.questions[0].category_description}
 								</h1>
 
 								{ this.renderFitnessLevel("1") }
