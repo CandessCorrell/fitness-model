@@ -31,16 +31,6 @@ export default class QuestionsList extends Component {
 					Fitness Level { this.props.id }
 				</h3>
 				<table className="fitness-table">
-					<thead>
-						<tr>
-							<th className="fitness-table-header">
-								Question
-							</th>
-							<th className="fitness-table-header">
-								Response
-							</th>
-						</tr>
-					</thead>
 					<tbody>
 						{ this.renderQuestions() }
 					</tbody>

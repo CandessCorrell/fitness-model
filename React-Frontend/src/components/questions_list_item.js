@@ -38,7 +38,7 @@ export default class QuestionsListItem extends Component {
 			console.log(TAG, "selectValue after render", renderCount, ":", this.state.selectValue)
 
 			return (
-				<select className="form-control" defaultValue={this.state.selectValue} value={this.state.selectValue}
+				<select className="response-dropdown" defaultValue={this.state.selectValue} value={this.state.selectValue}
 				onChange={this.putResponse}>
 					<option>Select</option>
 					<option>No</option>

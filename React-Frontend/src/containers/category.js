@@ -94,23 +94,21 @@ class Category extends Component {
 						<div className="col-md-2" style={{height: 500, width: 200}}>
 							<Sidebar />
 						</div>
-						<div className="col-md-6">
+						<div className="col-md-8">
+							<h1 className="category-title">
+								{this.props.questions[0].category_description}
+							</h1>
 							<div className="category-container">
-								<h1 className="category-title">
-									{this.props.questions[0].category_description}
-								</h1>
-
 								{ this.renderFitnessLevel("1") }
 								{ this.renderFitnessLevel("2") }
 								{ this.renderFitnessLevel("3") }
-
 								<div className="footer-buttons">
 									{this.renderPrevious(prevCategory)}
 									{this.renderNext(nextCategory)}
 								</div>
 							</div>
 						</div>
-							<Link to="/" className="col-md-3 category-logo-container">
+							<Link to="/" className="col-md-2 category-logo-container">
 								<img src="../assets/final-logo-01.png" className="category-logo" />
 							</Link>
 					</div>
