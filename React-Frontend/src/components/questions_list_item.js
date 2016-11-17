@@ -22,7 +22,7 @@ export default class QuestionsListItem extends Component {
 				</td>
 				<td className="drop-down-cell">
 					<form className="form-inline" role="form">
-						<div className="form-group">
+						<div className="form-group response-dropdown">
 							{this.renderDropDown()}
 						</div>
 			        </form>

@@ -23,6 +23,7 @@ class CategoriesList extends Component {
     return sortedTitles.map((title) => {
       return (
         <li>
+          <img className="nav-circle" src="../assets/nav-empty-circle.png" />
           <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
             {title.description}
           </Link>

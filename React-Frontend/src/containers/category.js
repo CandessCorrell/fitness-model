@@ -57,16 +57,16 @@ class Category extends Component {
 			return ;
 		}
 		return (
-			<Link to={"/category/" + prevCat} className="category-link">
-				<button type="button" className="btn btn-primary prev-button">PREV</button>
+			<Link to={"/category/" + prevCat} className="prev-next-button">
+				PREV
 			</Link>
 		);
 	}
 
 	renderNext(nextCat) {
 		return (
-			<Link to={"/category/" + nextCat} className="category-link">
-				<button type="button" className="btn btn-primary next-button">NEXT</button>
+			<Link to={"/category/" + nextCat} className="prev-next-button">
+				NEXT
 			</Link>
 		);
 	}
