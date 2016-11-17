@@ -11,10 +11,13 @@ export default class Header extends Component {
   render() {
 
     return (
-      <div className="gray-band">
-        <h3 className="gray-band"> Team A </h3>
+      <div className="container gray-band">
+        <div className="row">
+          <Link to="/" className="col-md-2 gray-band-link">
+            <h3 className="gray-band-header"> Home | Team A </h3>
+          </Link>
+        </div>
       </div>
-
     )
   }
 }

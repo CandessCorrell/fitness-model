@@ -11,10 +11,19 @@ const TAG = 'CATEGORY | ';
 import { Router, Route, Link } from 'react-router';
 
 class Category extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			isActive: false
+		};
+	}
+
 	componentWillMount() {
 		this.props.fetchCategory(this.props.params.id);
 		this.props.fetchCategory(this.props.params.id);
 		console.log(TAG, JSON.stringify(this.props.questions));
+		console.log(TAG, "window.location.href:", window.location.href.split('/')[4])
 	}
 
 	renderCategory() {
@@ -84,10 +93,10 @@ class Category extends Component {
 				</div>
 				<div className="container">
 					<div className="row">
-						<div className="col-md-3" style={{height: 500, width: 200}}>
+						<div className="col-md-2" style={{height: 500, width: 200}}>
 							<Sidebar />
 						</div>
-						<div className="col-md-9">
+						<div className="col-md-6">
 							<div className="category-container">
 								<h1 className="category-title">
 									Category Description
@@ -103,6 +112,9 @@ class Category extends Component {
 								</div>
 							</div>
 						</div>
+							<Link to="/" className="col-md-3 category-logo-container">
+								<img src="../assets/final-logo-01.png" className="category-logo" />
+							</Link>
 					</div>
 				</div>
 			</div>
