@@ -21,24 +21,46 @@ class CategoriesList extends Component {
     }
 
     return sortedTitles.map((title) => {
-      return (
-        <li className="sidebar-item">
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <img className="nav-circle" src="../assets/nav-empty-circle.png" />
-                </td>
-                <td>
-                  <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
-                    {title.description}
-                  </Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-      );
+      if (title.category_id==1) {
+        return (
+          <li className="sidebar-item">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <img className="nav-circle" src="../assets/nav-checked-circle.png" />
+                  </td>
+                  <td>
+                    <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
+                      {title.description}
+                    </Link>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        );
+      }
+      else {
+        return (
+          <li className="sidebar-item">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <img className="nav-circle" src="../assets/nav-empty-circle.png" />
+                  </td>
+                  <td>
+                    <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
+                      {title.description}
+                    </Link>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        );
+      }
     });
   }
 
@@ -59,7 +81,7 @@ class CategoriesList extends Component {
             <tbody>
               <tr>
                 <td>
-                  <img className="nav-circle" src="../assets/nav-checked-circle.png" />
+                  <img className="nav-circle" src="../assets/nav-empty-circle.png" />
                 </td>
                 <td>
                   <Link to={"/results/1"} className="category-link" key={"Results"}>
