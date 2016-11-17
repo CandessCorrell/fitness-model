@@ -1,1 +1,58 @@
+h1.results-title {
+	float:left;
+	font-family: Helvetica, Arial, san-serif;
+	font-weight: bold;
+	color: #5B5E5E;
+	padding-top: 0px;
+	padding-left: 10px;
+	margin: 85px 0px 0px 0px;
+}
 
+img.graph {
+  padding-top: 50px;
+}
+
+div.result-container {
+  margin-bottom: 50px
+}
+
+h3.results-subtitle {
+  font-family: Helvetica, Arial, san-serif;
+  font-weight: bold;
+  color: #5B5E5E;
+  padding-top: 50px;
+  padding-left: 10px;
+  margin-left: 230px;
+}
+
+p.results-recommendations-body {
+  font-family: Helvetica, Arial, san-serif;
+  size: 12px;
+  font-weight: normal;
+  color: #5B5E5E;
+  width: 800px;
+}
+
+td.legend-level-1 {
+  font-family: Helvetica, Arial, san-serif;
+  font-weight: normal;
+  size: 10;
+  color: #0D79A7;
+  padding-left: 225px;
+}
+
+td.legend-level-2 {
+  color: #589241;
+  font-family: Helvetica, Arial, san-serif;
+  font-weight: normal;
+  size: 10;
+  padding-left: 150px;
+}
+
+td.legend-level-3 {
+  font-family: Helvetica, Arial, san-serif;
+  font-weight: normal;
+  size: 10;
+  padding-left: 150px;
+  color: #FBB040
+}

@@ -5,12 +5,13 @@ import { fetchScores } from '../actions/index';
 import RecommendationsList from '../components/recommendations_list';
 import Header from '../components/header';
 import Sidebar from '../components/sidebar';
+import GraphLegend from '../components/graph_legend';
 
 class Results extends Component {
 	renderPrevious() {
 		return (
-			<Link to={"/category/3"} className="category-link">
-				<button type="button" className="btn btn-primary prev-button">PREV</button>
+			<Link to={"/category/3"} className="prev-next-button">
+				PREV
 			</Link>
 		);
 	}
@@ -43,11 +44,12 @@ class Results extends Component {
 							<Sidebar />
 						</div>
 						<div className="col-md-8">
-							<div className="results-container">
-								<h1 className="results-title">
-									Results - Maturity Level Assessment
+							<div className="result-container">
+								<h1 className="category-title">
+									Results
 								</h1>
-								<img src="../assets/graph.png" />
+								<img className="graph" src="../assets/graph.png" />
+								<GraphLegend className="graph-legend" />
 
 								{ this.renderRecommendations }
 							</div>
@@ -55,11 +57,9 @@ class Results extends Component {
 								{this.renderPrevious()}
 							</div>
 						</div>
-						<div className="col-md-2">
 							<Link to="/" className="col-md-2 category-logo-container">
 								<img src="../assets/final-logo-01.png" className="category-logo" />
 							</Link>
-						</div>
 					</div>
 				</div>
 			</div>
