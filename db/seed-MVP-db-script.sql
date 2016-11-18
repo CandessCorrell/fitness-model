@@ -4,7 +4,7 @@ INSERT INTO assessments (assessment_id, description, version) VALUES
 INSERT INTO categories (category_id, description) VALUES 
 	(1, 'Build'),
 	(2, 'Testing'),
-	(3, 'Environments & Deployment');
+	(3, 'Deployments');
 
 INSERT INTO questions (question_id, assessment_id, category_id, subcategory_id, description, fitness_level) VALUES 
 	(1, 1, 1, NULL, 'Do you build from a repository?', 1),
