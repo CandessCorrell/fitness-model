@@ -34,7 +34,8 @@ export default class QuestionsListItem extends Component {
 	renderDropDown() {
 		if (this.props.question.answer_description == "Yes"
 		|| this.props.question.answer_description == "No"
-		|| this.props.question.answer_description == "Planning to") {
+		|| this.props.question.answer_description == "Planning to"
+		|| this.props.question.answer_description == "Select") {
 			console.log(TAG, "selectValue after render", renderCount, ":", this.state.selectValue)
 
 			return (
