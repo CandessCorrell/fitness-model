@@ -21,6 +21,8 @@ class CategoriesList extends Component {
     }
 
     return sortedTitles.map((title) => {
+      // REMOVE THIS IF STATEMENT AFTER DEMO
+      // Convert to use Redux state to track check vs. empty to render appropriate image.
       if (title.category_id==1) {
         return (
           <li className="sidebar-item">

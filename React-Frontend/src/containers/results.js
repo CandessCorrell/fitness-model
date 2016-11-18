@@ -62,7 +62,6 @@ class Results extends Component {
 					recommendation={recommendation.recommendation}
 				/>
 			)
-			console.log("If this gets called, we are not returning.");
 		});
 	}
 
@@ -96,11 +95,6 @@ class Results extends Component {
 								</h1>
 								<img className="graph" src="../assets/graph.png" />
 								<GraphLegend className="graph-legend" />
-
-								{/*{ console.log("almost made it") }*/}
-								{/*{ console.log(results) }*/}
-								{/*{ console.log(results[0].category) }*/}
-								{/*{ console.log(results[0].recommendation) }*/}
 								<div className="recommendations-list">
 									{ this.renderRecommendations() }
 								</div>
