@@ -86,7 +86,7 @@ class Results extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-md-2" style={{height: 500, width: 200}}>
-							<Sidebar />
+							<Sidebar activeCategory='Results'/>
 						</div>
 						<div className="col-md-8">
 							<div className="result-container">

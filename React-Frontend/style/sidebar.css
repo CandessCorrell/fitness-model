@@ -23,11 +23,11 @@ li.sidebar-item {
   vertical-align: center;
   padding-top: 4px;
   padding-bottom: 4px;
-  display: block;
+  display: inline;
   color: #FFF;
 }
 
-li.sidebar-item:hover, li.sidebar-item:link {
+li.sidebar-item:hover {
   display: block;
   color: #5B5E5E;
   background-color: #fff;
@@ -35,9 +35,20 @@ li.sidebar-item:hover, li.sidebar-item:link {
   font-size: 16px;
 }
 
+li.active-sidebar, a.active-sidebar:visited, a.active-sidebar:hover, a.active-sidebar:link {
+  display: block;
+  color: #5B5E5E;
+  background-color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
 img.nav-circle {
   padding-left: 20px;
   padding-bottom: 5px;
+  display: inline;
 }
 
 a.category-link {
@@ -47,10 +58,11 @@ a.category-link {
   font-weight: normal;
   font-size: 16px;
   padding-left: 20px;
+  display: inline;
 }
 
 a.category-link:link {
-  display: block;
+  display: inline-block;
   color: #fff;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -69,7 +81,10 @@ a.category-link:hover {
 
 a.category-link:visited {
   text-decoration: none;
-  clear: both;
+}
+
+a.active-category:visited {
+  text-decoration: none;
 }
 
 /* Container of Category Links */
@@ -78,10 +93,4 @@ div.categories-list {
   padding: 0;
   width: 150px;
   background-color: #FBB040;
-}
-
-li a.active {
-  background-color: #fff;
-  color: #5B5E5E;
-  text-decoration: none;
 }

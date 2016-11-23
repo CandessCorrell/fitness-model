@@ -9,11 +9,19 @@ import { Router, Route, Link } from 'react-router';
 const TAG = "Categories List | ";
 
 class CategoriesList extends Component {
+
   componentWillMount() {
     this.props.fetchCategories();
   }
 
-  renderCategoriesList(){
+  setClassName(category_description) {
+    if (this.props.activeCategory == category_description) {
+      return "active-sidebar"
+    }
+    return "sidebar-item"
+  }
+
+  renderCategoriesList() {
     const { titles } = this.props;
 
     if ( titles ) {
@@ -23,46 +31,19 @@ class CategoriesList extends Component {
     return sortedTitles.map((title) => {
       // REMOVE THIS IF STATEMENT AFTER DEMO
       // Convert to use Redux state to track check vs. empty to render appropriate image.
-      if (title.category_id==1) {
-        return (
-          <li className="sidebar-item">
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <img className="nav-circle" src="../assets/nav-checked-circle.png" />
-                  </td>
-                  <td>
-                    <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
-                      {title.description}
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-        );
-      }
-      else {
-        return (
-          <li className="sidebar-item">
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <img className="nav-circle" src="../assets/nav-empty-circle.png" />
-                  </td>
-                  <td>
-                    <Link to={"/category/" + title.category_id} className="category-link" key={title.category_id}>
-                      {title.description}
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-        );
-      }
+      return (
+        <li className={this.setClassName(title.description)}>
+          <img className="nav-circle" src="../assets/nav-checked-circle.png" />
+          <Link
+            to={"/category/" + title.category_id}
+            className="category-link"
+            key={title.description}
+          >
+            {title.description}
+          </Link>
+          <br />
+        </li>
+      );
     });
   }
 
@@ -78,21 +59,16 @@ class CategoriesList extends Component {
     return (
       <ul className="categories-list">
         { this.renderCategoriesList() }
-        <li className="sidebar-item">
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <img className="nav-circle" src="../assets/nav-empty-circle.png" />
-                </td>
-                <td>
-                  <Link to={"/results/1"} className="category-link" key={"Results"}>
-                    Results
-                  </Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <li className={this.setClassName('Results')}>
+          <img className="nav-circle" src="../assets/nav-empty-circle.png" />
+          <Link
+            to={"/results/1"}
+            className="category-link"
+            key={12}
+          >
+            Results
+          </Link>
+          <br />
         </li>
 
       </ul>

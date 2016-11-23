@@ -103,7 +103,7 @@ class Category extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-md-2" style={{height: 500, width: 200}}>
-							<Sidebar />
+							<Sidebar activeCategory={this.props.questions[0].category_description}/>
 						</div>
 						<div className="col-md-8">
 							<h1 className="category-title">
