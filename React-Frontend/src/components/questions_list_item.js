@@ -43,7 +43,6 @@ export default class QuestionsListItem extends Component {
 				onChange={this.putResponse}>
 					<option>Select</option>
 					<option>No</option>
-					<option>Planning to</option>
 					<option>Yes</option>
 				</select>
 			);
