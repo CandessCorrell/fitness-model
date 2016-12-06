@@ -107,7 +107,7 @@ class Results extends Component {
 							</div>
 						</div>
 							<Link to="/" className="col-md-2 category-logo-container">
-								<img src="../assets/final-logo-01.png" className="category-logo" />
+								<img src="../assets/final-logo.png" className="category-logo" />
 							</Link>
 					</div>
 				</div>

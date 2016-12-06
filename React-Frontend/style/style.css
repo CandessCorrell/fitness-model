@@ -105,10 +105,10 @@ div.container {
 
 a.category-logo-container {
 	position:fixed;
-	top: 20px;
-	align: right;
+	top: 80px;
+	right: 150px;
 }
 
 img.category-logo {
-	width: 400px;
+	align: right;
 }
