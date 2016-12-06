@@ -60,15 +60,11 @@ table.fitness-table > tbody > tr > td {
 	font-size: 18px;
 }
 
-
-
 table.fitness-table > tbody > tr > td.drop-down-cell {
 	text-align: right;
 	font-size: 12px;
 	vertical-align: top;
 	padding-top: 20px;
-
-
 }
 
 table.fitness-table > tbody > tr > td.drop-down-cell > form > div > select {
@@ -105,10 +101,11 @@ div.container {
 
 a.category-logo-container {
 	position:fixed;
-	top: 80px;
+	top: 55px;
 	right: 150px;
 }
 
 img.category-logo {
 	align: right;
+	height: 100px;
 }

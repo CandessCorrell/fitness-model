@@ -17,7 +17,10 @@ div.home-screen-button-container {
 
 div.home-logo-container {
   padding-left: 300px;
-  height: 200px;
+}
+
+img.home-logo {
+  height: 140px;  
 }
 
 a.home-screen-button, a.home-screen-button:visited {
