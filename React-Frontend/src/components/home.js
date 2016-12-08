@@ -13,7 +13,7 @@ export default class Home extends Component {
         <div className="home-container">
           <div className="row">
             <div className="col-md-6 home-logo-container">
-              <img src='../../assets/final-logo.png' />
+              <img className="home-logo" src='../../assets/final-logo.png' />
             </div>
             <div className="col-md-3 home-screen-button-container">
               <Link to={"/category/1"} className="home-screen-button">Setup a New Project Profile</Link> <br />

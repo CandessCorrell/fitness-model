@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
-export const FETCH_CATEGORY = 'FETCH_CATEGORY'
-export const FETCH_RESULTS = 'FETCH_RESULTS'
-export const FETCH_SCORES = 'FETCH_SCORES'
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const FETCH_CATEGORY = 'FETCH_CATEGORY';
+export const FETCH_RESULTS = 'FETCH_RESULTS';
+export const FETCH_SCORES = 'FETCH_SCORES';
+// export const UPDATE_CHECKED = 'UPDATE_CHECKED';
 
-const ROOT_URL = 'http://54.175.219.183:3000/'
+const ROOT_URL = 'http://54.175.219.183:3000/';
 
 export function fetchCategories() {
 	const request = axios.get(`${ROOT_URL}categories`);
@@ -55,6 +56,17 @@ export function fetchCategory(id) {
 	};
 }
 
+/* Not live yet
+ * updateChecked takes category_id (int) and checked (boolean)
+ * Used to track whether a category-item in SideBar should be checked or empty.
+ * If true, checked, else empty.
+ */
+// export function updateChecked(category_id, checked) {
+// 	return {
+// 		type: UPDATE_CHECKED,
+// 		payload: { checked }
+// 	};
+// }
 
 //This does not work yet
 export function fetchCategoryWithErrorHandling(id) {
