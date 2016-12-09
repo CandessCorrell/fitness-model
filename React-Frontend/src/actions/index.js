@@ -6,7 +6,7 @@ export const FETCH_RESULTS = 'FETCH_RESULTS';
 export const FETCH_SCORES = 'FETCH_SCORES';
 // export const UPDATE_CHECKED = 'UPDATE_CHECKED';
 
-const ROOT_URL = 'http://54.175.219.183:3000/';
+const ROOT_URL = 'http://54.89.156.20:3000/';
 
 export function fetchCategories() {
 	const request = axios.get(`${ROOT_URL}categories`);
