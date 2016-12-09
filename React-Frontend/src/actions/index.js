@@ -6,7 +6,7 @@ export const FETCH_RESULTS = 'FETCH_RESULTS';
 export const FETCH_SCORES = 'FETCH_SCORES';
 // export const UPDATE_CHECKED = 'UPDATE_CHECKED';
 
-const ROOT_URL = 'http://fitness.cicddevops.com:3000/';
+export const ROOT_URL = 'http://fitness.cicddevops.com:3000/';
 
 export function fetchCategories() {
 	const request = axios.get(`${ROOT_URL}categories`);

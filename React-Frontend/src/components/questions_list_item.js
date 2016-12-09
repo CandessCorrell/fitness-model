@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { ROOT_URL } from '../actions/index.js';
 const TAG = 'QuestionListItem | '
 
-const ROOT_URL = 'http://54.175.219.183:3000/'
 var renderCount = 0
 
 export default class QuestionsListItem extends Component {
@@ -12,6 +12,7 @@ export default class QuestionsListItem extends Component {
     super(props);
     this.state = {selectValue: this.props.question.answer_description};
     this.putResponse = this.putResponse.bind(this);
+		console.log(TAG, 'ROOT_URL', ROOT_URL);
   }
 
 	renderQuestion() {
