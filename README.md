@@ -10,4 +10,3 @@ Application which measures a team's DevOps practices and makes suggestions on ho
 
 ### Goal 3: Continuous Improvement
  - TMD is not a stopping point. This tool will evolve and grow to encourage teams to continue to adopt industry best practices.
-
