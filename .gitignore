@@ -3,5 +3,5 @@ React-Frontend/bundle.js
 React-Frontend/npm-debug.log
 express-server/node_modules
 express-server/npm-debug.log
-
+db/schemacrawler.sh
 .DS_Store
