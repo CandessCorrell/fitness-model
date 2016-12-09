@@ -1,12 +1,12 @@
-INSERT INTO assessments (assessment_id, description, version) VALUES 
+INSERT INTO assessments (assessment_id, description, version) VALUES
 	(1, 'Test data pulled from the assessment draft.', '0.0');
 
-INSERT INTO categories (category_id, description) VALUES 
+INSERT INTO categories (category_id, description) VALUES
 	(1, 'Build'),
 	(2, 'Testing'),
 	(3, 'Deployments');
 
-INSERT INTO questions (question_id, assessment_id, category_id, subcategory_id, description, fitness_level) VALUES 
+INSERT INTO questions (question_id, assessment_id, category_id, subcategory_id, description, fitness_level) VALUES
 	(1, 1, 1, NULL, 'Do you build from a repository?', 1),
 	(2, 1, 1, NULL, 'Is your source code repository integrated with your Continuous Integration(CI) server?', 1),
 	(3, 1, 1, NULL, 'Does your build produce deployable artifacts?', 1),
@@ -29,7 +29,7 @@ INSERT INTO questions (question_id, assessment_id, category_id, subcategory_id, 
 	(20, 1, 3, NULL, 'Is your infrastructure code-based?', 2),
 	(21, 1, 3, NULL, 'Is environment provisioning fully automated?', 3);
 
-INSERT INTO answers (answer_id, question_id, description, score, recommendation) VALUES 
+INSERT INTO answers (answer_id, question_id, description, score, recommendation) VALUES
 	(1, 1, 'No', 0, 'Start consolidating your code to an SCM solution (GIT, SVN, Dimension, etc) plan for daily check ins into the repository.'),
 	(2, 1, 'Yes', 4, NULL),
   	(3, 1, 'Select', 0, NULL),
@@ -94,61 +94,13 @@ INSERT INTO answers (answer_id, question_id, description, score, recommendation)
 	(62, 21, 'Yes', 4, NULL),
   	(63, 21, 'Select', 0, NULL);
 
-INSERT INTO users (user_id, username, email, first_name, last_name, company, position) VALUES 
-	(1, 'jward0', 'jward0@miitbeian.gov.cn', 'Jeremy', 'Ward', 'Youbridge', 'Civil Engineer'),
-	(2, 'lcarter1', 'lcarter1@blogtalkradio.com', 'Lois', 'Carter', 'Riffwire', 'Librarian'),
-	(3, 'lfowler2', 'lfowler2@godaddy.com', 'Lois', 'Fowler', 'Voonix', 'Director of Sales'),
-	(4, 'tdunn3', 'tdunn3@myspace.com', 'Terry', 'Dunn', 'Jabbercube', 'Nuclear Power Engineer'),
-	(5, 'swheeler4', 'swheeler4@kickstarter.com', 'Susan', 'Wheeler', 'Thoughtstorm', 'Automation Specialist I'),
-	(6, 'swhite5', 'swhite5@redcross.org', 'Steven', 'White', 'Oodoo', 'Desktop Support Technician'),
-	(7, 'tstanley6', 'tstanley6@webnode.com', 'Teresa', 'Stanley', 'Topdrive', 'Research Nurse'),
-	(8, 'amorales7', 'amorales7@1688.com', 'Angela', 'Morales', 'Yata', 'Registered Nurse'),
-	(9, 'vdean8', 'vdean8@disqus.com', 'Victor', 'Dean', 'Snaptags', 'Human Resources Manager'),
-	(10, 'bmoore9', 'bmoore9@eventbrite.com', 'Brandon', 'Moore', 'Divanoodle', 'Human Resources Assistant II'),
-	(11, 'schapmana', 'schapmana@hubpages.com', 'Samuel', 'Chapman', 'Thoughtblab', 'Assistant Manager'),
-	(12, 'nadamsb', 'nadamsb@reddit.com', 'Nicole', 'Adams', 'Oyoyo', 'Programmer II'),
-	(13, 'dmyersc', 'dmyersc@bloglovin.com', 'Donald', 'Myers', 'Yotz', 'Web Developer II'),
-	(14, 'jjamesd', 'jjamesd@theglobeandmail.com', 'Julie', 'James', 'Jabberbean', 'Data Coordiator'),
-	(15, 'wrodrigueze', 'wrodrigueze@hp.com', 'Walter', 'Rodriguez', 'Thoughtstorm', 'Web Developer II'),
-	(16, 'cfoxf', 'cfoxf@engadget.com', 'Carolyn', 'Fox', 'Shufflester', 'Sales Representative'),
-	(17, 'hburkeg', 'hburkeg@columbia.edu', 'Howard', 'Burke', 'Linktype', 'Marketing Assistant'),
-	(18, 'ejohnsonh', 'ejohnsonh@timesonline.co.uk', 'Emily', 'Johnson', 'Voonder', 'Assistant Media Planner'),
-	(19, 'fhernandezi', 'fhernandezi@hp.com', 'Frank', 'Hernandez', 'Mybuzz', 'Director of Sales'),
-	(20, 'kmccoyj', 'kmccoyj@dailymotion.com', 'Kathryn', 'Mccoy', 'Ozu', 'Nuclear Power Engineer'),
-	(21, 'jpiercek', 'jpiercek@zimbio.com', 'Johnny', 'Pierce', 'Gigabox', 'Automation Specialist I'),
-	(22, 'jbutlerl', 'jbutlerl@pen.io', 'Jeffrey', 'Butler', 'Tagpad', 'Senior Quality Engineer'),
-	(23, 'sreedm', 'sreedm@myspace.com', 'Sarah', 'Reed', 'Feedfire', 'Engineer I'),
-	(24, 'cblackn', 'cblackn@uiuc.edu', 'Christina', 'Black', 'Yambee', 'Dental Hygienist'),
-	(25, 'bbutlero', 'bbutlero@howstuffworks.com', 'Beverly', 'Butler', 'Kamba', 'Recruiter');
+INSERT INTO users (user_id, team_name, password) VALUES
+	(1, 'DIDIT', 'insanelysecurepassword');
 
-INSERT INTO results (result_id, user_id, assessment_id, start_time, end_time) VALUES 
-	(1, 5, 1, null, null),
-	(2, 6, 1, null, null),
-	(3, 13, 1, null, null),
-	(4, 20, 1, null, null),
-	(5, 15, 1, null, null),
-	(6, 18, 1, null, null),
-	(7, 2, 1, null, null),
-	(8, 11, 1, null, null),
-	(9, 20, 1, null, null),
-	(10, 14, 1, null, null),
-	(11, 6, 1, null, null),
-	(12, 6, 1, null, null),
-	(13, 13, 1, null, null),
-	(14, 15, 1, null, null),
-	(15, 24, 1, null, null),
-	(16, 8, 1, null, null),
-	(17, 12, 1, null, null),
-	(18, 6, 1, null, null),
-	(19, 11, 1, null, null),
-	(20, 24, 1, null, null),
-	(21, 16, 1, null, null),
-	(22, 12, 1, null, null),
-	(23, 16, 1, null, null),
-	(24, 2, 1, null, null),
-	(25, 16, 1, null, null);
+INSERT INTO results (result_id, user_id, assessment_id, start_time, end_time) VALUES
+	(1, 1, 1, null, null);
 
-INSERT INTO responses (answer_id, question_id, result_id) VALUES 
+INSERT INTO responses (answer_id, question_id, result_id) VALUES
 	(3, 1, 1),
 	(6, 2, 1),
 	(9, 3, 1),
