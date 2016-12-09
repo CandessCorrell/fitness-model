@@ -44,9 +44,24 @@ pm2 logs www
   - GET
     - Returns question_description(string), response_id(int), answer_description(string), category_description(string), recommendation(string), fitness_level(int) and category_id(int) based on category_id(int)
 
+/login
+  - POST
+    - Body must contain a single JSON object called "loginJson" with the following keys:
+      - team_name
+      - password
+    - On successful combination of team_name & password, returns team_name(string) and user_id(int)
+
 /questions
   - GET
     - Must provide a "category"(string) when issuing a GET request to this route.
+
+/register
+  - POST
+    - Body must contain a single JSON object called "registerJson" with the following keys:
+      - team_name
+      - password
+    - If username does not already exist, performs INSERT INTO "users" table.
+    - Additionally, returns the string "Successfully created new user!"
 
 /responses
   - GET
@@ -58,7 +73,7 @@ pm2 logs www
     - UPDATEs a previously answered question.
     - Must provide a "resultJson"(JSON) in the body which contains the following keys:
       - question_id, answer_id, result_id
-      
+
 
 /results
   - GET
