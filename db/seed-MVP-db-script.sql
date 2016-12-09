@@ -122,3 +122,13 @@ INSERT INTO responses (answer_id, question_id, result_id) VALUES
 	(57, 19, 1),
 	(60, 20, 1),
 	(63, 21, 1);
+INSERT INTO agencies (agency_id, description) VALUES
+  (1, 'USCIS');
+INSERT INTO divisions (division_id, description, agency_id) VALUES
+  (1, 'OIT', 1);
+INSERT INTO portfolios (portfolio_id, description, division_id) VALUES
+  (1, 'Records', 1);
+INSERT INTO products (product_id, description, portfolio_id) VALUES
+  (1, 'NFTS', 1);
+INSERT INTO teams (team_id, description, product_id) VALUES
+  (1, 'TWD', 1);
