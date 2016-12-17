@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 var TAG = "\nRESULTS | ";
+var DEFAULT_RESPONSE = "Select"; // Make this configurable?
 
 module.exports = {
   '/results': {
@@ -172,14 +173,54 @@ function get_result_by_result_id(result_id, callBack, errBack) {
 
 function post_result(user_id, assessment_id, callBack, errBack) {
   var postResultQuery = "INSERT INTO results (user_id, assessment_id) \
-  VALUES($${0}$$, $${1}$$)".format(user_id, assessment_id);
+  VALUES($${0}$$, $${1}$$) RETURNING result_id".format(user_id, assessment_id);
   client.query(postResultQuery, function (err, result) {
     if (err) {
       console.log(TAG, "post_result SQL Query not successful");
       return errBack(err)
     } else {
       console.log(TAG, "post_result SQL Query successful!");
-      return callBack("Successfully inserted new response!");
+      var result_id = result.rows[0].result_id;
+      get_default_answers(result_id, callBack, errBack);
     }
   })
+}
+
+function get_default_answers(result_id, callBack, errBack) {
+  // Gets a list of all the default answers from the answers table
+  var defaultResponseQuery = "SELECT answer_id, question_id FROM answers WHERE description='{0}'".format(DEFAULT_RESPONSE);
+  client.query(defaultResponseQuery, function (err, result) {
+    if (err) {
+      console.log(TAG, "get_default_answers SQL Query not successful!");
+      return errBack(err);
+    } else {
+      console.log(TAG, "get_default_answers SQL Query successful!");
+      var defaultAnswers = result.rows;
+      initialize_responses(result_id, defaultAnswers, callBack, errBack);
+    }
+  })
+}
+
+function initialize_responses(result_id, defaultAnswers, callBack, errBack) {
+  // Takes the list of the default answers, and inserts them into the responses table, using the result_id we just created
+  var total = defaultAnswers.length;
+  for (var row in defaultAnswers) {
+    var question_id = defaultAnswers[row].question_id;    
+    var answer_id = defaultAnswers[row].answer_id;    
+    var insertDefaultResponseQuery = "INSERT INTO responses (result_id,question_id,answer_id) VALUES ($${0}$$,$${1}$$,$${2}$$)".format(result_id,question_id,answer_id);
+    client.query(insertDefaultResponseQuery, function (err, result) {
+      if (err) {
+        console.log(TAG, "initialize_responses SQL Query not successful!");
+        return errBack(err);
+      } else {
+        console.log(TAG, "initialize_responses SQL Query successful!");
+
+        //Due to all this callback madness, this is how I'm figuring out when I'm done initializing the responses
+        total--; 
+        if (total < 1) {
+          return callBack({result_id:result_id}); // Rather than return a string, I'm returning the result_id so the frontend will know where to navigate
+        }
+      }
+    })
+  }
 }
