@@ -11,9 +11,8 @@ class Login extends Component {
   	constructor(props) {
   		super(props);
   		this.state = {
-  			user_id: null,
-        team_name: null,
-        loggedIn: false
+  			team_name: null,
+        password: null
   		};
       this.onLoginClick = this.onLoginClick.bind(this);
       this.toggleLogin = this.toggleLogin.bind(this);
@@ -25,8 +24,8 @@ class Login extends Component {
     return (
       <div className={this.toggleLogin()}>
         <div>Hello World!</div>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" /> <br />
+        <input type="text" onChange={handleTeamName} placeholder="Username" value={this.state.team_name}/>
+        <input type="password" placeholder="Password" value={this.state.password}/> <br />
         <button onClick={this.onLoginClick} > Login! </button>
         <button onClick={this.onLoginClick} > Register! </button>
       </div>
@@ -39,14 +38,16 @@ class Login extends Component {
     } else return "logged-in-container"
   }
 
+  handleTeamName() {
+    this.setState({ team_name:event.target.value })
+  }
+
+  handlePassword() {
+    this.setState({ password:event.target.value })
+  }
+
   onLoginClick() {
-    // console.log(TAG, 'this.props.team_name:', this.props.team_name);
-    console.log(TAG, 'localStorage.loggedInLocalStorage before flip:', localStorage.getItem('loggedInLocalStorage'));
-    localStorage.setItem('loggedInLocalStorage', 'true');
-    console.log(TAG, 'localStorage.loggedInLocalStorage after flip:', localStorage.getItem('loggedInLocalStorage'));
-    if (this.state.loggedIn) this.setState({loggedIn: false});
-    else this.setState({loggedIn: true});
-    return this.props.login('DIDIT', 'insanelysecurepassword');
+    return this.props.login(this.state.team_name, this.state.password);
   }
 }
 
