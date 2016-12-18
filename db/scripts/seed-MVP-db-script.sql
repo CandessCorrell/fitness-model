@@ -97,8 +97,8 @@ INSERT INTO answers (answer_id, question_id, description, score, recommendation)
 INSERT INTO users (user_id, team_name, password) VALUES
 	(1, 'DIDIT', 'insanelysecurepassword');
 
-INSERT INTO results (result_id, user_id, assessment_id, start_time, end_time) VALUES
-	(1, 1, 1, null, null);
+INSERT INTO results (user_id, assessment_id, start_time, end_time) VALUES
+	(1, 1, null, null);
 
 INSERT INTO responses (answer_id, question_id, result_id) VALUES
 	(3, 1, 1),
