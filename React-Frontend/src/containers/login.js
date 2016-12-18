@@ -15,14 +15,15 @@ class Login extends Component {
         password: null
   		};
       this.onLoginClick = this.onLoginClick.bind(this);
-      this.toggleLogin = this.toggleLogin.bind(this);
+      this.handleTeamName = this.handleTeamName.bind(this);
+      this.handlePassword = this.handlePassword.bind(this);
   	}
 
   render() {
     console.log('Render called!');
     const { team_name, user_id } = this.props;
     return (
-      <div className={this.toggleLogin()}>
+      <div className="logged-in-container">
         <div>Hello World!</div>
         <input type="text" onChange={this.handleTeamName} placeholder="Username" value={this.state.team_name}/>
         <input type="password" onChange={this.handlePassword} placeholder="Password" value={this.state.password}/> <br />
@@ -32,21 +33,16 @@ class Login extends Component {
     );
   }
 
-  toggleLogin() {
-    if (this.state.loggedIn) {
-      return "not-logged-in-container"
-    } else return "logged-in-container"
-  }
-
-  handleTeamName() {
+  handleTeamName(event) {
     this.setState({ team_name:event.target.value })
   }
 
-  handlePassword() {
+  handlePassword(event) {
     this.setState({ password:event.target.value })
   }
 
   onLoginClick() {
+    this.setState({ team_name: null, password: null });
     return this.props.login(this.state.team_name, this.state.password);
   }
 }
