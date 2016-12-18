@@ -24,8 +24,8 @@ class Login extends Component {
     return (
       <div className={this.toggleLogin()}>
         <div>Hello World!</div>
-        <input type="text" onChange={handleTeamName} placeholder="Username" value={this.state.team_name}/>
-        <input type="password" placeholder="Password" value={this.state.password}/> <br />
+        <input type="text" onChange={this.handleTeamName} placeholder="Username" value={this.state.team_name}/>
+        <input type="password" onChange={this.handlePassword} placeholder="Password" value={this.state.password}/> <br />
         <button onClick={this.onLoginClick} > Login! </button>
         <button onClick={this.onLoginClick} > Register! </button>
       </div>
