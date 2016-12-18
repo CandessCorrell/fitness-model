@@ -1,0 +1,11 @@
+div.login-container {
+  background-color: #6F6F6F;
+}
+
+div.not-logged-in-container {
+  background-color: #6F6F6F;
+}
+
+div.logged-in-container {
+  background-color: #FFFFFF;
+}

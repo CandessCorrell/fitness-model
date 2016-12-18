@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import Login from '../containers/login';
 
 import { Button } from 'react-bootstrap';
 
@@ -16,13 +17,7 @@ export default class Home extends Component {
               <img className="home-logo" src='../../assets/final-logo.png' />
             </div>
             <div className="col-md-3 home-screen-button-container">
-              <Link to={"/category/1"} className="home-screen-button">Setup a New Project Profile</Link> <br />
-              <Link to={"/category/1"} className="home-screen-button">Begin a New Project Assessment</Link> <br />
-              <Link to={"/category/1"} className="home-screen-button">
-                Update a Current Project Assessment
-              </Link> <br />
-              <Link to={"/results/1"} className="home-screen-button">Results</Link> <br /> <br />
-              <Link to={"/category/1"} className="home-screen-link">View Past Assessments</Link> <br />
+              <Login />
             </div>
           </div>
         </div>

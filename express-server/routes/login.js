@@ -42,6 +42,7 @@ function login(loginJson, callBack, errBack) {
   console.log(TAG, loginQuery);
   client.query(loginQuery, function (err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
+        // Throw 401 error if invalid login combination supplied
         console.log(TAG, "loginQuery: ", loginQuery);
         return errBack(err);
       } else {
