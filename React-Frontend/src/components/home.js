@@ -1,11 +1,53 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import Login from '../containers/login';
 
 import { Button } from 'react-bootstrap';
 
 const TAG = "Home | ";
 
 export default class Home extends Component {
+
+  checkLoggedIn() {
+    if (localStorage.getItem('loggedInLocalStorage') === 'true') {
+      console.log('localStorage.loggedInLocalStorage:', localStorage.getItem('loggedInLocalStorage'));
+      console.log('localStorage.loggedInLocalStorage == true?:', (localStorage.getItem('loggedInLocalStorage') == true));
+      console.log('localStorage.loggedInLocalStorage:', localStorage.getItem('loggedInLocalStorage'));
+      return (
+        <div className="col-md-3 home-screen-button-container">
+          <Link to={"/category/1"} className="home-screen-button">Setup a New Project Profile</Link> <br />
+          <Link to={"/category/1"} className="home-screen-button">Begin a New Project Assessment</Link> <br />
+          <Link to={"/category/1"} className="home-screen-button">Update a Current Project Assessment</Link> <br />
+          <Link to={"/results/1"} className="home-screen-button">Results</Link> <br /> <br />
+          <Link to={"/category/1"} className="home-screen-link">View Past Assessments</Link> <br />
+          <button onClick={this.flipLoggedIn}> Logout! </button>
+        </div>
+      )
+    }
+    else {
+      console.log(TAG, 'localStorage.loggedInLocalStorage:', localStorage.getItem('loggedInLocalStorage'))
+      console.log(TAG, 'localStorage.loggedInLocalStorage == true?:', (localStorage.getItem('loggedInLocalStorage') == true));
+      console.log(TAG, 'localStorage.loggedInLocalStorage:', localStorage.getItem('loggedInLocalStorage'))
+      return (
+
+      <div className="col-md-3 home-screen-button-container">
+        <Login />
+      </div>
+      )
+    }
+  }
+
+  flipLoggedIn() {
+    console.log('localStorage.loggedInLocalStorage:', localStorage.getItem('loggedInLocalStorage'));
+    if (localStorage.getItem('loggedInLocalStorage') === 'true') {
+      localStorage.setItem('loggedInLocalStorage', 'false');
+      console.log('localStorage.loggedInLocalStorage after flip:', localStorage.getItem('loggedInLocalStorage'));
+    } else {
+      localStorage.setItem('loggedInLocalStorage', 'true');
+      console.log('localStorage.loggedInLocalStorage after flip:', localStorage.getItem('loggedInLocalStorage'));
+      return
+    }
+  }
 
   render(){
     return (
@@ -18,12 +60,11 @@ export default class Home extends Component {
             <div className="col-md-3 home-screen-button-container">
               <Link to={"/category/1"} className="home-screen-button">Setup a New Project Profile</Link> <br />
               <Link to={"/category/1"} className="home-screen-button">Begin a New Project Assessment</Link> <br />
-              <Link to={"/category/1"} className="home-screen-button">
-                Update a Current Project Assessment
-              </Link> <br />
+              <Link to={"/category/1"} className="home-screen-button">Update a Current Project Assessment</Link> <br />
               <Link to={"/results/1"} className="home-screen-button">Results</Link> <br /> <br />
               <Link to={"/category/1"} className="home-screen-link">View Past Assessments</Link> <br />
             </div>
+            {/*{this.checkLoggedIn()}*/}
           </div>
         </div>
       </div>

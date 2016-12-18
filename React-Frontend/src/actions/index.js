@@ -4,9 +4,24 @@ export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_CATEGORY = 'FETCH_CATEGORY';
 export const FETCH_RESULTS = 'FETCH_RESULTS';
 export const FETCH_SCORES = 'FETCH_SCORES';
+export const LOGIN = 'LOGIN';
 // export const UPDATE_CHECKED = 'UPDATE_CHECKED';
 
 export const ROOT_URL = 'http://fitness.cicddevops.com:3000/';
+
+export function login(team_name, password) {
+	const request = axios.post(`${ROOT_URL}login`, {
+    loginJson: {
+			team_name: team_name,
+			password: password
+		}
+  })
+
+	return {
+		type: LOGIN,
+		payload: request
+	};
+}
 
 export function fetchCategories() {
 	const request = axios.get(`${ROOT_URL}categories`);
@@ -49,6 +64,7 @@ export function putResponse(response_id, result_id, question_id, answer_id) {
 
 export function fetchCategory(id) {
 	const request = axios.get(`${ROOT_URL}fitness_card/${id}`);
+	console.log('fetchCategory request:', request);
 
 	return {
 		type: FETCH_CATEGORY,
@@ -70,6 +86,7 @@ export function fetchCategory(id) {
 
 //This does not work yet
 export function fetchCategoryWithErrorHandling(id) {
+	console.log('entered fetchCategoryWithErrorHandling');
 	axios.get(`${ROOT_URL}fitness_card/${id}`)
 		.then(function(res) {
 			console.log('woo a response', res);
