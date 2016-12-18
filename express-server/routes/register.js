@@ -22,7 +22,7 @@ module.exports = {
     	  	return response.status(200).send(resp);
         }, function(err) {
     	  	// This is the errback - we move into this if register returns an error
-    	  	console.log(TAG, 'Something went wrong in ' + TAG);
+    	  	console.log(TAG, 'Something went wrong in /register');
     	  	console.log(TAG, err);
     	  	return response.status(400).send(err);
     	  })
@@ -64,7 +64,7 @@ function register(registerJson, callBack, errBack) {
         //  console.log(TAG, funcTAG, "row[" + i + "]: " + JSON.stringify(result.rows[i]));
         // }
         console.log(TAG, "SQL insert succeeded!");
-        return callBack("Successfully registered new team!");
+        return callBack(result);
     }
   })
 }
