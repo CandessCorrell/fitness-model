@@ -40,10 +40,13 @@ class Login extends Component {
   }
 
   onLoginClick() {
-    console.log(TAG, 'this.props.team_name:', this.props.team_name);
+    // console.log(TAG, 'this.props.team_name:', this.props.team_name);
+    console.log(TAG, 'localStorage.loggedInLocalStorage before flip:', localStorage.getItem('loggedInLocalStorage'));
+    localStorage.setItem('loggedInLocalStorage', 'true');
+    console.log(TAG, 'localStorage.loggedInLocalStorage after flip:', localStorage.getItem('loggedInLocalStorage'));
     if (this.state.loggedIn) this.setState({loggedIn: false});
     else this.setState({loggedIn: true});
-    return this.props.login('DIDITT', 'insanelysecurepassword');
+    return this.props.login('DIDIT', 'insanelysecurepassword');
   }
 }
 
