@@ -5,6 +5,7 @@ export const FETCH_CATEGORY = 'FETCH_CATEGORY';
 export const FETCH_RESULTS = 'FETCH_RESULTS';
 export const FETCH_SCORES = 'FETCH_SCORES';
 export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
 // export const UPDATE_CHECKED = 'UPDATE_CHECKED';
 
 export const ROOT_URL = 'http://fitness.cicddevops.com:3000/';
@@ -16,10 +17,16 @@ export function login(team_name, password) {
 			password: password
 		}
   })
-
+	localStorage.setItem('isLoggedIn', 'true');
 	return {
 		type: LOGIN,
 		payload: request
+	};
+}
+
+export function logout() {
+	return {
+		type: LOGOUT
 	};
 }
 
