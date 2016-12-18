@@ -15,7 +15,7 @@ module.exports = {
       if (request.method === 'POST') {
         console.log(TAG, "Called /register(POST)");
         console.log(TAG, 'request.body.registerJson', JSON.stringify(request.body.registerJson));
-    	  register(request.body.registerJson,
+    	  checkExistingUsers(request.body.registerJson,
     	  	function(resp) {
     	  	// This is the callback - we move into this if the function returns data as expected
     	  	console.log(TAG, 'moving into register callback');
@@ -32,6 +32,21 @@ module.exports = {
       }
   	}
   }
+}
+
+function checkExistingUsers(registerJson, callBack, errBack) {
+  var checkExistingTeamQuery = "SELECT team_name FROM users WHERE \
+  team_name=\'{0}\'".format(registerJson.team_name);
+  client.query(checkExistingTeamQuery, function (err, result) {
+    if (err) {
+      return errBack(err);
+    }
+    else {
+      if (result.rows.length === 1) {
+        return errBack('User already exists');
+      } else return register(registerJson, callBack, errBack);
+    }
+  })
 }
 
 function register(registerJson, callBack, errBack) {
