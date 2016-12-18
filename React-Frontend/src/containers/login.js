@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../actions/index';
+import { login, register } from '../actions/index';
 
 import { Router, Route, Link } from 'react-router';
 
@@ -14,9 +14,10 @@ class Login extends Component {
   			team_name: null,
         password: null
   		};
-      this.onLoginClick = this.onLoginClick.bind(this);
+      this.handleLoginClick = this.handleLoginClick.bind(this);
       this.handleTeamName = this.handleTeamName.bind(this);
       this.handlePassword = this.handlePassword.bind(this);
+      this.handleRegisterClick = this.handleRegisterClick.bind(this);
   	}
 
   render() {
@@ -27,10 +28,15 @@ class Login extends Component {
         <div>Hello World!</div>
         <input type="text" onChange={this.handleTeamName} placeholder="Username" value={this.state.team_name}/>
         <input type="password" onChange={this.handlePassword} placeholder="Password" value={this.state.password}/> <br />
-        <button onClick={this.onLoginClick} > Login! </button>
-        <button onClick={this.onLoginClick} > Register! </button>
+        <button onClick={this.handleLoginClick} > Login! </button>
+        <button onClick={this.handleRegisterClick} > Register! </button>
       </div>
     );
+  }
+
+  handleRegisterClick() {
+    this.setState({ team_name: null, password: null });
+    return this.props.register(this.state.team_name, this.state.password);
   }
 
   handleTeamName(event) {
@@ -41,7 +47,7 @@ class Login extends Component {
     this.setState({ password:event.target.value })
   }
 
-  onLoginClick() {
+  handleLoginClick() {
     this.setState({ team_name: null, password: null });
     return this.props.login(this.state.team_name, this.state.password);
   }
@@ -51,4 +57,4 @@ function mapStateToProps(state) {
   return { team_name: state.login.team_name, user_id: state.login.user_id, isLoggedIn: state.login.isLoggedIn };
 }
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, register })(Login);
