@@ -36,7 +36,7 @@ module.exports = {
 
 function checkExistingUsers(registerJson, callBack, errBack) {
   var checkExistingTeamQuery = "SELECT team_name FROM users WHERE \
-  team_name=\'{0}\' RETURNING team_name, user_id;".format(registerJson.team_name);
+  team_name=\'{0}\'".format(registerJson.team_name);
   client.query(checkExistingTeamQuery, function (err, result) {
     if (err) {
       return errBack(err);
@@ -53,7 +53,7 @@ function register(registerJson, callBack, errBack) {
   var team_name = registerJson.team_name;
   var password = registerJson.password;
   var registerQuery = "INSERT INTO users (team_name, password) \
-  VALUES (\'{0}\', \'{1}\')".format(team_name, password);
+  VALUES (\'{0}\', \'{1}\') RETURNING team_name, user_id".format(team_name, password);
   console.log(TAG, registerQuery);
   client.query(registerQuery, function (err, result) {
     if (err) {
