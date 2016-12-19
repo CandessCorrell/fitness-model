@@ -63,13 +63,13 @@ export default class QuestionsListItem extends Component {
 	}
 
 	putResponse(event) {
-		console.log(TAG, '\nresponse_id: ', this.props.question.response_id, '\nresult_id: ', this.props.question.result_id, '\nquestion_id: ',
+		console.log(TAG, '\nresponse_id: ', this.props.question.response_id, '\nassessment_id: ', this.props.question.assessment_id, '\nquestion_id: ',
 		 this.props.question.question_id, '\nanswer_id: ', this.props.question.answer_id, '\nUPDATE ANSWER TO:', event.target.value)
 		axios.put(`${ROOT_URL}responses/${this.props.question.response_id}`, {
-	    resultJson: {
+	    responseJson: {
 				question_id: this.props.question.question_id,
 	    	answer_id: this.props.question.answer_id,
-				result_id: this.props.question.result_id,
+				assessment_id: this.props.question.assessment_id,
 				answer_description: event.target.value
 			}
 	  })

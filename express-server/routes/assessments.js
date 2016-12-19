@@ -166,6 +166,7 @@ function get_assessment_by_assessment_id(assessment_id, callBack, errBack) {
       console.log(TAG, getAssessmentQuery);
       return errBack(err);
     } else {
+      console.log('Returning with postgres callBack', JSON.stringify(result.rows));
       return callBack(result);
     }
   })

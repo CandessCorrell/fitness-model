@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { fetchResults } from '../actions/index';
+import { fetchRecommendations } from '../actions/index';
 import RecommendationsListItem from '../components/recommendations_list_item';
 import Header from '../components/header';
 import Sidebar from '../components/sidebar';
 import GraphLegend from '../components/graph_legend';
 
+const TAG = 'RESULTS | ';
+
 class Results extends Component {
 
 	componentDidMount() {
-		this.props.fetchResults(this.props.params.id);
+		this.props.fetchRecommendations(this.props.params.id);
+		console.log(TAG, 'componentDidMount & fetchRecommendations called.');
 	}
 
 	renderPrevious() {
@@ -24,7 +27,7 @@ class Results extends Component {
 	renderScores() {
 		if (this.props.params.oldid != this.props.params.id) {
 			this.props.params.oldid = this.props.params.id;
-			this.props.fetchResults(this.props.params.id);
+			this.props.fetchRecommendations(this.props.params.id);
 		}
 	}
 
@@ -34,7 +37,7 @@ class Results extends Component {
 		// console.log("recommendation_category: ", recommendation_category);
 		var recommendation_category_array = [];
 		var recommendation_category_iterator = -1;
-		this.props.results.map((result) => {
+		this.props.recommendations.map((result) => {
 			// console.log(result);
 			if (result.category == recommendation_category) {
 				if (result.recommendation != null) {
@@ -66,11 +69,12 @@ class Results extends Component {
 	}
 
 	render() {
-		const { results } = this.props;
+		const { recommendations } = this.props;
 
 		console.log("started it");
+		console.log(JSON.stringify(this.props));
 
-		if ( !results ) {
+		if ( !recommendations ) {
 			this.props.params.oldid = this.props.params.id;
 			return <div>Loading...</div>;
 		}
@@ -117,7 +121,7 @@ class Results extends Component {
 }
 
 function mapStateToProps(state) {
-	return { results: state.result.results };
+	return { recommendations: state.assessments.recommendations, selected: state.assessments.selected };
 }
 
-export default connect(mapStateToProps, { fetchResults })(Results);
+export default connect(mapStateToProps, { fetchRecommendations })(Results);
