@@ -89,9 +89,9 @@ class Results extends Component {
 				</div>
 				<div className="container">
 					<div className="row">
-						<div className="col-md-2" style={{height: 500, width: 200}}>
+						{/*<div className="col-md-2" style={{height: 500, width: 200}}>
 							<Sidebar activeCategory='Results'/>
-						</div>
+						</div>*/}
 						<div className="col-md-8">
 							<div className="result-container">
 								<h1 className="category-title">
@@ -106,13 +106,13 @@ class Results extends Component {
 								{ console.log("passed it") }
 
 							</div>
-							<div className="footer-buttons">
+							{/*<div className="footer-buttons">
 								{this.renderPrevious()}
-							</div>
+							</div>*/}
 						</div>
-							<Link to="/" className="col-md-2 category-logo-container">
-								<img src="../assets/final-logo.png" className="category-logo" />
-							</Link>
+						<Link to="/" className="col-md-2 category-logo-container">
+							<img src="../assets/final-logo.png" className="category-logo" />
+						</Link>
 					</div>
 				</div>
 			</div>

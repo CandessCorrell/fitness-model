@@ -25,11 +25,12 @@ class Login extends Component {
     const { team_name, user_id } = this.props;
     return (
       <div className="logged-in-container">
-        <div>Hello World!</div>
-        <input type="text" onChange={this.handleTeamName} placeholder="Username" value={this.state.team_name}/>
-        <input type="password" onChange={this.handlePassword} placeholder="Password" value={this.state.password}/> <br />
-        <button onClick={this.handleLoginClick} > Login! </button>
-        <button onClick={this.handleRegisterClick} > Register! </button>
+        <form onSubmit={this.handleLoginClick}>
+          <input type="text" onChange={this.handleTeamName} placeholder="Username" value={this.state.team_name}/> <br />
+          <input type="password" onChange={this.handlePassword} placeholder="Password" value={this.state.password}/> <br />
+          <button> Login! </button>
+          <button onClick={this.handleRegisterClick} > Register! </button>
+        </form>
       </div>
     );
   }
