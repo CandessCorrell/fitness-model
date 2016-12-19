@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_CATEGORY = 'FETCH_CATEGORY';
-export const FETCH_RESULTS = 'FETCH_RESULTS';
+export const FETCH_ASSESSMENTS = 'FETCH_ASSESSMENTS';
 export const FETCH_SCORES = 'FETCH_SCORES';
 export const LOGIN = 'LOGIN';
 // export const UPDATE_CHECKED = 'UPDATE_CHECKED';
@@ -113,11 +113,11 @@ export function fetchCategoryWithErrorHandling(id) {
 		});
 }
 
-export function fetchResults(id) {
-	const request = axios.get(`${ROOT_URL}result/${id}`);
+export function fetchAssessments(id) {
+	const request = axios.get(`${ROOT_URL}assessments/${id}`);
 
 	return {
-		type: FETCH_RESULTS,
+		type: FETCH_ASSESSMENTS,
 		payload: request
 	};
 }
