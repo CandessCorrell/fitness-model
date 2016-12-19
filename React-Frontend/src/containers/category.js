@@ -24,6 +24,12 @@ class Category extends Component {
 		this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
 	}
 
+	componentDidUpdate(prev) {
+		if (prev.assessments.selected != this.props.assessments.selected) {
+			this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
+		}
+	}
+
 	renderCategory() {
 		if (this.props.params.oldid != this.props.params.id) {
 			this.props.params.oldid = this.props.params.id;

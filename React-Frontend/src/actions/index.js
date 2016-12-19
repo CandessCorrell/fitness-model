@@ -6,6 +6,7 @@ export const FETCH_ASSESSMENTS = 'FETCH_ASSESSMENTS';
 export const FETCH_RECOMMENDATIONS = 'FETCH_RECOMMENDATIONS';
 export const FETCH_SCORES = 'FETCH_SCORES';
 export const SELECT_ASSESSMENT = 'SELECT_ASSESSMENT';
+export const ADD_ASSESSMENT = 'ADD_ASSESSMENT';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER = 'REGISTER';
@@ -159,6 +160,19 @@ export function selectAssessment(id) {
 		type: SELECT_ASSESSMENT,
 		payload: id
 	};
+}
+
+export function postAssessment(user_id,version_id) {
+	const request = axios.post(`${ROOT_URL}assessments`,{
+		user_id:user_id,
+		version_id:version_id
+	});
+
+	return {
+		type: ADD_ASSESSMENT,
+		payload: request
+	};
+
 }
 
 export function fetchScores(id) {
