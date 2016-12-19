@@ -3,9 +3,10 @@ import axios from 'axios';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_CATEGORY = 'FETCH_CATEGORY';
 export const FETCH_ASSESSMENTS = 'FETCH_ASSESSMENTS';
+export const FETCH_RECOMMENDATIONS = 'FETCH_RECOMMENDATIONS';
+export const FETCH_SCORES = 'FETCH_SCORES';
 export const SELECT_ASSESSMENT = 'SELECT_ASSESSMENT';
 export const ADD_ASSESSMENT = 'ADD_ASSESSMENT';
-export const FETCH_SCORES = 'FETCH_SCORES';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER = 'REGISTER';
@@ -55,11 +56,11 @@ export function fetchCategories() {
 	};
 }
 
-export function postResponse(result_id, question_id, answer_id) {
+export function postResponse(assessment_id, question_id, answer_id) {
 	axios.post(`${ROOT_URL}responses`, {
     question_id: question_id,
     answer_id: answer_id,
-		result_id: result_id
+		assessment_id: assessment_id
   })
   .then(function (response) {
     console.log(response);
@@ -69,12 +70,12 @@ export function postResponse(result_id, question_id, answer_id) {
   });
 }
 
-export function putResponse(response_id, result_id, question_id, answer_id) {
+export function putResponse(response_id, assessment_id, question_id, answer_id) {
 	axios.put(`${ROOT_URL}responses/${response_id}`, {
-    resultJson: {
+    responseJson: {
 			question_id: question_id,
     	answer_id: answer_id,
-			result_id: result_id
+			assessment_id: assessment_id
 		}
   })
   .then(function (response) {
@@ -143,6 +144,15 @@ export function fetchAssessments(id) {
 		type: FETCH_ASSESSMENTS,
 		payload: request
 	};
+}
+
+export function fetchRecommendations(id) {
+	const request = axios.get(`${ROOT_URL}assessment/${id}`)
+
+	return {
+		type: FETCH_RECOMMENDATIONS,
+		payload: request
+	}
 }
 
 export function selectAssessment(id) {
