@@ -41,7 +41,7 @@ module.exports = {
           console.log(TAG, "Bad version_id")
           response.status(400).send("Bad version_id");
         } else {
-          post_result(request.body.user_id, request.body.version_id, function (resp) {
+          post_assessment(request.body.user_id, request.body.version_id, function (resp) {
             response.status(200).send(resp);
           }, function (err) {
             response.status(400).send(err);
@@ -94,7 +94,7 @@ module.exports = {
           var assessment_id = request.url.split("/");
           assessment_id = assessment_id[2]
           console.log(TAG, "assessment_id:", assessment_id);
-          put_result(assessment_id, request.body.resultJson, function (resp) {
+          put_assessment(assessment_id, request.body.resultJson, function (resp) {
             response.status(200).send(resp);
           }, function (err) {
             response.status(400).send(err);
@@ -218,7 +218,7 @@ function initialize_responses(assessment_id, defaultAnswers, callBack, errBack) 
         //Due to all this callback madness, this is how I'm figuring out when I'm done initializing the responses
         total--;
         if (total < 1) {
-          return callBack({assessment_id:assessment_id}); // Rather than return a string, I'm returning the result_id so the frontend will know where to navigate
+          return callBack({assessment_id:assessment_id}); // Rather than return a string, I'm returning the assessment_id so the frontend will know where to navigate
         }
       }
     })
