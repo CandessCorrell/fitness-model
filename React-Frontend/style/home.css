@@ -1,7 +1,6 @@
 div.home-container {
   text-align: center;
   border-width:1;
-  border-radius: 2;
   border:0.5px solid #b5b5b5;
   border-style: solid;
   border-color: #909090;
@@ -20,7 +19,7 @@ div.home-logo-container {
 }
 
 img.home-logo {
-  height: 140px;  
+  height: 140px;
 }
 
 a.home-screen-button, a.home-screen-button:visited {
