@@ -5,6 +5,8 @@ export const FETCH_CATEGORY = 'FETCH_CATEGORY';
 export const FETCH_ASSESSMENTS = 'FETCH_ASSESSMENTS';
 export const FETCH_SCORES = 'FETCH_SCORES';
 export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const REGISTER = 'REGISTER';
 // export const UPDATE_CHECKED = 'UPDATE_CHECKED';
 
 export const ROOT_URL = 'http://fitness.cicddevops.com:3000/';
@@ -16,11 +18,30 @@ export function login(team_name, password) {
 			password: password
 		}
   })
-
+	localStorage.setItem('isLoggedIn', 'true');
 	return {
 		type: LOGIN,
 		payload: request
-	};
+	}
+}
+
+export function logout() {
+	return {
+		type: LOGOUT
+	}
+}
+
+export function register(team_name, password) {
+	const request = axios.post(`${ROOT_URL}register`, {
+		registerJson: {
+			team_name: team_name,
+			password: password
+		}
+	})
+	return {
+		type: REGISTER,
+		payload: request
+	}
 }
 
 export function fetchCategories() {

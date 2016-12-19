@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../actions/index';
+import { login, register } from '../actions/index';
 
 import { Router, Route, Link } from 'react-router';
 
@@ -11,47 +11,50 @@ class Login extends Component {
   	constructor(props) {
   		super(props);
   		this.state = {
-  			user_id: null,
-        team_name: null,
-        loggedIn: false
+  			team_name: null,
+        password: null
   		};
-      this.onLoginClick = this.onLoginClick.bind(this);
-      this.toggleLogin = this.toggleLogin.bind(this);
+      this.handleLoginClick = this.handleLoginClick.bind(this);
+      this.handleTeamName = this.handleTeamName.bind(this);
+      this.handlePassword = this.handlePassword.bind(this);
+      this.handleRegisterClick = this.handleRegisterClick.bind(this);
   	}
 
   render() {
     console.log('Render called!');
     const { team_name, user_id } = this.props;
     return (
-      <div className={this.toggleLogin()}>
+      <div className="logged-in-container">
         <div>Hello World!</div>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" /> <br />
-        <button onClick={this.onLoginClick} > Login! </button>
-        <button onClick={this.onLoginClick} > Register! </button>
+        <input type="text" onChange={this.handleTeamName} placeholder="Username" value={this.state.team_name}/>
+        <input type="password" onChange={this.handlePassword} placeholder="Password" value={this.state.password}/> <br />
+        <button onClick={this.handleLoginClick} > Login! </button>
+        <button onClick={this.handleRegisterClick} > Register! </button>
       </div>
     );
   }
 
-  toggleLogin() {
-    if (this.state.loggedIn) {
-      return "not-logged-in-container"
-    } else return "logged-in-container"
+  handleRegisterClick() {
+    this.setState({ team_name: null, password: null });
+    return this.props.register(this.state.team_name, this.state.password);
   }
 
-  onLoginClick() {
-    // console.log(TAG, 'this.props.team_name:', this.props.team_name);
-    console.log(TAG, 'localStorage.loggedInLocalStorage before flip:', localStorage.getItem('loggedInLocalStorage'));
-    localStorage.setItem('loggedInLocalStorage', 'true');
-    console.log(TAG, 'localStorage.loggedInLocalStorage after flip:', localStorage.getItem('loggedInLocalStorage'));
-    if (this.state.loggedIn) this.setState({loggedIn: false});
-    else this.setState({loggedIn: true});
-    return this.props.login('DIDIT', 'insanelysecurepassword');
+  handleTeamName(event) {
+    this.setState({ team_name:event.target.value })
+  }
+
+  handlePassword(event) {
+    this.setState({ password:event.target.value })
+  }
+
+  handleLoginClick() {
+    this.setState({ team_name: null, password: null });
+    return this.props.login(this.state.team_name, this.state.password);
   }
 }
 
 function mapStateToProps(state) {
-  return { team_name: state.login.team_name, user_id: state.login.user_id };
+  return { team_name: state.login.team_name, user_id: state.login.user_id, isLoggedIn: state.login.isLoggedIn };
 }
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, register })(Login);
