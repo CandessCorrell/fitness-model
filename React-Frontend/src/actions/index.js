@@ -10,7 +10,7 @@ export const LOGOUT = 'LOGOUT';
 export const REGISTER = 'REGISTER';
 // export const UPDATE_CHECKED = 'UPDATE_CHECKED';
 
-export const ROOT_URL = 'http://fitness.cicddevops.com:3000/';
+export const ROOT_URL = 'http://' + 'localhost' + ':3000/';
 
 export function login(team_name, password) {
 	const request = axios.post(`${ROOT_URL}login`, {

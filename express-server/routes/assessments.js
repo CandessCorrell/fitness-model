@@ -111,8 +111,8 @@ function put_assessment(assessment_id, assessmentJson, callBack, errBack) {
   var updateTable = "UPDATE results ";
   var setInfo = "SET ";
   var chooser = " WHERE assessment_id={0}".format(assessment_id);
-  for (var key in resultJson) {
-    setInfo = setInfo + key + "=" + resultJson[key] + ", ";
+  for (var key in assessmentJson) {
+    setInfo = setInfo + key + "=" + assessmentJson[key] + ", ";
   }
   setInfo = setInfo.slice(0, -2);
   console.log(TAG, setInfo)
@@ -157,8 +157,8 @@ function get_assessments_by_user_id(user_id, callBack, errBack) {
 
 function get_assessment_by_assessment_id(assessment_id, callBack, errBack) {
   var getAssessmentQuery = "SELECT categories.description as category, questions.description as question, \
-  score, recommendation FROM responses as resp INNER JOIN ANSWERS as a ON resp.answer_id = a.answer_id \
-  INNER JOIN questions ON questions.question_id = a.question_id INNER JOIN categories ON \
+  score, recommendation, a.description FROM responses as resp INNER JOIN ANSWERS as a ON resp.answer_id \
+  = a.answer_id INNER JOIN questions ON questions.question_id = a.question_id INNER JOIN categories ON \
   categories.category_id = questions.category_id WHERE assessment_id={0}".format(assessment_id);
   console.log(TAG, getAssessmentQuery);
   client.query(getAssessmentQuery, function(err, result) {
