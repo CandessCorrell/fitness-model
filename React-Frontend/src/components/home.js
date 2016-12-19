@@ -19,7 +19,7 @@ class Home extends Component {
           <Link to={"/category/1"} className="home-screen-button">Begin a New Project Assessment</Link> <br />
           <Link to={"/category/1"} className="home-screen-button">Update a Current Project Assessment</Link> <br />
           <Link to={"/results/1"} className="home-screen-button">Results</Link> <br /> <br />
-          <Link to={"/category/1"} className="home-screen-link">View Past Assessments</Link> <br />
+          <Link to={"/assessments"} className="home-screen-link">View Past Assessments</Link> <br />
           <button onClick={this.props.logout}> Logout! </button>
         </div>
       )

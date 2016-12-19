@@ -1,17 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { fetchAssessments } from '../actions/index';
+import { fetchAssessments, selectAssessment } from '../actions/index';
+import { Link } from 'react-router';
+
 
 class Assessments extends Component {
 
     componentWillMount() {
-        //TODO: Wire this up to login stuff
-		this.props.fetchAssessments("2"); 
+		this.props.fetchAssessments(this.props.login.user_id);
 	}
+
+    renderAssessment(data) {        
+        return (
+            <div key={data.assessment_id}>
+                <Link to={"/category/1"} className="home-screen-button" onClick={() => this.props.selectAssessment(data.assessment_id)}>Assessment #{data.assessment_id}, Version #{data.version_id}</Link>
+            </div>
+        )
+    }
 
     render () {
         console.log(this.props);
+        let assessments = [];
+        if (this.props.assessments.assessments) {
+            assessments = this.props.assessments.assessments;
+        }
         return (
             <div>
                 <div className="home-container">
@@ -20,12 +33,8 @@ class Assessments extends Component {
                             <img className="home-logo" src='../../assets/final-logo.png' />
                         </div>
                         <div className="col-md-3 home-screen-button-container">
-                            <p>Assessments for Username (TODO: We storing username of some kind?  Do Assessments have names?)</p>
-                            <ul>
-                                <li><a href="#">Assessment 1</a></li> 
-                                <li><a href="#">Assessment 2</a></li>
-                                <li><a href="#">Assessment 3</a></li>                            
-                            </ul>
+                            <p>Assessments for { this.props.login.team_name }</p>
+                            { assessments.map(this.renderAssessment, this) }
                         </div>
                     </div>
                 </div>
@@ -35,8 +44,8 @@ class Assessments extends Component {
 }
 
 function mapStateToProps(state) {
-	return { assessments: state.assessments };
+	return { assessments: state.assessments, login: state.login };
 }
 
-export default connect(mapStateToProps, { fetchAssessments })(Assessments);
+export default connect(mapStateToProps, { fetchAssessments,selectAssessment })(Assessments);
 
