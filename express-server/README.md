@@ -6,6 +6,8 @@ git clone https://github.com/private-pilot/fitness-model/
 cd fitness-model/express-server
 npm install
 bash pm2-begin.sh
+OR
+npm start
 ```
 
 To stop
@@ -23,85 +25,91 @@ pm2 logs www
 ### Routes
 
 /answer
-  - PUT (Triggers an UPDATE on existing answer)
-    - Must provide a "question_id"(int), "description"(string), "score"(int) and "recommendation"(string) to issue a PUT to this route.
+  - PUT (Triggers an UPDATE on existing answer in 'answers' table)
+    - Must provide a ```question_id(int)```, ```description(string)```, ```score(int)``` and ```recommendation(string)``` to issue a PUT to this route.
 
 /answers
+  - GET (Triggers a ```SELECT``` on ```answers```)
+  - POST (Triggers an ```INSERT into answers``` table)
+    - Must provide a ```question_id(int)```, ```description(string)```, ```score(int)``` and ```recommendation(string)``` to issue a POST to this route.
+
+/assessment/:assessment_id
   - GET
-  - POST (Triggers an INSERT into DB)
-    - Must provide a "question_id"(int), "description"(string), "score"(int) and "recommendation"(string) to issue a POST to this route.
+    - Effectively the "results" screen of one assessment. This information is used for the "Results_Graph" as well as for our recommendations.
+    - Returns rows with the following fields: ```category(int)```, ```question(string)```, ```answer(string)```, ```score(int)```, ```recommendation(string)```
 
 /assessments
   - GET
-    - Returns all rows and columns from "assessments" table.
-
-/categories
-  - GET
   - POST
-    - Must provide a "description"(string) in the request body to issue a POST request to this route.
+    - Must provide a ```user_id(int)``` and ```version_id(int)``` in the request body to issue a POST request to this route.
 
-/fitness_card/:category_id
+/assessments/:assessment_id/category/:category_id
   - GET
-    - Returns question_description(string), response_id(int), answer_description(string), category_description(string), recommendation(string), fitness_level(int) and category_id(int) based on category_id(int)
+    - Used to display a Category within an Assessment.
+    - Returns ```question_description(string)```, ```response_id(int)```, ```answer_description(string)```, ```category_description(string)```, ```recommendation(string)```, ```fitness_level(int)``` and ```category_id(int)``` based on ```category_id(int)``` and ```assessment_id(int)```.
 
-/login
-  - POST
-    - Body must contain a single JSON object called "loginJson" with the following keys:
-      - team_name
-      - password
-    - On successful combination of team_name & password, returns team_name(string) and user_id(int)
-
-/questions
-  - GET
-    - Must provide a "category"(string) when issuing a GET request to this route.
-
-/register
-  - POST
-    - Body must contain a single JSON object called "registerJson" with the following keys:
-      - team_name
-      - password
-    - If username does not already exist, performs INSERT INTO "users" table.
-    - Additionally, returns the string "Successfully created new user!"
-
-/responses
-  - GET
-  - POST
-    - Must provide a "question_id"(int), "answer_id"(int) and "result_id"(int) in the request body to issue a POST request to this route.
-
-/responses/:id
-  - PUT
-    - UPDATEs a previously answered question.
-    - Must provide a "resultJson"(JSON) in the body which contains the following keys:
-      - question_id, answer_id, result_id
-
-
-/results
-  - GET
-  - POST
-    - Must provide a "user_id"(int) and "assessment_id"(int) in the request body to issue a POST request to this route.
-
-/results/user_id
+/assessments/:user_id
   - GET
     - Returns all completed or in-progress "results" for a specific user.
     - Potential to be a user's home screen - displaying all of their previously completed assessments.
   - PUT
-    - Must provide a resultJson(JSON) which can include any of the columns of the "results" table
+    - Must provide an assessmentJson(JSON) which can include any of the columns of the "results" table
     - **NOTE** I will apply this strategy across all PUT routes to allow dynamic updating that does not require submission of all columns in a row.
 
+/categories
+  - GET
+  - POST
+    - Must provide a ```description(string)``` in the request body to issue a POST request to this route.
+    
+/login
+  - POST
+    - Body must contain a single JSON object called ```loginJson``` with the following keys:
+      - ```team_name```
+      - ```password```
+    - On successful combination of team_name & password, returns ```team_name(string)``` and ```user_id(int)```
+
+/questions
+  - GET
+    - Must provide a ```category(string)``` when issuing a GET request to this route.
+
+/register
+  - POST
+    - Body must contain a single JSON object called "registerJson" with the following keys:
+      - ```team_name```
+      - ```password```
+    - If username does not already exist, performs INSERT INTO "users" table.
+    - On successful registration, additionally returns ```team_name(string)``` and ```user_id(int)```
+
+/responses
+  - GET
+  - POST
+    - Must provide a ```question_id(int)```, ```answer_id(int)``` and ```result_id(int)``` in the request body to issue a POST request to this route.
+
+/responses/:response_id
+  - PUT
+    - UPDATEs a previously answered question.
+    - Must provide a ```responseJson(JSON)``` in the body which contains the following keys:
+      - ```question_id```, ```answer_id```, ```result_id```
+
 /scores/:assessment_id
-  - Returns as many rows as there are categories for that result with two pieces of information: category_id and aggregated score
+  - Returns as many rows as there are categories for that result with two pieces of information:
+    - ```category_id``` and ```aggregated score```
 
 /users
   - GET
     - Returns all users
     - **NOTE** When we are ready, I will flesh this out to be able to return all users associated with a team, portfolio, etc.
 
+/versions
+  - GET
+    - Returns all rows and columns from ```assessments``` table.
+
 /weights
   - POST
-    - Must provide a "result_id" (int), "category_id"(int) and "value"(int) in the request body to issue a POST request to this route.
+    - Must provide an ```assessment_id(int)```, ```category_id(int)``` and ```value(int)``` in the request body to issue a POST request to this route.
 
-/weights/:id
+/weights/:weight_id
   - GET
-    - Returns all data from the weights table associated with the supplied result_id(int).
+    - Returns all data from the weights table associated with the supplied ```assessment_id(int)```.
   - PUT
-    - Must provide a "result_id" (int), "category_id"(int) and "value"(int) in the request body to issue a PUT request to this route.
+    - Must provide an ```assessment(int)```, ```category_id(int)``` and ```value(int)``` in the request body to issue a PUT request to this route.
