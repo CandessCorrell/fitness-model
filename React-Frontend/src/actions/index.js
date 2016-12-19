@@ -2,8 +2,9 @@ import axios from 'axios';
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_CATEGORY = 'FETCH_CATEGORY';
-export const FETCH_RESULTS = 'FETCH_RESULTS';
+export const FETCH_ASSESSMENTS = 'FETCH_ASSESSMENTS';
 export const FETCH_SCORES = 'FETCH_SCORES';
+export const SELECT_ASSESSMENT = 'SELECT_ASSESSMENT';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER = 'REGISTER';
@@ -83,8 +84,8 @@ export function putResponse(response_id, result_id, question_id, answer_id) {
   });
 }
 
-export function fetchCategory(id) {
-	const request = axios.get(`${ROOT_URL}fitness_card/${id}`);
+export function fetchCategory(assessment_id,category_id) {
+	const request = axios.get(`${ROOT_URL}assessments/${assessment_id}/category/${category_id}`);
 	console.log('fetchCategory request:', request);
 
 	return {
@@ -134,12 +135,19 @@ export function fetchCategoryWithErrorHandling(id) {
 		});
 }
 
-export function fetchResults(id) {
-	const request = axios.get(`${ROOT_URL}result/${id}`);
+export function fetchAssessments(id) {
+	const request = axios.get(`${ROOT_URL}assessments/${id}`);
 
 	return {
-		type: FETCH_RESULTS,
+		type: FETCH_ASSESSMENTS,
 		payload: request
+	};
+}
+
+export function selectAssessment(id) {
+	return {
+		type: SELECT_ASSESSMENT,
+		payload: id
 	};
 }
 

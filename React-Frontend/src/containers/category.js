@@ -20,15 +20,15 @@ class Category extends Component {
 	}
 
 	componentWillMount() {
-		this.props.fetchCategory(this.props.params.id);
-		this.props.fetchCategory(this.props.params.id);
+		this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
+		this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
 	}
 
 	renderCategory() {
 		if (this.props.params.oldid != this.props.params.id) {
 			this.props.params.oldid = this.props.params.id;
-			this.props.fetchCategory(this.props.params.id);
-			this.props.fetchCategory(this.props.params.id);
+			this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
+			this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
 		}
 	}
 
@@ -130,7 +130,7 @@ class Category extends Component {
 }
 
 function mapStateToProps(state) {
-	return { questions: state.category.questions, titles: state.category.titles };
+	return { questions: state.category.questions, titles: state.category.titles, assessments: state.assessments };
 }
 
 export default connect(mapStateToProps, { fetchCategory })(Category);
