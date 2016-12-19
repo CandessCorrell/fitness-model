@@ -2,13 +2,35 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-
 import Login from '../containers/login';
-import { logout } from '../actions/index';
+import { logout,ROOT_URL,postAssessment } from '../actions/index';
+import axios from 'axios';
+
 
 const TAG = "Home | ";
 
 class Home extends Component {
+
+  addAssessment() {
+    console.log(this.props);
+    axios.get(`${ROOT_URL}versions`)
+    .then((response) => {
+      let latest = 0.0;
+      let latest_id = null;
+      response.data.rows.map(function(data) {
+        let current = parseFloat(data.version);
+        if (current > latest) {
+          latest = current;
+          latest_id = data.version_id;
+        }
+      })
+      this.props.postAssessment(this.props.user_id, latest_id);
+	  })
+	  .catch((error) => {
+		  console.log(error);
+	  });
+    
+  }
 
   checkLoggedIn() {
     console.log()
@@ -16,7 +38,7 @@ class Home extends Component {
       return (
         <div className="col-md-3 home-screen-button-container">
           <Link to={"/category/1"} className="home-screen-button">Setup a New Project Profile</Link> <br />
-          <Link to={"/category/1"} className="home-screen-button">Begin a New Project Assessment</Link> <br />
+          <Link to={"/category/1"} className="home-screen-button" onClick={() => this.addAssessment()}>Begin a New Project Assessment</Link> <br />
           <Link to={"/category/1"} className="home-screen-button">Update a Current Project Assessment</Link> <br />
           <Link to={"/results/1"} className="home-screen-button">Results</Link> <br /> <br />
           <Link to={"/assessments"} className="home-screen-link">View Past Assessments</Link> <br />
@@ -115,7 +137,7 @@ const styles = {
 }
 
 function mapStateToProps(state) {
-  return { isLoggedIn: state.login.isLoggedIn };
+  return { isLoggedIn: state.login.isLoggedIn, user_id: state.login.user_id, selected: state.assessments.selected };
 }
 
-export default connect(mapStateToProps, { logout })(Home);
+export default connect(mapStateToProps, { logout,postAssessment })(Home);

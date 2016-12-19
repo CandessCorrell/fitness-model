@@ -1,4 +1,4 @@
-import { FETCH_ASSESSMENTS, FETCH_SCORES, SELECT_ASSESSMENT } from '../actions/index';
+import { FETCH_ASSESSMENTS, FETCH_SCORES, SELECT_ASSESSMENT, ADD_ASSESSMENT } from '../actions/index';
 
 const INITIAL_STATE = { assessments: null, selected: null, scores: null};
 
@@ -10,6 +10,8 @@ export default function(state = INITIAL_STATE, action) {
 			return { ...state, scores: action.payload.data.rows };
 		case SELECT_ASSESSMENT:
 			return { ...state, selected: action.payload };
+		case ADD_ASSESSMENT:
+			return { ...state, selected: action.payload.data.assessment_id }
 		default:
 			return state;
 	}
