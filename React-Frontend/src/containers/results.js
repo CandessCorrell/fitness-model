@@ -6,6 +6,7 @@ import RecommendationsListItem from '../components/recommendations_list_item';
 import Header from '../components/header';
 import Sidebar from '../components/sidebar';
 import GraphLegend from '../components/graph_legend';
+import Graph from '../components/graph';
 
 const TAG = 'RESULTS | ';
 
@@ -87,17 +88,18 @@ class Results extends Component {
 				<div className= "gray-band-container">
 					<Header className="gray-band" />
 				</div>
-				<div className="container">
+				<div className="not-container">
 					<div className="row">
 						{/*<div className="col-md-2" style={{height: 500, width: 200}}>
 							<Sidebar activeCategory='Results'/>
 						</div>*/}
 						<div className="col-md-8">
 							<div className="result-container">
-								<h1 className="category-title">
+								<h1 className="results-title">
 									Results
 								</h1>
-								<img className="graph" src="../assets/graph.png" />
+								<Graph />
+								{/*<img className="graph" src="../assets/graph.png" />*/}
 								<GraphLegend className="graph-legend" />
 								<div className="recommendations-list">
 									{ this.renderRecommendations() }

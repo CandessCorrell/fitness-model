@@ -26,9 +26,10 @@ module.exports = {
 }
 
 function get_scores(assessment_id, callBack, errBack) {
-  var getScoresQuery = "SELECT q.category_id, SUM(ans.score) as score FROM ((questions as q \
+  var getScoresQuery = "SELECT c.description, SUM(ans.score) as score FROM ((questions as q \
   INNER JOIN answers as ans ON q.question_id=ans.question_id) INNER JOIN responses as r \
-  ON r.question_id=q.question_id) WHERE r.assessment_id={0} GROUP BY q.category_id".format(assessment_id);
+  ON r.question_id=q.question_id INNER JOIN categories as c ON c.category_id=q.category_id) \
+	WHERE r.assessment_id={0} GROUP BY c.description".format(assessment_id);
   console.log(TAG, "getScoresQuery:", getScoresQuery)
   client.query(getScoresQuery, function (err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {

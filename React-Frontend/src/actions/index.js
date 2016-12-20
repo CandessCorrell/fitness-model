@@ -161,8 +161,8 @@ export function selectAssessment(id) {
 	};
 }
 
-export function fetchScores(id) {
-	const request = axios.get(`${ROOT_URL}scores/${id}`);
+export function fetchScores(assessment_id) {
+	const request = axios.get(`${ROOT_URL}scores/${assessment_id}`);
 
 	return {
 		type: FETCH_SCORES,
