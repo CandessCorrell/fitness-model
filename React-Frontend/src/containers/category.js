@@ -21,19 +21,17 @@ class Category extends Component {
 
 	componentWillMount() {
 		this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
-		this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
 	}
 
-	componentDidUpdate(prev) {
-		if (prev.assessments.selected != this.props.assessments.selected) {
-			this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
+	componentWillUpdate(nextProps) {
+		if ((nextProps.assessments.selected != this.props.assessments.selected) || (nextProps.params.id != this.props.params.id)) {
+			this.props.fetchCategory(nextProps.assessments.selected,nextProps.params.id);
 		}
 	}
 
 	renderCategory() {
 		if (this.props.params.oldid != this.props.params.id) {
 			this.props.params.oldid = this.props.params.id;
-			this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
 			this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
 		}
 	}
