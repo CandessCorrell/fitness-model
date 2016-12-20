@@ -2,6 +2,7 @@ import {
 	FETCH_ASSESSMENTS,
 	FETCH_SCORES,
 	SELECT_ASSESSMENT,
+	ADD_ASSESSMENT,
 	FETCH_RECOMMENDATIONS
 } from '../actions/index';
 
@@ -17,6 +18,8 @@ export default function(state = INITIAL_STATE, action) {
 			return { ...state, scores: action.payload.data.rows };
 		case SELECT_ASSESSMENT:
 			return { ...state, selected: action.payload };
+		case ADD_ASSESSMENT:
+			return { ...state, selected: action.payload.data.assessment_id }
 		default:
 			return state;
 	}

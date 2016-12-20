@@ -20,7 +20,6 @@ class Assessments extends Component {
     }
 
     render () {
-        console.log(this.props);
         let assessments = [];
         if (this.props.assessments.assessments) {
             assessments = this.props.assessments.assessments;

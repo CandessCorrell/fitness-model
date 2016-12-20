@@ -5,7 +5,6 @@ const INITIAL_STATE = { titles: null, questions: null, checked: false};
 export default function(state = INITIAL_STATE, action) {
 	switch(action.type) {
 		case FETCH_CATEGORY:
-			console.log('action payload', action.payload)
 			return { ...state, questions: action.payload.data.rows };
 		case FETCH_CATEGORIES:
 			return { ...state, titles: action.payload.data.rows };
