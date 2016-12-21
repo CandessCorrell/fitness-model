@@ -60,8 +60,14 @@ class Results extends Component {
 			}
 		});
 		var recommendation_level = 0;
-		return recommendation_category_array.map((recommendation) => {
-			console.log(JSON.stringify(recommendation));
+		if (recommendation_category_array[0] == null &&
+		recommendation_category_array[1] == null &&
+		recommendation_category_array[2] == null){
+			return (<div> We have no more recommendations. The student has become the master. </div>)
+		}
+		else {
+			return recommendation_category_array.map((recommendation) => {
+			// console.log(JSON.stringify(recommendation));
 			// console.log(recommendation);
 			recommendation_level++;
 			return (
@@ -70,15 +76,15 @@ class Results extends Component {
 					category={recommendation.category}
 					recommendation={recommendation.recommendation}
 				/>
-			)
-		});
+			)});
+		}
 	}
 
 	render() {
 		const { recommendations, scores } = this.props;
 
 		console.log("started it");
-		console.log(JSON.stringify(this.props));
+		// console.log(JSON.stringify(this.props));
 
 		if ( !recommendations || !scores ) {
 			this.props.params.oldid = this.props.params.id;
@@ -103,9 +109,10 @@ class Results extends Component {
 								<h1 className="results-title">
 									Results
 								</h1>
-								<Graph scores={this.props.scores} thisIsAProp={'Amazing prop!'}/>
+								<Graph scores={this.props.scores}/>
 								{/*<img className="graph" src="../assets/graph.png" />*/}
 								<div className="recommendations-list">
+									<h2 className="results-subtitle"> Recommendations </h2>
 									{ this.renderRecommendations() }
 								</div>
 

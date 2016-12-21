@@ -1,12 +1,22 @@
-h3.graph-list-item-header {
-  display: inline;
+li.graph-list-item {
+  vertical-align: middle;
+  /*justify-content: center;
+  align-items: center;*/
+}
+
+h4.graph-list-item-header {
+  display: inline-block;
+  font-family: Helvetica, Arial, san-serif;
+  font-weight: bold;
+  color: #5B5E5E;
   margin: 0px;
   justify-content: flex-start;
+  width: 125px;
+  text-align: center;
 }
 
 div.graph-list-item-span {
   display: inline;
-  height: 100px;
 }
 
 span.graph-list-item-fitness-level-1 {

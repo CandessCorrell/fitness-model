@@ -30,6 +30,7 @@ export default class GraphList extends Component {
   }
 
   render() {
+    console.log(this.props.scores);
     return (
       <ul className="graph-list">
         {this.renderGraphListItems()}
@@ -41,7 +42,7 @@ export default class GraphList extends Component {
     return (
       this.props.scores.map((category) => {
         // this.calculateCategoryFitnessLevel(category.score, category.category_id);
-        return <GraphListItem category={category.category_id} key={category.score} score={category.score} fl1={10} fl2={20} fl3={30} />
+        return <GraphListItem category={category.description} key={category.score} score={category.score} fl1={10} fl2={20} fl3={30} />
       })
     )
   }

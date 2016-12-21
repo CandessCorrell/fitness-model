@@ -22,6 +22,7 @@ div.graph-container {
 	border-radius: 10px;
 	display: block;
 	text-align: left;
+	margin-bottom: 50px;
 }
 
 div.result-container {
@@ -39,11 +40,18 @@ li.graph-list-item {
 	padding: 10px;
 }
 
+h2.results-subtitle {
+  font-family: Helvetica, Arial, san-serif;
+  font-weight: bold;
+  color: #5B5E5E;
+	display: block;
+	padding-bottom: 30px;
+}
+
 h3.results-subtitle {
   font-family: Helvetica, Arial, san-serif;
   font-weight: bold;
   color: #5B5E5E;
-  padding-top: 50px;
 	display: inline;
 }
 
