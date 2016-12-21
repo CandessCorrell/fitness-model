@@ -25,18 +25,17 @@ class Login extends Component {
     const { team_name, user_id } = this.props;
     return (
       <div className="logged-in-container">
-        <form onSubmit={this.handleLoginClick}>
+        {/*<form onSubmit={this.handleLoginClick}>*/}
           <input type="text" onChange={this.handleTeamName} placeholder="Username" value={this.state.team_name}/> <br />
           <input type="password" onChange={this.handlePassword} placeholder="Password" value={this.state.password}/> <br />
-          <button> Login! </button>
+          <button onClick={this.handleLoginClick}> Login! </button>
           <button onClick={this.handleRegisterClick} > Register! </button>
-        </form>
+        {/*</form>*/}
       </div>
     );
   }
 
   handleRegisterClick() {
-    this.setState({ team_name: null, password: null });
     return this.props.register(this.state.team_name, this.state.password);
   }
 
@@ -49,7 +48,6 @@ class Login extends Component {
   }
 
   handleLoginClick() {
-    this.setState({ team_name: null, password: null });
     return this.props.login(this.state.team_name, this.state.password);
   }
 }
