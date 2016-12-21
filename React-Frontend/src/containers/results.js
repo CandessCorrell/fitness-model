@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { fetchRecommendations } from '../actions/index';
+import { fetchRecommendations, fetchScores } from '../actions/index';
 import RecommendationsListItem from '../components/recommendations_list_item';
 import Header from '../components/header';
 import Sidebar from '../components/sidebar';
 import GraphLegend from '../components/graph_legend';
+import Graph from '../components/graph';
 
 const TAG = 'RESULTS | ';
 
 class Results extends Component {
 
+	constructor(props) {
+		super(props)
+	}
+
 	componentDidMount() {
 		this.props.fetchRecommendations(this.props.params.id);
+		this.props.fetchScores(this.props.params.id);
 		console.log(TAG, 'componentDidMount & fetchRecommendations called.');
 	}
 
@@ -69,12 +75,12 @@ class Results extends Component {
 	}
 
 	render() {
-		const { recommendations } = this.props;
+		const { recommendations, scores } = this.props;
 
 		console.log("started it");
 		console.log(JSON.stringify(this.props));
 
-		if ( !recommendations ) {
+		if ( !recommendations || !scores ) {
 			this.props.params.oldid = this.props.params.id;
 			return <div>Loading...</div>;
 		}
@@ -87,18 +93,18 @@ class Results extends Component {
 				<div className= "gray-band-container">
 					<Header className="gray-band" />
 				</div>
-				<div className="container">
+				<div className="not-container">
 					<div className="row">
 						{/*<div className="col-md-2" style={{height: 500, width: 200}}>
 							<Sidebar activeCategory='Results'/>
 						</div>*/}
 						<div className="col-md-8">
 							<div className="result-container">
-								<h1 className="category-title">
+								<h1 className="results-title">
 									Results
 								</h1>
-								<img className="graph" src="../assets/graph.png" />
-								<GraphLegend className="graph-legend" />
+								<Graph scores={this.props.scores} thisIsAProp={'Amazing prop!'}/>
+								{/*<img className="graph" src="../assets/graph.png" />*/}
 								<div className="recommendations-list">
 									{ this.renderRecommendations() }
 								</div>
@@ -121,7 +127,7 @@ class Results extends Component {
 }
 
 function mapStateToProps(state) {
-	return { recommendations: state.assessments.recommendations, selected: state.assessments.selected };
+	return { recommendations: state.assessments.recommendations, selected: state.assessments.selected, scores: state.assessments.scores};
 }
 
-export default connect(mapStateToProps, { fetchRecommendations })(Results);
+export default connect(mapStateToProps, { fetchRecommendations, fetchScores })(Results);

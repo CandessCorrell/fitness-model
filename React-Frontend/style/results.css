@@ -1,20 +1,42 @@
 h1.results-title {
-	float:left;
 	font-family: Helvetica, Arial, san-serif;
 	font-weight: bold;
 	color: #5B5E5E;
 	padding-top: 0px;
 	padding-left: 10px;
 	margin: 85px 0px 0px 0px;
+	display: block;
 }
 
 img.graph {
   padding-top: 20px;
 }
 
+div.graph-container {
+	margin-top: 30px;
+	padding: 15px;
+	border-width:1;
+	border:0.5px solid #b5b5b5;
+	border-style: solid;
+	border-color: #909090;
+	border-radius: 10px;
+	display: block;
+	text-align: left;
+}
+
 div.result-container {
   margin-bottom: 50px;
 	margin-left: 100px;
+}
+
+ul.graph-list {
+	background-color: white;
+	margin-bottom: 0px;
+	justify-content: space-around;
+}
+
+li.graph-list-item {
+	padding: 10px;
 }
 
 h3.results-subtitle {

@@ -62,7 +62,7 @@ class CategoriesList extends Component {
         <li className={this.setClassName('Results')}>
           <img className="nav-circle" src="../assets/nav-empty-circle.png" />
           <Link
-            to={"/results/1"}
+            to={"/results/" + this.props.assessments.selected}
             className="category-link"
             key={12}
           >
@@ -70,14 +70,13 @@ class CategoriesList extends Component {
           </Link>
           <br />
         </li>
-
       </ul>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { titles: state.category.titles };
+  return { titles: state.category.titles, assessments: state.assessments };
 }
 
 export default connect(mapStateToProps, { fetchCategories })(CategoriesList);

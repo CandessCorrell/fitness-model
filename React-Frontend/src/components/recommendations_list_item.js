@@ -19,7 +19,6 @@ export default class RecommendationsListItem extends Component {
 	}
 
 	render() {
-		console.log(TAG, "Hello from render")
 		return (
 			<div>
 				{this.renderRecommendation()}

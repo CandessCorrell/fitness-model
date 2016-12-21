@@ -7,16 +7,16 @@ import { Link } from 'react-router';
 
 class Assessments extends Component {
 
-    componentWillMount() {
+  componentWillMount() {
 		this.props.fetchAssessments(this.props.login.user_id);
-	}
+  }
 
-    renderAssessment(data) {        
-        return (
-            <div key={data.assessment_id}>
-                <Link to={"/category/1"} className="home-screen-button" onClick={() => this.props.selectAssessment(data.assessment_id)}>Assessment #{data.assessment_id}, Version #{data.version_id}</Link>
-            </div>
-        )
+  renderAssessment(data) {
+      return (
+          <div key={data.assessment_id}>
+              <Link to={"/results/" + data.assessment_id} className="home-screen-button" onClick={() => this.props.selectAssessment(data.assessment_id)}>Assessment #{data.assessment_id}, Version #{data.version_id}</Link>
+          </div>
+      )
     }
 
     render () {
@@ -47,4 +47,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { fetchAssessments,selectAssessment })(Assessments);
-

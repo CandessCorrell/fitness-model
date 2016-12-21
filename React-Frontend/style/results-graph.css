@@ -1,0 +1,38 @@
+h3.graph-list-item-header {
+  display: inline;
+  margin: 0px;
+  justify-content: flex-start;
+}
+
+div.graph-list-item-span {
+  display: inline;
+  height: 100px;
+}
+
+span.graph-list-item-fitness-level-1 {
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 40px;
+  width: 25%;
+  background-color: #FBB040;
+}
+
+span.graph-list-item-fitness-level-2 {
+  display: inline-block;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 40px;
+  width: 25%;
+  background-color: #0D79A7;
+}
+
+span.graph-list-item-fitness-level-3 {
+  display: inline-block;
+  justify-content: center;
+  padding: 10px 0px 10px 0px;
+  height: 40px;
+  width: 25%;
+  background-color: #589241;
+}

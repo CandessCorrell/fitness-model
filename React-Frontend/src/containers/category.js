@@ -73,7 +73,7 @@ class Category extends Component {
 		}
 		if (nextCat > this.props.titles.length) {
 			return (
-				<Link to={"/results/1"} className="prev-next-button">
+				<Link to={"/results/" + this.props.assessments.selected} className="prev-next-button">
 					SUBMIT
 				</Link>
 			);
@@ -102,7 +102,7 @@ class Category extends Component {
 		return (
 			<div>
 				<div className= "gray-band-container">
-					<Header className="gray-band" />
+					<Header className="gray-band" team_name={this.props.login.team_name}/>
 				</div>
 				<div className="container">
 					<div className="row">
@@ -134,7 +134,12 @@ class Category extends Component {
 }
 
 function mapStateToProps(state) {
-	return { questions: state.category.questions, titles: state.category.titles, assessments: state.assessments };
+	return {
+		questions: state.category.questions,
+		titles: state.category.titles,
+		assessments: state.assessments,
+		login: state.login
+	};
 }
 
 export default connect(mapStateToProps, { fetchCategory })(Category);

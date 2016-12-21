@@ -11,12 +11,20 @@ export default class Header extends Component {
   render() {
 
     return (
-      <div className="container gray-band">
-        <div className="row">
-          <Link to="/" className="col-md-2 gray-band-link">
-            <h3 className="gray-band-header"> Home | Team A </h3>
+      <div className="gray-band">
+        <span>
+          <Link to="/" className="gray-band-link">
+            <h3 className="gray-band-header"> Home </h3>
           </Link>
-        </div>
+        </span>
+        <span>
+          <h3 className="gray-band-header"> | </h3>
+        </span>
+        <span>
+          <Link to="/assessments" className="gray-band-link">
+            <h3 className="gray-band-header"> Assessments </h3>
+          </Link>
+        </span>
       </div>
     )
   }
