@@ -1,8 +1,29 @@
 import React, { Component } from 'react';
 import GraphListItem from './graph_list_item';
 
-export default class GraphList extends Component {
+const TAG = 'GraphList | ';
+// const categoryFitnessLevelThresholds = [
+//   [
+//     12,
+//     8,
+//     4,
+//     24
+//   ],
+//   [
+//     12,
+//     8,
+//     20,
+//     40
+//   ],
+//   {
+//     8,
+//     8,
+//     4,
+//     20
+//   }
+// ]
 
+export default class GraphList extends Component {
   constructor(props) {
     super(props);
     this.renderGraphListItems = this.renderGraphListItems.bind(this);
@@ -10,17 +31,32 @@ export default class GraphList extends Component {
 
   render() {
     return (
-      this.renderGraphListItems()
+      <ul className="graph-list">
+        {this.renderGraphListItems()}
+      </ul>
     )
   }
 
   renderGraphListItems() {
     return (
-      <ul className="graph-list">
-        <GraphListItem category={1} score={10} fl1={10} fl2={20} fl3={30} />
-        <GraphListItem category={2} score={20} fl1={10} fl2={20} fl3={30} />
-        <GraphListItem category={3} score={30} fl1={10} fl2={20} fl3={30} />
-      </ul>
+      this.props.scores.map((category) => {
+        // this.calculateCategoryFitnessLevel(category.score, category.category_id);
+        return <GraphListItem category={category.category_id} key={category.score} score={category.score} fl1={10} fl2={20} fl3={30} />
+      })
     )
   }
+  //
+  // calculateCategoryFitnessLevel(totalScore, category) {
+  //   // 25% is the max we can render on the screen at current (treat this as 100%) per Fitness Level.
+  //   var fitnessLevel = 0;
+  //   console.log(TAG, category, 'totalScore: ', totalScore);
+  //   console.log(TAG, categoryFitnessLevelThresholds[category]);
+  //   if (totalScore == categoryFitnessLevelThresholds.category[0]) {
+  //     fitnessLevel++;
+  //   }
+  //   // if (totalScore > )
+  //   // console.log(TAG, categoryFitnessLevelThresholds);
+  //   // if (totalScore > categoryFitnessLevelThresholds.category)
+  //
+  // }
 }

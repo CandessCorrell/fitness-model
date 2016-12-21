@@ -8,14 +8,6 @@ h1.results-title {
 	display: block;
 }
 
-div.container {
-	border-width:1;
-	border:0.5px solid #b5b5b5;
-	border-style: solid;
-	border-color: #909090;
-	border-radius: 10px;
-}
-
 img.graph {
   padding-top: 20px;
 }
@@ -40,6 +32,7 @@ div.result-container {
 ul.graph-list {
 	background-color: white;
 	margin-bottom: 0px;
+	justify-content: space-around;
 }
 
 li.graph-list-item {

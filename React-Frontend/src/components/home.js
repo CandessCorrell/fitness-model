@@ -29,7 +29,7 @@ class Home extends Component {
 	  .catch((error) => {
 		  console.log(error);
 	  });
-    
+
   }
 
   checkLoggedIn() {
@@ -37,11 +37,11 @@ class Home extends Component {
     if (this.props.isLoggedIn == 'true') {
       return (
         <div className="col-md-3 home-screen-button-container">
-          <Link to={"/category/1"} className="home-screen-button">Setup a New Project Profile</Link> <br />
+          {/*<Link to={"/category/1"} className="home-screen-button">Setup a New Project Profile</Link> <br />*/}
           <Link to={"/category/1"} className="home-screen-button" onClick={() => this.addAssessment()}>Begin a New Project Assessment</Link> <br />
-          <Link to={"/category/1"} className="home-screen-button">Update a Current Project Assessment</Link> <br />
-          <Link to={"/results/1"} className="home-screen-button">Results</Link> <br /> <br />
-          <Link to={"/assessments"} className="home-screen-link">View Past Assessments</Link> <br />
+          {/*<Link to={"/category/1"} className="home-screen-button">Update a Current Project Assessment</Link> <br />*/}
+          {/*<Link to={"/results/1"} className="home-screen-button">Results</Link> <br /> <br />*/}
+          <Link to={"/assessments"} className="home-screen-button">View Past Assessments</Link> <br />
           <button onClick={this.props.logout}> Logout! </button>
         </div>
       )
