@@ -108,11 +108,11 @@ module.exports = {
 }
 
 function put_assessment(assessment_id, assessmentJson, callBack, errBack) {
-  var updateTable = "UPDATE results ";
+  var updateTable = "UPDATE assessments ";
   var setInfo = "SET ";
   var chooser = " WHERE assessment_id={0}".format(assessment_id);
   for (var key in assessmentJson) {
-    setInfo = setInfo + key + "=" + assessmentJson[key] + ", ";
+    setInfo = setInfo + key + "=\'" + assessmentJson[key] + "\', "; // This will only work to update non numeric values
   }
   setInfo = setInfo.slice(0, -2);
   console.log(TAG, setInfo)
