@@ -101,8 +101,8 @@ INSERT INTO users (team_name, password) VALUES
 	
 
 INSERT INTO assessments (user_id, version_id, start_time, end_time) VALUES
-	(1, 1, null, null),
-	(2, 1, null, null);
+	(1, 1, '2016-12-20T17:00:57.484Z', '2016-12-20T18:00:57.484Z'),
+	(2, 1, '2016-12-21T17:00:57.484Z', '2016-12-21T18:00:57.484Z');
 
 INSERT INTO responses (answer_id, question_id, assessment_id) VALUES
 	(3, 1, 1),

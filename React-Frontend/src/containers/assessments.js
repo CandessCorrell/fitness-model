@@ -12,9 +12,19 @@ class Assessments extends Component {
   }
 
   renderAssessment(data) {
+      let text,css,loc = '';
+      if (data.end_time != null) {
+          text = "See Assessment Results";
+          css = "complete";
+          loc = `/results/${data.assessment_id}`;
+      } else {
+          text = "Continue Assessment";
+          css = "incomplete"
+          loc = "/category/1"
+      }
       return (
           <div key={data.assessment_id}>
-              <Link to={"/results/" + data.assessment_id} className="home-screen-button" onClick={() => this.props.selectAssessment(data.assessment_id)}>Assessment #{data.assessment_id}, Version #{data.version_id}</Link>
+              <Link to={loc} className={`home-screen-button ${css}`} onClick={() => this.props.selectAssessment(data.assessment_id)}>Assessment #{data.assessment_id}, Version #{data.version_id}<br/>{text}</Link>
           </div>
       )
     }
