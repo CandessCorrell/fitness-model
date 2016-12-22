@@ -173,8 +173,8 @@ function get_assessment_by_assessment_id(assessment_id, callBack, errBack) {
 }
 
 function post_assessment(user_id, version_id, callBack, errBack) {
-  var postAssessmentQuery = "INSERT INTO assessments (user_id, version_id) \
-  VALUES($${0}$$, $${1}$$) RETURNING assessment_id".format(user_id, version_id);
+  var postAssessmentQuery = "INSERT INTO assessments (user_id, version_id, start_time) \
+  VALUES($${0}$$, $${1}$$, current_timestamp) RETURNING assessment_id".format(user_id, version_id);
   client.query(postAssessmentQuery, function (err, result) {
     if (err) {
       console.log(TAG, "post_assessment SQL Query not successful");
