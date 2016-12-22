@@ -1,6 +1,7 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategory } from '../actions/index';
+import { fetchCategory, ROOT_URL } from '../actions/index';
 import QuestionsList from '../components/questions_list';
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
@@ -27,6 +28,20 @@ class Category extends Component {
 		if ((nextProps.assessments.selected != this.props.assessments.selected) || (nextProps.params.id != this.props.params.id)) {
 			this.props.fetchCategory(nextProps.assessments.selected,nextProps.params.id);
 		}
+	}
+
+	submitAssessment() {
+		let endTime = new Date().toISOString();
+		axios.put(`${ROOT_URL}assessments/${this.props.assessments.selected}`,{
+			resultJson:{
+				end_time:endTime
+			}
+		}).then(function (response) {
+			console.log("submitAssessment",response);
+  		})
+		.catch(function (error) {
+			console.log(error);
+		});
 	}
 
 	renderCategory() {
@@ -73,7 +88,7 @@ class Category extends Component {
 		}
 		if (nextCat > this.props.titles.length) {
 			return (
-				<Link to={"/results/" + this.props.assessments.selected} className="prev-next-button">
+				<Link to={"/results/" + this.props.assessments.selected} onClick={() => this.submitAssessment()} className="prev-next-button">
 					SUBMIT
 				</Link>
 			);
