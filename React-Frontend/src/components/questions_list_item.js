@@ -10,7 +10,7 @@ export default class QuestionsListItem extends Component {
 
 	constructor(props) {
 	    super(props);
-		this.state = {selectValue: this.props.question.answer_description};
+		this.state = {selectValue: this.props.question.answer_description, message: ""};
     	this.putResponse = this.putResponse.bind(this);
   }
 
@@ -30,6 +30,7 @@ export default class QuestionsListItem extends Component {
 						<div className="form-group response-dropdown">
 							{this.renderDropDown()}
 						</div>
+						<div className="message">{this.state.message}</div>
 			        </form>
 				</td>
 			</tr>
@@ -65,6 +66,8 @@ export default class QuestionsListItem extends Component {
 	}
 
 	putResponse(event) {
+		this.setState({selectValue: event.target.value, message: "Saving..."});
+
 		console.log(TAG, '\nresponse_id: ', this.props.question.response_id, '\nassessment_id: ', this.props.question.assessment_id, '\nquestion_id: ',
 		 this.props.question.question_id, '\nanswer_id: ', this.props.question.answer_id, '\nUPDATE ANSWER TO:', event.target.value)
 		axios.put(`${ROOT_URL}responses/${this.props.question.response_id}`, {
@@ -75,14 +78,19 @@ export default class QuestionsListItem extends Component {
 				answer_description: event.target.value
 		}
 	  })
-	  .then(function (response) {
-	    console.log(response);
+	  .then((response) => {
+	    this.setState({message: "Saved."});
+		setTimeout(() => { this.clearMessage() }, 3000);
 	  })
 	  .catch(function (error) {
-	    console.log(error);
+	    this.setState({message: "An Error occurred while saving, please try again."});
+		setTimeout(() => { this.clearMessage() }, 3000);		
 	  });
-		this.setState({selectValue: event.target.value});
 
+	}
+
+	clearMessage() {
+		this.setState({message: ""});
 	}
 
 	render() {
