@@ -1,8 +1,12 @@
 // import { LOGIN, LOGOUT, REGISTER } from '../actions/index';
-import { LOGIN, LOGOUT, REGISTER } from '../actions/index';
+import {
+	LOGIN,
+	LOGOUT,
+	REGISTER
+} from '../actions/types';
 
-const INITIAL_STATE = { team_name: localStorage.getItem('team_name') != null ? localStorage.getItem('team_name') : null, 
-						user_id: localStorage.getItem('user_id') != null ? localStorage.getItem('user_id') : null, 
+const INITIAL_STATE = { team_name: localStorage.getItem('team_name') != null ? localStorage.getItem('team_name') : null,
+						user_id: localStorage.getItem('user_id') != null ? localStorage.getItem('user_id') : null,
 						isLoggedIn: localStorage.getItem('isLoggedIn') ? localStorage.getItem('isLoggedIn') : null };
 
 const TAG = 'REDUCER LOGIN | ';

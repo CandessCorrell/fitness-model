@@ -1,4 +1,4 @@
-import { FETCH_CATEGORY, FETCH_CATEGORIES } from '../actions/index';
+import { FETCH_CATEGORY, FETCH_CATEGORIES } from '../actions/types';
 
 const INITIAL_STATE = { titles: null, questions: null, checked: false};
 

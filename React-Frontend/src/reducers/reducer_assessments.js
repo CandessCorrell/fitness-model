@@ -4,7 +4,7 @@ import {
 	SELECT_ASSESSMENT,
 	ADD_ASSESSMENT,
 	FETCH_RECOMMENDATIONS
-} from '../actions/index';
+} from '../actions/types';
 
 const INITIAL_STATE = { assessments: null, selected: null, scores: null};
 

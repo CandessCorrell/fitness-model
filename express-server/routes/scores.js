@@ -26,9 +26,9 @@ module.exports = {
 }
 
 function get_scores(assessment_id, callBack, errBack) {
-  var getScoresQuery = "SELECT c.description, SUM(ans.score) as score FROM ((questions as q \
-  INNER JOIN answers as ans ON q.question_id=ans.question_id) INNER JOIN responses as r \
-  ON r.question_id=q.question_id INNER JOIN categories as c ON c.category_id=q.category_id) \
+  var getScoresQuery = "SELECT c.description, SUM(a.score) as score FROM ((questions as q \
+  INNER JOIN answers as a ON q.question_id=a.question_id) INNER JOIN responses as r \
+  ON r.answer_id=a.answer_id INNER JOIN categories as c ON c.category_id=q.category_id) \
 	WHERE r.assessment_id={0} GROUP BY c.description".format(assessment_id);
   console.log(TAG, "getScoresQuery:", getScoresQuery)
   client.query(getScoresQuery, function (err, result) {
