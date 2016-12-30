@@ -7,7 +7,7 @@ import {
 
 // After we switch to NEW_FETCH_CATEGORIES, won't need titles or questions.
 // Still need to implement something in here to track 'checked' for each individual category
-const INITIAL_STATE = { titles: '', questions: '', categories: '', selected: '' };
+const INITIAL_STATE = { titles: '', questions: null, categories: '', selected: '' };
 
 export default function(state = INITIAL_STATE, action) {
 	switch(action.type) {

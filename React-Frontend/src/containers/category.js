@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategory, ROOT_URL } from '../actions/index';
+import { fetchCategory, ROOT_URL } from '../actions/';
 import QuestionsList from '../components/questions_list';
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
@@ -150,8 +150,8 @@ class Category extends Component {
 
 function mapStateToProps(state) {
 	return {
-		questions: state.category.questions,
-		titles: state.category.titles,
+		questions: state.categories.questions,
+		titles: state.categories.titles,
 		assessments: state.assessments,
 		login: state.login
 	};

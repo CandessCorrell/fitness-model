@@ -76,7 +76,7 @@ class CategoriesList extends Component {
 }
 
 function mapStateToProps(state) {
-  return { titles: state.category.titles, assessments: state.assessments };
+  return { titles: state.categories.titles, assessments: state.assessments };
 }
 
 export default connect(mapStateToProps, { fetchCategories })(CategoriesList);
