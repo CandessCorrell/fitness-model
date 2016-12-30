@@ -74,9 +74,8 @@ module.exports = {
 
 function get_categories_by_assessment_id(assessment_id, category, categories, index, numTimes, callBack, errBack) {
   var getCategoriesByAssessmentIdQuery = "SELECT q.question_id, a.answer_id, r.response_id as response_id, \
-  r.assessment_id, a.description as answer_description, q.description \
-  as question_description, c.category_id as category_id, a.recommendation, q.fitness_level, \
-  c.description as category_description FROM \
+  r.assessment_id, a.description as answer_description, q.description as question_description, a.score, \
+  c.category_id as category_id, a.recommendation, q.fitness_level, c.description as category_description FROM \
   questions as q INNER JOIN categories as c ON q.category_id = c.category_id  \
   INNER JOIN answers as a ON q.question_id = a.question_id INNER JOIN responses \
   as r ON r.answer_id = a.answer_id WHERE r.assessment_id =\'{0}\' AND c.category_id \
@@ -87,10 +86,13 @@ function get_categories_by_assessment_id(assessment_id, category, categories, in
     }
     else {
       // condition is number of categories, decrement some counter every time before we return from this function
-      console.log('index', index);
-      console.log('numTimes', numTimes);
+      // console.log('index', index);
+      // console.log('numTimes', numTimes);
       // console.log('BEFORE ADD ROWS:', categories);
-      categories[category.description] = result.rows;
+      // var temp = {};
+      // temp[category.description] = result.rows
+      // console.log(TAG, category.description, '|', temp[category.description]);
+      categories[index] = result.rows;
       // console.log('AFTER ADD ROWS:', categories);
       if (index === numTimes-1) {
         return callBack(categories);
@@ -123,7 +125,7 @@ function get_categories(assessment_id, callBack, errBack) {
           return callBack(result);
         }
         else {
-          var categories = {};
+          var categories = [];
           for (var i = 0; i < result.rows.length; i++) {
             get_categories_by_assessment_id(assessment_id, result.rows[i], categories, i, result.rows.length, callBack, errBack);
           }
@@ -140,7 +142,7 @@ function post_categories(description, callBack, errBack) {
       return errBack(err);
     } else {
       console.log(TAG, "Successfully inserted new category with description: " + description);
-      return callBack("Successfully inserted your new category!");
+      return callBack({ description });
     }
   })
 }
