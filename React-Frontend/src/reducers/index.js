@@ -4,7 +4,7 @@ import AssessmentsReducer from './reducer_assessments';
 import LoginReducer from './reducer_login';
 
 const rootReducer = combineReducers({
-  category: CategoriesReducer,
+  categories: CategoriesReducer,
   assessments: AssessmentsReducer,
   login: LoginReducer
 });
