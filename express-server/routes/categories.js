@@ -5,7 +5,7 @@ var client = clientJS.client;
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
-var TAG = "\nCATEGORIES | ";
+var TAG = "CATEGORIES | ";
 
 module.exports = {
   '/categories': {

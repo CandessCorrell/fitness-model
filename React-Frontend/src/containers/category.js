@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategory, ROOT_URL } from '../actions/';
+import { newFetchCategories, selectCategory, ROOT_URL } from '../actions/';
 import QuestionsList from '../components/questions_list';
 import Sidebar from '../components/sidebar';
 import Header from '../components/header';
@@ -21,12 +21,14 @@ class Category extends Component {
 	}
 
 	componentWillMount() {
-		this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
+		if (this.props.assessments.selected) {
+			this.props.newFetchCategories(this.props.assessments.selected);
+		}
 	}
 
 	componentWillUpdate(nextProps) {
-		if ((nextProps.assessments.selected != this.props.assessments.selected) || (nextProps.params.id != this.props.params.id)) {
-			this.props.fetchCategory(nextProps.assessments.selected,nextProps.params.id);
+		if (nextProps.assessments.selected != this.props.assessments.selected) {
+			this.props.newFetchCategories(nextProps.assessments.selected);
 		}
 	}
 
@@ -44,17 +46,19 @@ class Category extends Component {
 		});
 	}
 
-	renderCategory() {
-		if (this.props.params.oldid != this.props.params.id) {
-			this.props.params.oldid = this.props.params.id;
-			this.props.fetchCategory(this.props.assessments.selected,this.props.params.id);
-		}
-	}
+	// TODO: Potentially remove this call entirely... seems like an awful place to make an API call.
+	// Also just seems unnecessary, since we are already making the call in componentWillMount.
+	// renderCategory() {
+	// 	if (this.props.params.oldid != this.props.params.id) {
+	// 		this.props.params.oldid = this.props.params.id;
+	// 		this.props.newFetchCategories(this.props.assessments.selected);
+	// 	}
+	// }
 
 	renderFitnessLevel(level) {
 		var hasLevel = false;
-
-		this.props.questions.map((question) => {
+		let current_category = this.props.categories.categories[this.props.categories.selected]
+		current_category.map((question) => {
 			if (question.fitness_level == level) {
 				hasLevel = true;
 			}
@@ -62,7 +66,7 @@ class Category extends Component {
 
 		if (hasLevel == true) {
 			return (
-				<QuestionsList id={ level } questions={ this.props.questions } />
+				<QuestionsList id={ level } questions={ current_category } />
 			);
 		}
 
@@ -72,13 +76,14 @@ class Category extends Component {
 	}
 
 	renderPrevious(prevCat) {
-		if (prevCat == 0) {
+		if (prevCat == -1) {
 			return ;
 		}
 		return (
-			<Link to={"/category/" + prevCat} className="prev-next-button">
+			// TODO: Convert this to <button> and make a call to SELECT_CATEGORY action creator.
+			<button className="prev-next-button" onClick={() => this.props.selectCategory(prevCat)}>
 				PREV
-			</Link>
+			</button>
 		);
 	}
 
@@ -86,33 +91,43 @@ class Category extends Component {
 		if (this.props.titles == null) {
 			return;
 		}
-		if (nextCat > this.props.titles.length) {
+		console.log(TAG, 'this.props.categories.categories[this.props.categories.selected].length:',
+		this.props.categories.categories.length);
+		if (nextCat > this.props.categories.categories.length-1) {
 			return (
-				<Link to={"/results/" + this.props.assessments.selected} onClick={() => this.submitAssessment()} className="prev-next-button">
+				// TODO: Convert this to <button> and make a call to SELECT_CATEGORY action creator.
+				<Link to="/results/" onClick={() => this.submitAssessment()} className="prev-next-button">
 					SUBMIT
 				</Link>
 			);
 		} else {
 			return (
-				<Link to={"/category/" + nextCat} className="prev-next-button">
+				// TODO: Convert this to <button> and make a call to SELECT_CATEGORY action creator.
+				<button className="prev-next-button" onClick={() => this.props.selectCategory(nextCat)}>
 					NEXT
-				</Link>
+				</button>
 			);
 		}
 	}
 
 	render() {
-		const { questions } = this.props;
+		const { questions, categories } = this.props;
+		let current_category = categories.categories[categories.selected];
+		// console.log(TAG, 'categories |', categories);
+		// console.log(TAG, 'categories.categories |', categories.categories);
+		// console.log(TAG, 'current_category |', current_category);
 
-		if ( !questions ) {
-			this.props.params.oldid = this.props.params.id;
+		// Check for current_category, if current_category evaluates to truthy,
+		// we successfully made our API call to fetch all categories,
+		// selected a category, and have content to render.
+		if ( !current_category ) {
 			return <div>Loading...</div>;
 		}
-		this.renderCategory();
+		// this.renderCategory();
 
-		var prevCategory = parseInt(this.props.params.id) - 1;
+		var prevCategory = parseInt(this.props.categories.selected) - 1;
 
-		var nextCategory = parseInt(this.props.params.id) + 1;
+		var nextCategory = parseInt(this.props.categories.selected) + 1;
 
 		return (
 			<div>
@@ -122,11 +137,11 @@ class Category extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-md-2" style={{height: 500, width: 200}}>
-							<Sidebar activeCategory={this.props.questions[0].category_description}/>
+							<Sidebar activeCategory={current_category[0].category_description}/>
 						</div>
 						<div className="col-md-8">
 							<h1 className="category-title">
-								{this.props.questions[0].category_description}
+								{current_category[0].category_description}
 							</h1>
 							<div className="category-container">
 								{ this.renderFitnessLevel("1") }
@@ -153,8 +168,9 @@ function mapStateToProps(state) {
 		questions: state.categories.questions,
 		titles: state.categories.titles,
 		assessments: state.assessments,
-		login: state.login
+		login: state.login,
+		categories: state.categories
 	};
 }
 
-export default connect(mapStateToProps, { fetchCategory })(Category);
+export default connect(mapStateToProps, { newFetchCategories, selectCategory })(Category);

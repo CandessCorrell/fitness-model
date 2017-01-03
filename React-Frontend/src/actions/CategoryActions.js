@@ -7,6 +7,8 @@ import {
 } from './types';
 import { ROOT_URL } from './index';
 
+const TAG = 'CategoryActions | ';
+
 export function newFetchCategories(assessment_id) {
   const request = axios.get(`${ROOT_URL}categories/${assessment_id}`);
   return {
@@ -16,6 +18,7 @@ export function newFetchCategories(assessment_id) {
 }
 
 export function selectCategory(category_id) {
+	console.log(TAG, SELECT_CATEGORY, '| category_id:', category_id);
 	return {
 		type: SELECT_CATEGORY,
 		payload: category_id

@@ -24,8 +24,8 @@ export function selectAssessment(id) {
 
 export function postAssessment(user_id,version_id) {
 	const request = axios.post(`${ROOT_URL}assessments`,{
-		user_id:user_id,
-		version_id:version_id
+		user_id: user_id,
+		version_id: version_id
 	});
 
 	return {

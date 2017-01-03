@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { fetchAssessments, selectAssessment, postAssessment, ROOT_URL } from '../actions/index';
+import { fetchAssessments, selectAssessment, selectCategory, postAssessment, ROOT_URL } from '../actions/index';
 import { Link } from 'react-router';
 import axios from 'axios';
+
+const TAG = 'ASSESSMENTS | ';
 
 class Assessments extends Component {
 
   componentWillMount() {
 		this.props.fetchAssessments(this.props.login.user_id);
   }
-
   addAssessment() {
     axios.get(`${ROOT_URL}versions`)
     .then((response) => {
@@ -23,6 +24,7 @@ class Assessments extends Component {
           latest_id = data.version_id;
         }
       })
+      this.props.selectCategory(0);
       this.props.postAssessment(this.props.login.user_id, latest_id);
 	  })
 	  .catch((error) => {
@@ -31,9 +33,9 @@ class Assessments extends Component {
   }
 
   selectAssessment(assessment_id) {
+    this.props.selectCategory(0);
     this.props.selectAssessment(assessment_id);
     // TODO: Eventually go back and dynamically pass this in
-    this.props.selectCategory(0);
   }
 
   renderNewAssessment(assessments) {
@@ -45,7 +47,7 @@ class Assessments extends Component {
       }
       if (!inProgress) { // Hide the Add new Assessment Link if there is one in progress
           return (
-            <Link to={"/category/1"} className="home-screen-button" onClick={() => this.addAssessment()}>Begin a New Project Assessment</Link>
+            <Link to={"/assessment"} className="home-screen-button" onClick={() => this.addAssessment()}>Begin a New Project Assessment</Link>
           )
       }
   }
@@ -55,15 +57,15 @@ class Assessments extends Component {
       if (data.end_time != null) {
           text = "See Assessment Results";
           css = "complete";
-          loc = `/results/${data.assessment_id}`;
+          loc = `/results`;
       } else {
           text = "Continue Assessment";
           css = "incomplete"
-          loc = "/category/1"
+          loc = "/assessment"
       }
       return (
           <div key={data.assessment_id}>
-              <Link to={loc} className={`home-screen-button ${css}`} onClick={() => this.props.selectAssessment(data.assessment_id)}>Assessment #{data.assessment_id}, Version #{data.version_id}<br/>{text}</Link>
+              <Link to={loc} className={`home-screen-button ${css}`} onClick={() => this.selectAssessment(data.assessment_id)}>Assessment #{data.assessment_id}, Version #{data.version_id}<br/>{text}</Link>
           </div>
       )
     }
@@ -96,4 +98,4 @@ function mapStateToProps(state) {
 	return { assessments: state.assessments, login: state.login };
 }
 
-export default connect(mapStateToProps, { fetchAssessments,selectAssessment,postAssessment })(Assessments);
+export default connect(mapStateToProps, { fetchAssessments,selectAssessment,postAssessment,selectCategory })(Assessments);

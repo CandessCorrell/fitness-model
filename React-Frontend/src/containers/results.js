@@ -17,8 +17,8 @@ class Results extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchRecommendations(this.props.params.id);
-		this.props.fetchScores(this.props.params.id);
+		this.props.fetchRecommendations(this.props.selected);
+		this.props.fetchScores(this.props.selected);
 		console.log(TAG, 'componentDidMount & fetchRecommendations called.');
 	}
 
@@ -31,9 +31,8 @@ class Results extends Component {
 	}
 
 	renderScores() {
-		if (this.props.params.oldid != this.props.params.id) {
-			this.props.params.oldid = this.props.params.id;
-			this.props.fetchRecommendations(this.props.params.id);
+		if (this.props.selected != this.props.selected) {
+			this.props.fetchRecommendations(this.props.selected);
 		}
 	}
 
@@ -83,7 +82,7 @@ class Results extends Component {
 	render() {
 		const { recommendations, scores } = this.props;
 
-		console.log("started it");
+		// console.log("started it");
 		// console.log(JSON.stringify(this.props));
 
 		if ( !recommendations || !scores ) {
@@ -116,7 +115,7 @@ class Results extends Component {
 									{ this.renderRecommendations() }
 								</div>
 
-								{ console.log("passed it") }
+								{/*{ console.log("passed it") }*/}
 
 							</div>
 							{/*<div className="footer-buttons">

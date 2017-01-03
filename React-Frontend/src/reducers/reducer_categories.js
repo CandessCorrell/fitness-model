@@ -5,6 +5,8 @@ import {
 	SELECT_CATEGORY
 } from '../actions/types';
 
+const TAG = 'CategoriesReducer | ';
+
 // After we switch to NEW_FETCH_CATEGORIES, won't need titles or questions.
 // Still need to implement something in here to track 'checked' for each individual category
 const INITIAL_STATE = { titles: '', questions: null, categories: '', selected: '' };
@@ -16,8 +18,10 @@ export default function(state = INITIAL_STATE, action) {
 		case FETCH_CATEGORIES:
 			return { ...state, titles: action.payload.data.rows };
 		case NEW_FETCH_CATEGORIES:
+			console.log(TAG, action.payload.data);
 			return { ...state, categories: action.payload.data};
 		case SELECT_CATEGORY:
+			console.log(TAG, SELECT_CATEGORY, '|', action.payload);
 			return { ...state, selected: action.payload};
 		default:
 			return state;
