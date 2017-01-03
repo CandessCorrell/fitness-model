@@ -30,6 +30,12 @@ class Assessments extends Component {
 	  });
   }
 
+  selectAssessment(assessment_id) {
+    this.props.selectAssessment(assessment_id);
+    // TODO: Eventually go back and dynamically pass this in
+    this.props.selectCategory(0);
+  }
+
   renderNewAssessment(assessments) {
       let inProgress = false;
       for (var i in assessments) {
