@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import CategoriesList from '../containers/categories_list';
+import CategoriesList from '../containers/CategoriesList';
 
 export default class Sidebar extends Component {
 

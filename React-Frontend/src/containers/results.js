@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fetchRecommendations, fetchScores } from '../actions/index';
-import RecommendationsListItem from '../components/recommendations_list_item';
-import Header from '../components/header';
-import Sidebar from '../components/sidebar';
-import GraphLegend from '../components/graph_legend';
-import Graph from '../components/graph';
+import RecommendationsListItem from '../components/RecommendationsListItem';
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
+import GraphLegend from '../components/GraphLegend';
+import Graph from '../components/Graph';
 
 const TAG = 'RESULTS | ';
 
