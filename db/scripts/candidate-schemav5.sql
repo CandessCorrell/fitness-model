@@ -30,7 +30,7 @@ DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users (
   user_id serial PRIMARY KEY NOT NULL,
   team_name varchar(50),
-  password varchar(50)
+  password varchar(60)
 );
 
 DROP TABLE IF EXISTS questions CASCADE;
