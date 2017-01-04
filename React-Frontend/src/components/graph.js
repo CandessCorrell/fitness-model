@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import GraphList from './graph_list';
-import GraphLegend from './graph_legend'
+import GraphList from './GraphList';
+import GraphLegend from './GraphList'
 
 export default class Graph extends Component {
   render() {

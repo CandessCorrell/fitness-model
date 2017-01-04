@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { fetchRecommendations, fetchScores } from '../actions/index';
-import RecommendationsListItem from '../components/recommendations_list_item';
-import Header from '../components/header';
-import Sidebar from '../components/sidebar';
-import GraphLegend from '../components/graph_legend';
-import Graph from '../components/graph';
+import { fetchRecommendations, fetchScores, newFetchCategories } from '../actions/index';
+import RecommendationsList from '../components/RecommendationsList';
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
+import GraphLegend from '../components/GraphLegend';
+import Graph from '../components/Graph';
 
 const TAG = 'RESULTS | ';
 
@@ -17,66 +17,21 @@ class Results extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchRecommendations(this.props.selected);
+		this.props.newFetchCategories(this.props.selected);
+		// this.props.fetchRecommendations(this.props.selected);
 		this.props.fetchScores(this.props.selected);
-		console.log(TAG, 'componentDidMount & fetchRecommendations called.');
-	}
-
-	renderPrevious() {
-		return (
-			<Link to={"/category/3"} className="prev-next-button">
-				PREV
-			</Link>
-		);
-	}
-
-	renderScores() {
-		if (this.props.selected != this.props.selected) {
-			this.props.fetchRecommendations(this.props.selected);
-		}
+		console.log(TAG, 'componentDidMount & newFetchCategories called.');
 	}
 
 	renderRecommendations() {
-		// console.log("made it 1");
-		var recommendation_category = "";
-		// console.log("recommendation_category: ", recommendation_category);
-		var recommendation_category_array = [];
-		var recommendation_category_iterator = -1;
-		this.props.recommendations.map((result) => {
-			// console.log(result);
-			if (result.category == recommendation_category) {
-				if (result.recommendation != null) {
-					recommendation_category_array[recommendation_category_iterator].recommendation = recommendation_category_array[recommendation_category_iterator].recommendation + " " + result.recommendation;
-				}
-			}
-			else {
-				if (result.recommendation != null) {
-					recommendation_category_iterator++;
-					recommendation_category = result.category;
-					recommendation_category_array.push(result);
-				}
-				// console.log(recommendation_category_array);
-			}
-		});
-		var recommendation_level = 0;
-		if (recommendation_category_array[0] == null &&
-		recommendation_category_array[1] == null &&
-		recommendation_category_array[2] == null){
-			return (<div> We have no more recommendations. The student has become the master. </div>)
-		}
-		else {
-			return recommendation_category_array.map((recommendation) => {
-			// console.log(JSON.stringify(recommendation));
-			// console.log(recommendation);
-			recommendation_level++;
+		console.log()
+		return this.props.categories.categories.map((category) => {
 			return (
-				<RecommendationsListItem
-					fitness_level={recommendation_level}
-					category={recommendation.category}
-					recommendation={recommendation.recommendation}
-				/>
-			)});
-		}
+				<div>
+					<RecommendationsList key={'Recommendation'+category[0].category_description} recommendations={category} />
+				</div>
+			);
+		})
 	}
 
 	render() {
@@ -85,12 +40,10 @@ class Results extends Component {
 		// console.log("started it");
 		// console.log(JSON.stringify(this.props));
 
-		if ( !recommendations || !scores ) {
+		if ( !this.props.categories.categories ) {
 			this.props.params.oldid = this.props.params.id;
 			return <div>Loading...</div>;
 		}
-
-		this.renderScores();
 
 		return (
 
@@ -108,8 +61,13 @@ class Results extends Component {
 								<h1 className="results-title">
 									Results
 								</h1>
-								<Graph scores={this.props.scores}/>
-								{/*<img className="graph" src="../assets/graph.png" />*/}
+
+								{/*<Graph scores={this.props.scores}/>*/}
+								<div className="graph-container">
+									<img className="graph" src="../assets/graph.png" />
+									<GraphLegend className="graph-legend" />
+								</div>
+
 								<div className="recommendations-list">
 									<h2 className="results-subtitle"> Recommendations </h2>
 									{ this.renderRecommendations() }
@@ -132,8 +90,12 @@ class Results extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return { recommendations: state.assessments.recommendations, selected: state.assessments.selected, scores: state.assessments.scores};
+function mapStateToProps({ assessments, categories }) {
+	return {
+		selected: assessments.selected,
+		scores: assessments.scores,
+		categories: categories
+	};
 }
 
-export default connect(mapStateToProps, { fetchRecommendations, fetchScores })(Results);
+export default connect(mapStateToProps, { newFetchCategories, fetchScores })(Results);

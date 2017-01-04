@@ -46,6 +46,13 @@ div.fitness-container {
 	margin-bottom: 60px;
 }
 
+ul.recommendations-list {
+	width: 96%;
+	margin-left: 2%;
+	margin-right: 2%;
+	background-color: white;
+}
+
 table.fitness-table {
 	width: 96%;
 	margin-left: 2%;

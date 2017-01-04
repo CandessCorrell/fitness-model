@@ -1,12 +1,11 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import Home from './components/home';
-import App from './components/app';
-import Assessments from './containers/assessments'
-import Category from './containers/category'
-import Rankings from './components/rankings'
-import Results from './containers/results'
+import Home from './components/Home';
+import App from './components/App';
+import Assessments from './containers/Assessments'
+import Category from './containers/Category'
+import Results from './containers/Results'
 
 export default (
   <Route path="/" component={ App }>

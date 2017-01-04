@@ -55,12 +55,13 @@ h3.results-subtitle {
 	display: inline;
 }
 
-p.results-recommendations-body {
+li.results-recommendations-body {
   font-family: Helvetica, Arial, san-serif;
   size: 12px;
   font-weight: normal;
   color: #5B5E5E;
   width: 800px;
+	list-style-type:decimal;
 }
 
 img.results-category-fitness-level {

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import CategoriesReducer from './reducer_categories';
-import AssessmentsReducer from './reducer_assessments';
-import LoginReducer from './reducer_login';
+import CategoriesReducer from './CategoriesReducer';
+import AssessmentsReducer from './AssessmentsReducer';
+import LoginReducer from './LoginReducer';
 
 const rootReducer = combineReducers({
   categories: CategoriesReducer,
