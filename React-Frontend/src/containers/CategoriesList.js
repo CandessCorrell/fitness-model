@@ -6,7 +6,7 @@ import { selectCategory } from '../actions/index';
 // React router
 import { Router, Route, Link } from 'react-router';
 
-const TAG = "Categories List | ";
+const TAG = "CategoriesList | ";
 
 class CategoriesList extends Component {
 

@@ -5,7 +5,7 @@ import { fetchAssessments, selectAssessment, selectCategory, postAssessment, ROO
 import { Link } from 'react-router';
 import axios from 'axios';
 
-const TAG = 'ASSESSMENTS | ';
+const TAG = 'Assessments | ';
 
 class Assessments extends Component {
 

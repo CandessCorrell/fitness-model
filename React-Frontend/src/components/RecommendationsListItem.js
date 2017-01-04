@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-const TAG = 'RecommendationListItem | '
+const TAG = 'RecommendationListItem | ';
 
 export default class RecommendationsListItem extends Component {
 

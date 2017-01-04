@@ -8,7 +8,7 @@ import Sidebar from '../components/Sidebar';
 import GraphLegend from '../components/GraphLegend';
 import Graph from '../components/Graph';
 
-const TAG = 'RESULTS | ';
+const TAG = 'Results | ';
 
 class Results extends Component {
 

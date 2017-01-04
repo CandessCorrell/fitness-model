@@ -6,7 +6,7 @@ import {
 	FETCH_RECOMMENDATIONS
 } from '../actions/types';
 
-const TAG = 'ReducerAssessments | ';
+const TAG = 'AssessmentsReducer | ';
 
 const INITIAL_STATE = { assessments: null, selected: null, scores: null};
 
@@ -21,7 +21,6 @@ export default function(state = INITIAL_STATE, action) {
 		case SELECT_ASSESSMENT:
 			return { ...state, selected: action.payload };
 		case ADD_ASSESSMENT:
-			console.log(TAG, 'action.payload:', action.payload);
 			return { ...state, selected: action.payload.data.assessment_id };
 		default:
 			return state;
