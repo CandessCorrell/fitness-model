@@ -88,7 +88,7 @@ class Category extends Component {
 	}
 
 	renderNext(nextCat) {
-		if (this.props.titles == null) {
+		if (this.props.categories.selected == '') {
 			return;
 		}
 		console.log(TAG, 'this.props.categories.categories[this.props.categories.selected].length:',
@@ -111,7 +111,7 @@ class Category extends Component {
 	}
 
 	render() {
-		const { questions, categories } = this.props;
+		const { categories, login } = this.props;
 		let current_category = categories.categories[categories.selected];
 		// console.log(TAG, 'categories |', categories);
 		// console.log(TAG, 'categories.categories |', categories.categories);
@@ -125,19 +125,22 @@ class Category extends Component {
 		}
 		// this.renderCategory();
 
-		var prevCategory = parseInt(this.props.categories.selected) - 1;
+		var prevCategory = parseInt(categories.selected) - 1;
 
-		var nextCategory = parseInt(this.props.categories.selected) + 1;
+		var nextCategory = parseInt(categories.selected) + 1;
 
 		return (
 			<div>
 				<div className= "gray-band-container">
-					<Header className="gray-band" team_name={this.props.login.team_name}/>
+					<Header className="gray-band" team_name={login.team_name}/>
 				</div>
 				<div className="container">
 					<div className="row">
 						<div className="col-md-2" style={{height: 500, width: 200}}>
-							<Sidebar activeCategory={current_category[0].category_description}/>
+							<Sidebar
+								titles={categories}
+								activeCategory={current_category[0].category_description}
+							/>
 						</div>
 						<div className="col-md-8">
 							<h1 className="category-title">
@@ -165,8 +168,6 @@ class Category extends Component {
 
 function mapStateToProps(state) {
 	return {
-		questions: state.categories.questions,
-		titles: state.categories.titles,
 		assessments: state.assessments,
 		login: state.login,
 		categories: state.categories

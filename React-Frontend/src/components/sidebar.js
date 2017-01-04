@@ -7,7 +7,10 @@ export default class Sidebar extends Component {
   render() {
     return (
       <div className="sidebar">
-        <CategoriesList activeCategory={this.props.activeCategory}/>
+        <CategoriesList
+          titles={this.props.titles}
+          activeCategory={this.props.activeCategory}
+        />
       </div>
     )
   }

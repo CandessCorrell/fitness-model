@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategories } from '../actions/index';
+import { selectCategory } from '../actions/index';
 
 // React router
 import { Router, Route, Link } from 'react-router';
@@ -9,10 +9,6 @@ import { Router, Route, Link } from 'react-router';
 const TAG = "Categories List | ";
 
 class CategoriesList extends Component {
-
-  componentWillMount() {
-    this.props.fetchCategories();
-  }
 
   setClassName(category_description) {
     if (this.props.activeCategory == category_description) {
@@ -25,26 +21,33 @@ class CategoriesList extends Component {
     const { titles } = this.props;
 
     if ( titles ) {
-      var sortedTitles = _.sortBy(this.props.titles, 'category_id');
+      var sortedTitles = _.sortBy(this.props.titles.categories, 'category_id');
     }
-
-    return sortedTitles.map((title) => {
-      // REMOVE THIS IF STATEMENT AFTER DEMO
-      // Convert to use Redux state to track check vs. empty to render appropriate image.
-      return (
-        <li className={this.setClassName(title.description)}>
-          <img className="nav-circle" src="../assets/nav-checked-circle.png" />
-          <Link
-            to={"/category/" + title.category_id}
-            className="category-link"
-            key={title.description}
-          >
-            {title.description}
-          </Link>
-          <br />
-        </li>
+    var newArr = [];
+    // Difference between let and var here????
+    // Was using var initially and experienced some very confusing behavior.
+    for (let i = 0; i < sortedTitles.length; i++) {
+      // TODO: Convert to use Redux state to track check vs. empty to render appropriate image.
+      // sortedTitles[i].map((question) => {
+      //
+      // });
+      // if (checked)
+      newArr.push(
+        <li className={this.setClassName(sortedTitles[i][0].category_description)}>
+        <img className="nav-circle" src="../assets/nav-checked-circle.png" />
+        <Link
+          to={"/assessment"}
+          className="category-link"
+          onClick={() => this.props.selectCategory(i)}
+          key={sortedTitles[i][0].category_description}
+        >
+          {sortedTitles[i][0].category_description}
+        </Link>
+        <br />
+      </li>
       );
-    });
+    };
+    return newArr;
   }
 
 
@@ -62,9 +65,10 @@ class CategoriesList extends Component {
         <li className={this.setClassName('Results')}>
           <img className="nav-circle" src="../assets/nav-empty-circle.png" />
           <Link
-            to={"/results/" + this.props.assessments.selected}
+            to={"/results"}
             className="category-link"
-            key={12}
+            onClick={() => this.props.selectCategory('')}
+            key={'ResultsSidebarLink'}
           >
             Results
           </Link>
@@ -75,8 +79,4 @@ class CategoriesList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { titles: state.categories.titles, assessments: state.assessments };
-}
-
-export default connect(mapStateToProps, { fetchCategories })(CategoriesList);
+export default connect(null, { selectCategory })(CategoriesList);
