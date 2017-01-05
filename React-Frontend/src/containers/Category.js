@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { newFetchCategories, selectCategory, ROOT_URL } from '../actions/';
 import QuestionsList from '../components/QuestionsList';
 import Sidebar from '../components/Sidebar';
@@ -58,6 +59,7 @@ class Category extends Component {
 	renderFitnessLevel(level) {
 		var hasLevel = false;
 		let current_category = this.props.categories.categories[this.props.categories.selected]
+		let sortedCategory = _.sortBy(current_category, 'question_id');
 		current_category.map((question) => {
 			if (question.fitness_level == level) {
 				hasLevel = true;
@@ -66,7 +68,7 @@ class Category extends Component {
 
 		if (hasLevel == true) {
 			return (
-				<QuestionsList id={ level } questions={ current_category } />
+				<QuestionsList id={ level } questions={ sortedCategory } />
 			);
 		}
 

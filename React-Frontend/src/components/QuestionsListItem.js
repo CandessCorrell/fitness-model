@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { ROOT_URL } from '../actions/index.js';
+import { ROOT_URL, newFetchCategories } from '../actions/index.js';
 const TAG = 'QuestionListItem | '
 
 var renderCount = 0
 
-export default class QuestionsListItem extends Component {
+class QuestionsListItem extends Component {
 
 	constructor(props) {
     super(props);
@@ -76,6 +76,8 @@ export default class QuestionsListItem extends Component {
 	  })
 	  .then((response) => {
 	    this.setState({message: "Saved."});
+			console.log(TAG, 'this.props.questions[0].assessment_id:', this.props.questions[0].assessment_id);
+			this.props.newFetchCategories(this.props.questions[0].assessment_id)
 		setTimeout(() => { this.clearMessage() }, 3000);
 	  })
 	  .catch(function (error) {
@@ -95,3 +97,5 @@ export default class QuestionsListItem extends Component {
 		);
 	}
 }
+
+export default connect(null, { newFetchCategories })(QuestionsListItem)
