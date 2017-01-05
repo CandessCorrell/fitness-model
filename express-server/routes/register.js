@@ -1,6 +1,7 @@
 'use strict';
 var clientJS = require('./helper-functions/client.js');
 var client = clientJS.client;
+var bcrypt = require('bcrypt-nodejs');
 // bodyParser enables post request body parsing
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -51,7 +52,8 @@ function checkExistingUsers(registerJson, callBack, errBack) {
 
 function register(registerJson, callBack, errBack) {
   var team_name = registerJson.team_name;
-  var password = registerJson.password;
+  var password = bcrypt.hashSync(registerJson.password);
+  console.log(password);
   var registerQuery = "INSERT INTO users (team_name, password) \
   VALUES (\'{0}\', \'{1}\') RETURNING team_name, user_id".format(team_name, password);
   console.log(TAG, registerQuery);

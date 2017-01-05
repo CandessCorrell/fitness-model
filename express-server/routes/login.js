@@ -1,6 +1,7 @@
 'use strict';
 var clientJS = require('./helper-functions/client.js');
 var client = clientJS.client;
+var bcrypt = require('bcrypt-nodejs');
 // bodyParser enables post request body parsing
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -37,19 +38,25 @@ module.exports = {
 function login(loginJson, callBack, errBack) {
   var team_name = loginJson.team_name;
   var password = loginJson.password;
-  var loginQuery = "SELECT user_id, team_name FROM users WHERE team_name=\'{0}\' AND \
-  password=\'{1}\'".format(team_name, password);
-  console.log(TAG, loginQuery);
+  var loginQuery = "SELECT user_id, team_name, password FROM users WHERE team_name=\'{0}\'".format(team_name);
+  // console.log(TAG, loginQuery);
   client.query(loginQuery, function (err, result) {
     if (err || result.rows[0] === 'undefined' || typeof result.rows[0] === 'undefined') {
         // Throw 401 error if invalid login combination supplied
-        console.log(TAG, "loginQuery: ", loginQuery);
+        // console.log(TAG, "loginQuery: ", loginQuery);
         return errBack(err);
       } else {
         // for (var i = 0; i < result.rows.length; i++) {
         //  console.log(TAG, funcTAG, "row[" + i + "]: " + JSON.stringify(result.rows[i]));
         // }
-        return callBack(result);
+        console.log(TAG, 'result.rows[0].password:', result.rows[0].password);
+        console.log(TAG, 'password:', password);
+        console.log(TAG, bcrypt.compareSync(password, result.rows[0].password));
+        if (bcrypt.compareSync(password, result.rows[0].password)) {
+          delete result.rows[0].password;
+          return callBack(result);
+        }
+        return errBack(err);
     }
   })
 }

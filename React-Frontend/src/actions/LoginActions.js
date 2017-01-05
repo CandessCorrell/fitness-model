@@ -6,6 +6,8 @@ import {
 	REGISTER
 } from './types';
 
+const TAG = 'LoginActions | ';
+
 export function login(team_name, password) {
 	const request = axios.post(`${ROOT_URL}login`, {
     loginJson: {
