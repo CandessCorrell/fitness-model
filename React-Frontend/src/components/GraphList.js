@@ -2,26 +2,6 @@ import React, { Component } from 'react';
 import GraphListItem from './GraphListItem';
 
 const TAG = 'GraphList | ';
-// const categoryFitnessLevelThresholds = [
-//   [
-//     12,
-//     8,
-//     4,
-//     24
-//   ],
-//   [
-//     12,
-//     8,
-//     20,
-//     40
-//   ],
-//   {
-//     8,
-//     8,
-//     4,
-//     20
-//   }
-// ]
 
 export default class GraphList extends Component {
   constructor(props) {

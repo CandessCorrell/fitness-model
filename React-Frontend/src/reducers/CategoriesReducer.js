@@ -18,10 +18,8 @@ export default function(state = INITIAL_STATE, action) {
 		case FETCH_CATEGORIES:
 			return { ...state, titles: action.payload.data.rows };
 		case NEW_FETCH_CATEGORIES:
-			console.log(TAG, action.payload.data);
 			return { ...state, categories: action.payload.data};
 		case SELECT_CATEGORY:
-			console.log(TAG, SELECT_CATEGORY, '|', action.payload);
 			return { ...state, selected: action.payload};
 		default:
 			return state;

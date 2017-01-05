@@ -15,7 +15,6 @@ module.exports = {
     fn: function(request, response) {
       if (request.method === 'POST') {
         console.log(TAG, "Called /register(POST)");
-        console.log(TAG, 'request.body.registerJson', JSON.stringify(request.body.registerJson));
     	  checkExistingUsers(request.body.registerJson,
     	  	function(resp) {
     	  	// This is the callback - we move into this if the function returns data as expected
@@ -53,10 +52,8 @@ function checkExistingUsers(registerJson, callBack, errBack) {
 function register(registerJson, callBack, errBack) {
   var team_name = registerJson.team_name;
   var password = bcrypt.hashSync(registerJson.password);
-  console.log(password);
   var registerQuery = "INSERT INTO users (team_name, password) \
   VALUES (\'{0}\', \'{1}\') RETURNING team_name, user_id".format(team_name, password);
-  console.log(TAG, registerQuery);
   client.query(registerQuery, function (err, result) {
     if (err) {
         console.log(TAG, "registerQuery: ", registerQuery);

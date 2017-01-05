@@ -20,11 +20,9 @@ class Results extends Component {
 		this.props.newFetchCategories(this.props.selected);
 		// this.props.fetchRecommendations(this.props.selected);
 		this.props.fetchScores(this.props.selected);
-		console.log(TAG, 'componentDidMount & newFetchCategories called.');
 	}
 
 	renderRecommendations() {
-		console.log()
 		return this.props.categories.categories.map((category) => {
 			return (
 				<div>
@@ -36,9 +34,6 @@ class Results extends Component {
 
 	render() {
 		const { recommendations, scores } = this.props;
-
-		// console.log("started it");
-		// console.log(JSON.stringify(this.props));
 
 		if ( !this.props.categories.categories ) {
 			this.props.params.oldid = this.props.params.id;
@@ -72,13 +67,7 @@ class Results extends Component {
 									<h2 className="results-subtitle"> Recommendations </h2>
 									{ this.renderRecommendations() }
 								</div>
-
-								{/*{ console.log("passed it") }*/}
-
 							</div>
-							{/*<div className="footer-buttons">
-								{this.renderPrevious()}
-							</div>*/}
 						</div>
 						<Link to="/" className="col-md-2 category-logo-container">
 							<img src="../assets/final-logo.png" className="category-logo" />

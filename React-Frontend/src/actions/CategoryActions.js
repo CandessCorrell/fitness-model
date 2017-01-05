@@ -18,7 +18,6 @@ export function newFetchCategories(assessment_id) {
 }
 
 export function selectCategory(category_id) {
-	console.log(TAG, SELECT_CATEGORY, '| category_id:', category_id);
 	return {
 		type: SELECT_CATEGORY,
 		payload: category_id
@@ -36,8 +35,6 @@ export function fetchCategories() {
 
 export function fetchCategory(assessment_id,category_id) {
 	const request = axios.get(`${ROOT_URL}assessments/${assessment_id}/category/${category_id}`);
-	console.log('fetchCategory request:', request);
-
 	return {
 		type: FETCH_CATEGORY,
 		payload: request

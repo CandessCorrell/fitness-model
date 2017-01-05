@@ -49,9 +49,6 @@ function login(loginJson, callBack, errBack) {
         // for (var i = 0; i < result.rows.length; i++) {
         //  console.log(TAG, funcTAG, "row[" + i + "]: " + JSON.stringify(result.rows[i]));
         // }
-        console.log(TAG, 'result.rows[0].password:', result.rows[0].password);
-        console.log(TAG, 'password:', password);
-        console.log(TAG, bcrypt.compareSync(password, result.rows[0].password));
         if (bcrypt.compareSync(password, result.rows[0].password)) {
           delete result.rows[0].password;
           return callBack(result);

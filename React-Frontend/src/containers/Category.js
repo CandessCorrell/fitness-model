@@ -91,8 +91,6 @@ class Category extends Component {
 		if (this.props.categories.selected == -1) {
 			return;
 		}
-		console.log(TAG, 'this.props.categories.categories[this.props.categories.selected].length:',
-		this.props.categories.categories.length);
 		if (nextCat > this.props.categories.categories.length-1) {
 			return (
 				// TODO: Convert this to <button> and make a call to SELECT_CATEGORY action creator.
@@ -113,9 +111,6 @@ class Category extends Component {
 	render() {
 		const { categories, login } = this.props;
 		let current_category = categories.categories[categories.selected];
-		// console.log(TAG, 'categories |', categories);
-		// console.log(TAG, 'categories.categories |', categories.categories);
-		// console.log(TAG, 'current_category |', current_category);
 
 		// Check for current_category, if current_category evaluates to truthy,
 		// we successfully made our API call to fetch all categories,

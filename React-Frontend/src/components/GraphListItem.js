@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 export default class GraphListItem extends Component {
   render() {
-    console.log(this.props);
     return (
       <li className="graph-list-item">
         <h4 className="graph-list-item-header"> {this.props.category} </h4>

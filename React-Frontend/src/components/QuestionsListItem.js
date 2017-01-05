@@ -37,7 +37,7 @@ export default class QuestionsListItem extends Component {
 		);
 	}
 
-	renderDropDown() {		
+	renderDropDown() {
 		if (this.props.question.answer_description == "Yes"
 		|| this.props.question.answer_description == "No"
 		|| this.props.question.answer_description == "Planning to"
@@ -67,9 +67,6 @@ export default class QuestionsListItem extends Component {
 
 	putResponse(event) {
 		this.setState({selectValue: event.target.value, message: "Saving..."});
-
-		console.log(TAG, '\nresponse_id: ', this.props.question.response_id, '\nassessment_id: ', this.props.question.assessment_id, '\nquestion_id: ',
-		 this.props.question.question_id, '\nanswer_id: ', this.props.question.answer_id, '\nUPDATE ANSWER TO:', event.target.value)
 		axios.put(`${ROOT_URL}responses/${this.props.question.response_id}`, {
 	    responseJson: {
 				question_id: this.props.question.question_id,
@@ -84,7 +81,7 @@ export default class QuestionsListItem extends Component {
 	  })
 	  .catch(function (error) {
 	    this.setState({message: "An Error occurred while saving, please try again."});
-		setTimeout(() => { this.clearMessage() }, 3000);		
+		setTimeout(() => { this.clearMessage() }, 3000);
 	  });
 
 	}

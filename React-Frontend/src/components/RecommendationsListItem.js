@@ -5,7 +5,6 @@ export default class RecommendationsListItem extends Component {
 
 	renderRecommendation() {
 		const { recommendation } = this.props;
-		console.log(TAG);
 		return (
 				<div>
 					<li className="results-recommendations-body">

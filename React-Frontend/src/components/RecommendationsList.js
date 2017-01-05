@@ -8,7 +8,6 @@ export default class RecommendationsList extends Component {
 
 	renderRecommendations() {
 		return this.props.recommendations.map((recommendation) => {
-			console.log(TAG, 'recommendation:', recommendation);
 			if (recommendation.answer_description == 'No') {
 				return (
 					<RecommendationsListItem

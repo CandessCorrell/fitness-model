@@ -11,7 +11,6 @@ const TAG = "Home | ";
 class Home extends Component {
 
   checkLoggedIn() {
-    console.log()
     if (this.props.isLoggedIn == 'true') {
       return (
         <div className="col-md-3 home-screen-button-container">

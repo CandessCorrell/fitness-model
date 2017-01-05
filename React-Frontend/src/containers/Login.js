@@ -21,7 +21,6 @@ class Login extends Component {
   	}
 
   render() {
-    console.log('Render called!');
     const { team_name, user_id } = this.props;
     return (
       <div className="logged-in-container">
