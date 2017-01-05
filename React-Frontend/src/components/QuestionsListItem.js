@@ -9,11 +9,10 @@ var renderCount = 0
 export default class QuestionsListItem extends Component {
 
 	constructor(props) {
-	    super(props);
+    super(props);
 		this.state = {selectValue: this.props.question.answer_description, message: ""};
-    	this.putResponse = this.putResponse.bind(this);
+  	this.putResponse = this.putResponse.bind(this);
   }
-
   componentWillUpdate(nextProps) {
 	  if (nextProps.question.answer_description != this.props.question.answer_description) {
 		  this.setState({selectValue:nextProps.question.answer_description});
@@ -31,7 +30,7 @@ export default class QuestionsListItem extends Component {
 							{this.renderDropDown()}
 						</div>
 						<div className="message">{this.state.message}</div>
-			        </form>
+	        </form>
 				</td>
 			</tr>
 		);
@@ -45,9 +44,9 @@ export default class QuestionsListItem extends Component {
 			return (
 				<select className="response-dropdown" value={this.state.selectValue}
 				onChange={this.putResponse}>
-					<option>Select</option>
-					<option>No</option>
-					<option>Yes</option>
+					<option value="Select">Select</option>
+					<option value="No">No</option>
+					<option value="Yes">Yes</option>
 				</select>
 			);
 		}
@@ -56,10 +55,10 @@ export default class QuestionsListItem extends Component {
 			return (
 				<select className="form-control" value={this.state.selectValue}
 				onChange={this.putResponse}>
-					<option>Select</option>
-					<option>Monthly</option>
-					<option>Weekly</option>
-					<option>Daily</option>
+					<option value="Select">Select</option>
+					<option value="Monthly">Monthly</option>
+					<option value="Weekly">Weekly</option>
+					<option value="Daily">Daily</option>
 				</select>
 			);
 		}
@@ -70,7 +69,7 @@ export default class QuestionsListItem extends Component {
 		axios.put(`${ROOT_URL}responses/${this.props.question.response_id}`, {
 	    responseJson: {
 				question_id: this.props.question.question_id,
-	    		answer_id: this.props.question.answer_id,
+    		answer_id: this.props.question.answer_id,
 				assessment_id: this.props.question.assessment_id,
 				answer_description: event.target.value
 		}
