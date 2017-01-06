@@ -62,7 +62,7 @@ class CategoriesList extends Component {
     return (
       <ul className="categories-list">
         { this.renderCategoriesList() }
-        <li className={this.setClassName('Results')}>
+        {/*<li className={this.setClassName('Results')}>
           <img className="nav-circle" src="../assets/nav-empty-circle.png" />
           <Link
             to={"/results"}
@@ -73,7 +73,7 @@ class CategoriesList extends Component {
             Results
           </Link>
           <br />
-        </li>
+        </li>*/}
       </ul>
     );
   }

@@ -28,7 +28,7 @@ class Login extends Component {
           <input type="text" onChange={this.handleTeamName} placeholder="Username" value={this.state.team_name}/> <br />
           <input type="password" onChange={this.handlePassword} placeholder="Password" value={this.state.password}/> <br />
           <button onClick={this.handleLoginClick}> Login! </button>
-          <button onClick={this.handleRegisterClick} > Register! </button>
+          {/*<button onClick={this.handleRegisterClick} > Register! </button>*/}
         {/*</form>*/}
       </div>
     );
