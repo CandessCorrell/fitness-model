@@ -8,6 +8,8 @@ import { Router, Route, Link } from 'react-router';
 
 const TAG = "CategoriesList | ";
 
+const DEFAULT_ANSWER = "Select";
+
 class CategoriesList extends Component {
 
   setClassName(category_description) {
@@ -15,6 +17,17 @@ class CategoriesList extends Component {
       return "active-sidebar"
     }
     return "sidebar-item"
+  }
+
+  isComplete(category) {
+    // Loop through each question and if any have a default answer, this category is incomplete
+    let complete = true;
+    category.forEach((question) => {
+      if (question.answer_description === DEFAULT_ANSWER){
+        complete = false;
+      }
+    });
+    return complete;
   }
 
   renderCategoriesList() {
@@ -27,14 +40,13 @@ class CategoriesList extends Component {
     // Difference between let and var here????
     // Was using var initially and experienced some very confusing behavior.
     for (let i = 0; i < sortedTitles.length; i++) {
-      // TODO: Convert to use Redux state to track check vs. empty to render appropriate image.
-      // sortedTitles[i].map((question) => {
-      //
-      // });
-      // if (checked)
+      let image = "../assets/nav-empty-circle.png";
+      if (this.isComplete(sortedTitles[i])) {
+        image = "../assets/nav-checked-circle.png";
+      }
       newArr.push(
-        <li className={this.setClassName(sortedTitles[i][0].category_description)}>
-        <img className="nav-circle" src="../assets/nav-checked-circle.png" />
+        <li key={i} className={this.setClassName(sortedTitles[i][0].category_description)}>
+        <img className="nav-circle" src={image} />
         <Link
           to={"/assessment"}
           className="category-link"
