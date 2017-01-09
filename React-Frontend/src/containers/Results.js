@@ -111,9 +111,9 @@ class Results extends Component {
 										<CartesianGrid strokeDasharray="3 3"/>
 										<Tooltip/>
 										<Legend />
-										<Bar dataKey="Level1" stackId="a" fill="#FBB040" />
-										<Bar dataKey="Level2" stackId="a" fill="#0D79A7" />
-										<Bar dataKey="Level3" stackId="a" fill="#589241" />
+										<Bar name="Fitness Level 1" dataKey="Level1" stackId="a" fill="#FBB040" />
+										<Bar name="Fitness Level 2" dataKey="Level2" stackId="a" fill="#0D79A7" />
+										<Bar name="Fitness Level 3" dataKey="Level3" stackId="a" fill="#589241" />
 									</BarChart>
 							
 								</div>
