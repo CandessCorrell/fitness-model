@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import Login from '../containers/Login';
 import { logout } from '../actions/index';
 

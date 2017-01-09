@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
 
 // React router
 import { Router, Route, Link } from 'react-router';
