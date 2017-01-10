@@ -23,9 +23,14 @@ export default class RecommendationsList extends Component {
 
 	render() {
 		const { recommendations } = this.props;
-
-		if ( !recommendations ) {
-			return <div>None</div>;
+		let content = false;
+		recommendations.map((question) => {
+			if (question.recommendation) {
+				content = true;
+			}
+		});
+		if ( !content ) {
+			return null;
 		}
 
 		return (
