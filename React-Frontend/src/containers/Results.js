@@ -52,7 +52,7 @@ class Results extends Component {
 						break;
 					default:
 						console.log("Invalid level");
-				}	
+				}
 			});
 			data.push(current);
 		});
@@ -76,8 +76,6 @@ class Results extends Component {
 		// 	{name: 'Deployments', Level1: 12, Level2: 18, Level3: 20}
 		// ];
 
-
-
 		return (
 
 			<div>
@@ -100,7 +98,7 @@ class Results extends Component {
 
 									{ /*
 										<img className="graph" src="../assets/graph.png" />
-										<GraphLegend className="graph-legend" />			
+										<GraphLegend className="graph-legend" />
 										Rather than using our own built Graph components, we're just using the recharts components imported
 									*/}
 
@@ -115,7 +113,7 @@ class Results extends Component {
 										<Bar name="Fitness Level 2" dataKey="Level2" stackId="a" fill="#0D79A7" />
 										<Bar name="Fitness Level 3" dataKey="Level3" stackId="a" fill="#589241" />
 									</BarChart>
-							
+
 								</div>
 
 								<div className="recommendations-list">
